@@ -1,0 +1,791 @@
+<resources>
+
+    <style name="BaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="LightTheme" parent="BaseTheme">
+        <item name="custom_red">#8b030c</item>
+        <item name="custom_blue">#0f1b8b</item>
+        <item name="custom_green">#1c7806</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="DarkTheme" parent="BaseTheme" >
+        <item name="custom_red">#99cfff</item>
+        <item name="custom_blue">#99cfff</item>
+        <item name="custom_green">#62e642</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="AppThemeFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@android:color/holo_orange_dark</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="StyleLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <!--        <item name="android:background">@drawable/bg_rectange_c4_ffffff</item>-->
+    </style>
+
+    <style name="DialogTheme">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <!-- No backgrounds, titles or window float -->
+        <item name="android:windowBackground">@color/color_transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="DialogNotify">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:windowBackground">@color/color_transparent</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="background">@color/color_transparent</item>
+    </style>
+
+    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+
+
+    <style name="AppTheme.Translucent" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+
+    <style name="StyleTextViewBold">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="StyleTextViewBold.12sp">
+        <item name="android:textSize">@dimen/text_12sp</item>
+    </style>
+
+    <style name="StyleTextViewBold.14sp">
+        <item name="android:textSize">@dimen/text_14sp</item>
+    </style>
+
+    <style name="StyleTextViewBold.16sp">
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+
+    <style name="StyleTextViewBold.18sp">
+        <item name="android:textSize">@dimen/text_18sp</item>
+    </style>
+
+    <style name="StyleTextViewBold.26sp">
+        <item name="android:textSize">@dimen/text_26sp</item>
+    </style>
+
+    <style name="StyleTextViewBold.12sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewBold.14sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewBold.14sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewBold.16sp.2d39b1">
+        <item name="android:textColor">@color/color_2d39b1</item>
+    </style>
+
+    <style name="StyleTextViewBold.16sp.2d2b2f">
+        <item name="android:textColor">@color/color_2d2b2f</item>
+    </style>
+
+    <style name="StyleTextViewBold.16sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewBold.18sp.2e2e38">
+        <item name="android:textColor">@color/color_2e2e38</item>
+    </style>
+
+    <style name="StyleTextViewBold.26sp.ea0a2a">
+        <item name="android:textColor">@color/color_ea0a2a</item>
+    </style>
+
+    <style name="StyleTextViewBold.26sp.00209a">
+        <item name="android:textColor">@color/color_00209a</item>
+    </style>
+
+    <style name="StyleTextViewRegular">
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="StyleTextViewRegular.8sp">
+        <item name="android:textSize">@dimen/text_8sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.9sp">
+        <item name="android:textSize">@dimen/text_9sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.10sp">
+        <item name="android:textSize">@dimen/text_10sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.11sp">
+        <item name="android:textSize">@dimen/text_11sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.12sp">
+        <item name="android:textSize">@dimen/text_12sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.13sp">
+        <item name="android:textSize">@dimen/text_13sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.14sp">
+        <item name="android:textSize">@dimen/text_14sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.15sp">
+        <item name="android:textSize">@dimen/text_15sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.16sp">
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.17sp">
+        <item name="android:textSize">@dimen/text_17sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.18sp">
+        <item name="android:textSize">@dimen/text_18sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.20sp">
+        <item name="android:textSize">@dimen/text_20sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.22sp">
+        <item name="android:textSize">@dimen/text_22sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.24sp">
+        <item name="android:textSize">@dimen/text_24sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.26sp">
+        <item name="android:textSize">@dimen/text_26sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.28sp">
+        <item name="android:textSize">@dimen/text_28sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.30sp">
+        <item name="android:textSize">@dimen/text_30sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.36sp">
+        <item name="android:textSize">@dimen/text_36sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.32sp">
+        <item name="android:textSize">@dimen/text_32sp</item>
+    </style>
+
+    <style name="StyleTextViewRegular.36sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewRegular.11sp.ea0a2a">
+        <item name="android:textColor">@color/color_ea0a2a</item>
+    </style>
+
+    <style name="StyleTextViewRegular.16sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewRegular.16sp.2e2e38">
+        <item name="android:textColor">@color/color_2e2e38</item>
+    </style>
+
+    <style name="StyleTextViewRegular.16sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewRegular.16sp.2d2b2f">
+        <item name="android:textColor">@color/color_2d2b2f</item>
+    </style>
+
+    <style name="StyleTextViewRegular.16sp.2d39b1">
+        <item name="android:textColor">@color/color_2d39b1</item>
+    </style>
+
+    <style name="StyleTextViewRegular.14sp.2d2b2f">
+        <item name="android:textColor">@color/color_2d2b2f</item>
+    </style>
+
+    <style name="StyleTextViewRegular.16sp.7b7d8c">
+        <item name="android:textColor">@color/color_7b7d8c</item>
+    </style>
+
+    <style name="StyleTextViewRegular.18sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewRegular.26sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewRegular.30sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewRegular.10sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewRegular.10sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewRegular.12sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewRegular.12sp.7b7d8c">
+        <item name="android:textColor">@color/color_7b7d8c</item>
+    </style>
+
+    <style name="StyleTextViewRegular.12sp.2d2b2f">
+        <item name="android:textColor">@color/color_2d2b2f</item>
+    </style>
+
+    <style name="StyleTextViewRegular.12sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewRegular.14sp.00209a">
+        <item name="android:textColor">@color/color_00209a</item>
+    </style>
+
+    <style name="StyleTextViewRegular.14sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewRegular.15sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewRegular.15sp.ea0a2a">
+        <item name="android:textColor">@color/color_ea0a2a</item>
+    </style>
+
+    <style name="StyleTextViewRegular.15sp.010323">
+        <item name="android:textColor">@color/color_010323</item>
+    </style>
+
+    <style name="StyleTextViewRegular.15sp.2e2e38">
+        <item name="android:textColor">@color/color_2e2e38</item>
+    </style>
+
+    <style name="StyleTextViewRegular.15sp.2d39b1">
+        <item name="android:textColor">@color/color_2d39b1</item>
+    </style>
+
+    <style name="StyleTextViewRegular.14sp.caced9">
+        <item name="android:textColor">@color/color_caced9</item>
+    </style>
+
+    <style name="StyleTextViewRegular.14sp.2d39b1">
+        <item name="android:textColor">@color/color_2d39b1</item>
+    </style>
+
+    <style name="StyleTextViewRegular.14sp.505f78">
+        <item name="android:textColor">@color/color_505f78</item>
+    </style>
+
+    <style name="StyleTextViewRegular.13sp.2d39b1">
+        <item name="android:textColor">@color/color_2d39b1</item>
+    </style>
+
+    <style name="StyleTextViewRegular.14sp.2e2e38">
+        <item name="android:textColor">@color/color_2e2e38</item>
+    </style>
+
+    <style name="StyleTextViewRegular.14sp.ea0a2a">
+        <item name="android:textColor">@color/color_ea0a2a</item>
+    </style>
+
+    <style name="StyleTextViewRegular.15sp.516160">
+        <item name="android:textColor">@color/color_516160</item>
+    </style>
+
+    <style name="StyleTextViewRegular.13sp.516160">
+        <item name="android:textColor">@color/color_516160</item>
+    </style>
+
+    <style name="StyleTextViewRegular.13sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewRegular.13sp.7b7d8c">
+        <item name="android:textColor">@color/color_7b7d8c</item>
+    </style>
+
+    <style name="StyleTextViewRegular.8sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewItalic">
+        <item name="android:fontFamily">@font/roboto_italic</item>
+    </style>
+
+    <style name="StyleTextViewItalic.8sp">
+        <item name="android:textSize">@dimen/text_8sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.9sp">
+        <item name="android:textSize">@dimen/text_9sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.10sp">
+        <item name="android:textSize">@dimen/text_10sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.11sp">
+        <item name="android:textSize">@dimen/text_11sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.12sp">
+        <item name="android:textSize">@dimen/text_12sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.13sp">
+        <item name="android:textSize">@dimen/text_13sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.14sp">
+        <item name="android:textSize">@dimen/text_14sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.15sp">
+        <item name="android:textSize">@dimen/text_15sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.16sp">
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.17sp">
+        <item name="android:textSize">@dimen/text_17sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.18sp">
+        <item name="android:textSize">@dimen/text_18sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.20sp">
+        <item name="android:textSize">@dimen/text_20sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.22sp">
+        <item name="android:textSize">@dimen/text_22sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.24sp">
+        <item name="android:textSize">@dimen/text_24sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.26sp">
+        <item name="android:textSize">@dimen/text_26sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.28sp">
+        <item name="android:textSize">@dimen/text_28sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.30sp">
+        <item name="android:textSize">@dimen/text_30sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.36sp">
+        <item name="android:textSize">@dimen/text_36sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.32sp">
+        <item name="android:textSize">@dimen/text_32sp</item>
+    </style>
+
+    <style name="StyleTextViewItalic.12sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewItalic.12sp.ea0a2a">
+        <item name="android:textColor">@color/color_ea0a2a</item>
+    </style>
+
+    <style name="StyleTextViewItalic.12sp.acb5c5">
+        <item name="android:textColor">@color/color_acb5c5</item>
+    </style>
+
+    <style name="StyleTextViewItalic.12sp.010323">
+        <item name="android:textColor">@color/color_010323</item>
+    </style>
+
+    <style name="StyleTextViewItalic.12sp.2d39b1">
+        <item name="android:textColor">@color/color_2d39b1</item>
+    </style>
+    <style name="StyleTextViewItalic.13sp.2d39b1">
+        <item name="android:textColor">@color/color_2d39b1</item>
+    </style>
+
+    <style name="StyleTextViewItalic.13sp.505f78">
+        <item name="android:textColor">@color/color_505f78</item>
+    </style>
+
+    <style name="StyleTextViewItalic.14sp.2d2b2f">
+        <item name="android:textColor">@color/color_2d2b2f</item>
+    </style>
+
+    <style name="StyleTextViewItalic.14sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewItalic.14sp.010323">
+        <item name="android:textColor">@color/color_010323</item>
+    </style>
+
+    <style name="StyleTextViewItalic.14sp.505f78">
+        <item name="android:textColor">@color/color_505f78</item>
+    </style>
+
+    <style name="StyleTextViewItalic.14sp.2e2e38">
+        <item name="android:textColor">@color/color_2e2e38</item>
+    </style>
+
+    <style name="StyleTextViewItalic.14sp.d80a2d">
+        <item name="android:textColor">@color/color_d80a2d</item>
+    </style>
+
+    <style name="StyleTextViewItalic.14sp.00209a">
+        <item name="android:textColor">@color/color_00209a</item>
+    </style>
+
+    <style name="StyleTextViewMedium">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="StyleTextViewMedium.8sp">
+        <item name="android:textSize">@dimen/text_8sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.9sp">
+        <item name="android:textSize">@dimen/text_9sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.10sp">
+        <item name="android:textSize">@dimen/text_10sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.11sp">
+        <item name="android:textSize">@dimen/text_11sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.12sp">
+        <item name="android:textSize">@dimen/text_12sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.13sp">
+        <item name="android:textSize">@dimen/text_13sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.14sp">
+        <item name="android:textSize">@dimen/text_14sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.15sp">
+        <item name="android:textSize">@dimen/text_15sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.16sp">
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.17sp">
+        <item name="android:textSize">@dimen/text_17sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.18sp">
+        <item name="android:textSize">@dimen/text_18sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.19sp">
+        <item name="android:textSize">@dimen/text_19sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.20sp">
+        <item name="android:textSize">@dimen/text_20sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.22sp">
+        <item name="android:textSize">@dimen/text_22sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.24sp">
+        <item name="android:textSize">@dimen/text_24sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.26sp">
+        <item name="android:textSize">@dimen/text_24sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.30sp">
+        <item name="android:textSize">@dimen/text_30sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.32sp">
+        <item name="android:textSize">@dimen/text_32sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.36sp">
+        <item name="android:textSize">@dimen/text_36sp</item>
+    </style>
+
+    <style name="StyleTextViewMedium.8sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewMedium.11sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewMedium.10sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewMedium.12sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewMedium.12sp.2e2e38">
+        <item name="android:textColor">@color/color_2e2e38</item>
+    </style>
+
+    <style name="StyleTextViewMedium.12sp.ea0a2a">
+        <item name="android:textColor">@color/color_ea0a2a</item>
+    </style>
+
+    <style name="StyleTextViewMedium.12sp.ec183c">
+        <item name="android:textColor">@color/color_ec183c</item>
+    </style>
+
+    <style name="StyleTextViewMedium.12sp.2d39b1">
+        <item name="android:textColor">@color/color_2d39b1</item>
+    </style>
+
+    <style name="StyleTextViewMedium.12sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewMedium.12sp.010323">
+        <item name="android:textColor">@color/color_010323</item>
+    </style>
+
+    <style name="StyleTextViewMedium.13sp.2d2b2f">
+        <item name="android:textColor">@color/color_2d2b2f</item>
+    </style>
+
+    <style name="StyleTextViewMedium.15sp.2d2b2f">
+        <item name="android:textColor">@color/color_2d2b2f</item>
+    </style>
+
+    <style name="StyleTextViewMedium.13sp.010323">
+        <item name="android:textColor">@color/color_010323</item>
+    </style>
+
+        <style name="StyleTextViewMedium.13sp.ec183c">
+        <item name="android:textColor">@color/color_ec183c</item>
+    </style>
+
+    <style name="StyleTextViewMedium.13sp.2d39b1">
+        <item name="android:textColor">@color/color_2d39b1</item>
+    </style>
+
+    <style name="StyleTextViewMedium.14sp.010323">
+        <item name="android:textColor">@color/color_010323</item>
+    </style>
+
+    <style name="StyleTextViewMedium.14sp.2e2e38">
+        <item name="android:textColor">@color/color_2e2e38</item>
+    </style>
+
+    <style name="StyleTextViewMedium.14sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewMedium.14sp.505f78">
+        <item name="android:textColor">@color/color_505f78</item>
+    </style>
+
+    <style name="StyleTextViewMedium.14sp.2d39b1">
+        <item name="android:textColor">@color/color_2d39b1</item>
+    </style>
+
+    <style name="StyleTextViewMedium.14sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewMedium.14sp.e94c4c">
+        <item name="android:textColor">@color/color_e94c4c</item>
+    </style>
+
+    <style name="StyleTextViewMedium.14sp.ea0a2a">
+        <item name="android:textColor">@color/color_ea0a2a</item>
+    </style>
+
+    <style name="StyleTextViewMedium.15sp.010323">
+        <item name="android:textColor">@color/color_010323</item>
+    </style>
+
+    <style name="StyleTextViewMedium.15sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewMedium.15sp.ea0a2a">
+        <item name="android:textColor">@color/color_ea0a2a</item>
+    </style>
+
+    <style name="StyleTextViewMedium.15sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewMedium.16sp.ea0a2a">
+        <item name="android:textColor">@color/color_ea0a2a</item>
+    </style>
+
+    <style name="StyleTextViewMedium.16sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewMedium.16sp.2d2b2f">
+        <item name="android:textColor">@color/color_2d2b2f</item>
+    </style>
+
+    <style name="StyleTextViewMedium.16sp.2e2e38">
+        <item name="android:textColor">@color/color_2e2e38</item>
+    </style>
+
+    <style name="StyleTextViewMedium.16sp.ec183c">
+        <item name="android:textColor">@color/color_ec183c</item>
+    </style>
+
+    <style name="StyleTextViewMedium.16sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewMedium.18sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewMedium.18sp.3c3e60">
+        <item name="android:textColor">@color/color_3c3e60</item>
+    </style>
+
+    <style name="StyleTextViewMedium.18sp.2e2e38">
+        <item name="android:textColor">@color/color_2e2e38</item>
+    </style>
+
+    <style name="StyleTextViewMedium.18sp.ea0a2a">
+        <item name="android:textColor">@color/color_ea0a2a</item>
+    </style>
+
+    <style name="StyleTextViewMedium.18sp.2d39b1">
+        <item name="android:textColor">@color/color_2d39b1</item>
+    </style>
+
+    <style name="StyleTextViewMedium.19sp.ea0a2a">
+        <item name="android:textColor">@color/color_ea0a2a</item>
+    </style>
+
+    <style name="StyleTextViewMedium.19sp.3344d8">
+        <item name="android:textColor">@color/color_3344d8</item>
+    </style>
+
+    <style name="StyleTextViewMedium.20sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewMedium.24sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="StyleTextViewMedium.36sp.ffffff">
+        <item name="android:textColor">@color/color_ffffff</item>
+    </style>
+
+    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+
+    </style>
+
+    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
+
+    </style>
+
+    <style name="MyCustomSwitchCompat" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/color_f4a239</item>
+        <item name="colorSwitchThumbNormal">@color/color_f0f0f0</item>
+        <item name="android:colorForeground">@color/color_bababa</item>
+    </style>
+
+    <style name="MaterialDialogSheet" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item> <!-- nền phía sau-->
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowAnimationStyle">@style/MaterialDialogSheetAnimation</item>
+    </style>
+
+    <style name="MaterialDialogSheetAnimation">
+        <item name="android:windowEnterAnimation">@anim/anim_bottom_sheet_up</item>
+        <item name="android:windowExitAnimation">@anim/anim_bottom_sheet_down</item>
+    </style>
+</resources>

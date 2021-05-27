@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Vi Safe</string>
+    <string name="text_error_required">Required</string>
+    <string name="text_error_not_match_regex_default">Invalid data</string>
+    <string name="check_double_click_exit_app">Please click BACK again to exit</string>
+    <string name="warning_check_server_again">Could not connect to server. Please try again!</string>
+    <string name="error_system_msg">The system is under maintenance. Please come back later!</string>
+    <string name="error_system_msg_503">Service Temporarily Unavailable</string>
+    <string name="error_internet_connect">Internet connection failed. Please check Wifi/3G/4G connection.</string>
+    <string name="error_title">Error</string>
+    <string name="ACTION_CLOSE">Close</string>
+    <string name="ACTION_UPDATE">Update</string>
+    <string name="ACTION_SKIP">Skip</string>
+    <string name="ACTION_WANT">Want</string>
+    <string name="ACTION_RETRY">Retry</string>
+    <string name="ACTION_CANCEL">Cancel</string>
+    <string name="ACTION_NO">No</string>
+    <string name="ACTION_YES">Yes</string>
+    <string name="ACTION_OK">OK</string>
+</resources>

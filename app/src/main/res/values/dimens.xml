@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing. Độ lớn thực tế nhân 0.72 rồi làm tròn -->
+    <!-- Spacing. Độ lớn tăng dần. -->
+    <dimen name="spacing_2dp">@dimen/_1sdp</dimen>
+    <dimen name="spacing_3dp">@dimen/_2sdp</dimen>
+    <dimen name="spacing_4dp">@dimen/_3sdp</dimen>
+    <dimen name="spacing_5dp">@dimen/_3sdp</dimen>
+    <dimen name="spacing_6dp">@dimen/_4sdp</dimen>
+    <dimen name="spacing_8dp">@dimen/_6sdp</dimen>
+    <dimen name="spacing_9dp">@dimen/_6sdp</dimen>
+    <dimen name="spacing_10dp">@dimen/_7sdp</dimen>
+    <dimen name="spacing_12dp">@dimen/_9sdp</dimen>
+    <dimen name="spacing_14dp">@dimen/_10sdp</dimen>
+    <dimen name="spacing_15dp">@dimen/_11sdp</dimen>
+    <dimen name="spacing_16dp">@dimen/_12sdp</dimen>
+    <dimen name="spacing_18dp">@dimen/_13sdp</dimen>
+    <dimen name="spacing_20dp">@dimen/_14sdp</dimen>
+    <dimen name="spacing_21dp">@dimen/_15sdp</dimen>
+    <dimen name="spacing_22dp">@dimen/_16sdp</dimen>
+    <dimen name="spacing_24dp">@dimen/_17sdp</dimen>
+    <dimen name="spacing_26dp">@dimen/_19sdp</dimen>
+    <dimen name="spacing_28dp">@dimen/_20sdp</dimen>
+    <dimen name="spacing_30dp">@dimen/_22sdp</dimen>
+    <dimen name="spacing_32dp">@dimen/_23sdp</dimen>
+    <dimen name="spacing_34dp">@dimen/_24sdp</dimen>
+    <dimen name="spacing_36dp">@dimen/_26sdp</dimen>
+    <dimen name="spacing_38dp">@dimen/_27sdp</dimen>
+    <dimen name="spacing_40dp">@dimen/_29sdp</dimen>
+    <dimen name="spacing_42dp">@dimen/_30sdp</dimen>
+    <dimen name="spacing_44dp">@dimen/_32sdp</dimen>
+    <dimen name="spacing_46dp">@dimen/_33sdp</dimen>
+    <dimen name="spacing_48dp">@dimen/_35sdp</dimen>
+    <dimen name="spacing_50dp">@dimen/_36sdp</dimen>
+    <dimen name="spacing_54dp">@dimen/_39sdp</dimen>
+    <dimen name="spacing_56dp">@dimen/_40sdp</dimen>
+    <dimen name="spacing_58dp">@dimen/_41sdp</dimen>
+    <dimen name="spacing_60dp">@dimen/_43sdp</dimen>
+    <dimen name="spacing_61dp">@dimen/_44sdp</dimen>
+    <dimen name="spacing_64dp">@dimen/_46sdp</dimen>
+    <dimen name="spacing_65dp">@dimen/_47sdp</dimen>
+    <dimen name="spacing_68dp">@dimen/_49sdp</dimen>
+    <dimen name="spacing_72dp">@dimen/_52sdp</dimen>
+    <dimen name="spacing_74dp">@dimen/_53sdp</dimen>
+    <dimen name="spacing_76dp">@dimen/_55sdp</dimen>
+    <dimen name="spacing_78dp">@dimen/_56sdp</dimen>
+    <dimen name="spacing_80dp">@dimen/_58sdp</dimen>
+    <dimen name="spacing_82dp">@dimen/_59sdp</dimen>
+    <dimen name="spacing_89dp">@dimen/_62sdp</dimen>
+    <dimen name="spacing_92dp">@dimen/_66sdp</dimen>
+    <dimen name="spacing_97dp">@dimen/_70sdp</dimen>
+    <dimen name="spacing_100dp">@dimen/_72sdp</dimen>
+    <dimen name="spacing_106dp">@dimen/_76sdp</dimen>
+    <dimen name="spacing_110dp">@dimen/_79sdp</dimen>
+    <dimen name="spacing_120dp">@dimen/_86sdp</dimen>
+    <dimen name="spacing_127dp">@dimen/_91sdp</dimen>
+    <dimen name="spacing_130dp">@dimen/_97sdp</dimen>
+    <dimen name="spacing_135dp">@dimen/_94sdp</dimen>
+    <dimen name="spacing_140dp">@dimen/_101sdp</dimen>
+    <dimen name="spacing_150dp">@dimen/_108sdp</dimen>
+    <dimen name="spacing_154dp">@dimen/_111sdp</dimen>
+    <dimen name="spacing_160dp">@dimen/_115sdp</dimen>
+    <dimen name="spacing_170dp">@dimen/_123sdp</dimen>
+    <dimen name="spacing_175dp">@dimen/_126sdp</dimen>
+    <dimen name="spacing_180dp">@dimen/_130sdp</dimen>
+    <dimen name="spacing_188dp">@dimen/_135sdp</dimen>
+    <dimen name="spacing_200dp">@dimen/_144sdp</dimen>
+    <dimen name="spacing_230dp">@dimen/_170sdp</dimen>
+    <dimen name="spacing_270dp">@dimen/_194sdp</dimen>
+    <dimen name="spacing_272dp">@dimen/_196sdp</dimen>
+    <dimen name="spacing_280dp">@dimen/_201sdp</dimen>
+    <dimen name="spacing_300dp">@dimen/_216sdp</dimen>
+
+
+
+    <!-- Text. Độ lớn tăng dần. -->
+    <dimen name="text_3sp">@dimen/_2sdp</dimen>
+    <dimen name="text_8sp">@dimen/_6sdp</dimen>
+    <dimen name="text_9sp">@dimen/_6sdp</dimen>
+    <dimen name="text_10sp">@dimen/_7sdp</dimen>
+    <dimen name="text_11sp">@dimen/_8sdp</dimen>
+    <dimen name="text_12sp">@dimen/_9sdp</dimen>
+    <dimen name="text_13sp">@dimen/_9sdp</dimen>
+    <dimen name="text_14sp">@dimen/_12sdp</dimen>
+    <dimen name="text_15sp">@dimen/_12sdp</dimen>
+    <dimen name="text_16sp">@dimen/_14sdp</dimen>
+    <dimen name="text_17sp">@dimen/_12sdp</dimen>
+    <dimen name="text_18sp">@dimen/_13sdp</dimen>
+    <dimen name="text_19sp">@dimen/_14sdp</dimen>
+    <dimen name="text_20sp">@dimen/_14sdp</dimen>
+    <dimen name="text_22sp">@dimen/_16sdp</dimen>
+    <dimen name="text_24sp">@dimen/_17sdp</dimen>
+    <dimen name="text_25sp">@dimen/_18sdp</dimen>
+    <dimen name="text_26sp">@dimen/_19sdp</dimen>
+    <dimen name="text_28sp">@dimen/_20sdp</dimen>
+    <dimen name="text_30sp">@dimen/_22sdp</dimen>
+    <dimen name="text_32sp">@dimen/_23sdp</dimen>
+    <dimen name="text_36sp">@dimen/_26sdp</dimen>
+
+</resources>
