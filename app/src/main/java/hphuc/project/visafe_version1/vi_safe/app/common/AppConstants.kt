@@ -1,6 +1,7 @@
 package hphuc.project.visafe_version1.vi_safe.app.common
 
 import android.Manifest
+import android.security.keystore.KeyProperties
 import hphuc.project.visafe_version1.core.app.util.DateTimeFormat
 
 interface AppConstants {
@@ -132,5 +133,14 @@ interface AppConstants {
         var VIDEO_CALL_ROOM_ID : Long = 0
         var VIDEO_CALL_ROOM_NAME : String = ""
         var VIDEO_CALL_ROOM_AVATAR : String = ""
+
+        const val ANDROID_KEYSTORE = "AndroidKeyStore"
+        const val ENCRYPTION_BLOCK_MODE = KeyProperties.BLOCK_MODE_GCM
+        const val ENCRYPTION_PADDING = KeyProperties.ENCRYPTION_PADDING_NONE
+        const val ENCRYPTION_ALGORITHM = KeyProperties.KEY_ALGORITHM_AES
+        const val secretKeyName = "secretKeyName"
+        const val KEY_SIZE = 256
+        const val CANCEL_FINGERPRINT = 13
+        const val CANCEL_FINGERPRINT_WITH_TOUCH_OUTSIZE = 10
     }
 }

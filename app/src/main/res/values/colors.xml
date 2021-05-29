@@ -149,4 +149,5 @@
     <color name="viewfinder_mask">#60000000</color>
     <color name="viewfinder_laser">#ffcc0000</color>
     <color name="viewfinder_border">#ffafed44</color>
+    <color name="color_F2F2F2">#F2F2F2</color>
 </resources>

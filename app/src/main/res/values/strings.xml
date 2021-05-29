@@ -17,4 +17,13 @@
     <string name="ACTION_NO">No</string>
     <string name="ACTION_YES">Yes</string>
     <string name="ACTION_OK">OK</string>
+    <string name="text_number_phone">Number phone</string>
+    <string name="text_password">Password</string>
+    <string name="text_forget_password">Forget Password?</string>
+    <string name="text_sign_in">Sign in</string>
+    <string name="text_sign_in_with">Or  Sign In with</string>
+    <string name="text_please_enter_phone_number">Please enter phone number</string>
+    <string name="text_phone_incorrect">Số điện thoại không hợp lệSố điện thoại không hợp lệ</string>
+    <string name="text_error_empty_pass">Please enter password</string>
+    <string name="text_notify">Thông báo</string>
 </resources>

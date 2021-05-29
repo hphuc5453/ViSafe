@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_24dp"
+        android:layout_marginTop="@dimen/spacing_200dp"
+        android:fontFamily="@font/semi_bold"
+        android:text="@string/text_number_phone"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_24dp"
+        android:layout_marginTop="@dimen/spacing_12dp"
+        android:layout_marginEnd="@dimen/spacing_24dp"
+        android:background="@drawable/bg_rectange_c4_068dff">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:inputType="phone"
+            android:digits="0123456789"
+            android:id="@+id/edtPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:fontFamily="@font/semi_regular"
+            android:maxLength="10"
+            android:padding="@dimen/spacing_14dp"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_15sp" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_24dp"
+        android:layout_marginTop="@dimen/spacing_18dp"
+        android:fontFamily="@font/semi_bold"
+        android:text="@string/text_password"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_15sp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_24dp"
+        android:layout_marginTop="@dimen/spacing_12dp"
+        android:layout_marginEnd="@dimen/spacing_24dp"
+        android:background="@drawable/bg_rectange_c4_068dff"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:fontFamily="@font/semi_regular"
+            android:inputType="textPassword"
+            android:maxLength="30"
+            android:padding="@dimen/spacing_14dp"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivHidden"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivHidden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_20dp"
+            app:layout_constraintBottom_toBottomOf="@id/edtPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edtPassword"
+            app:srcCompat="@drawable/ic_orion_hidden_password" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="@dimen/spacing_16dp"
+        android:layout_marginEnd="@dimen/spacing_24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_14sp"
+            android:fontFamily="@font/semi_regular"
+            android:text="@string/text_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLogin"
+        android:textAllCaps="false"
+        android:textSize="@dimen/text_15sp"
+        android:textColor="@color/color_ffffff"
+        android:text="@string/text_sign_in"
+        android:fontFamily="@font/semi_regular"
+        android:layout_marginTop="@dimen/spacing_40dp"
+        android:layout_marginStart="@dimen/spacing_24dp"
+        android:layout_marginEnd="@dimen/spacing_24dp"
+        android:background="@drawable/bg_rectange_c4_0176d8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_marginTop="@dimen/spacing_16dp"
+        android:layout_gravity="center"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_14sp"
+        android:fontFamily="@font/semi_regular"
+        android:text="@string/text_sign_in_with"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

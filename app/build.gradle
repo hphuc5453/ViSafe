@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id "com.apollographql.apollo"
 }
 
 apply plugin: 'kotlin-kapt'
@@ -45,6 +47,14 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // Noinspection gradle compatible
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.4.0-alpha02'
+    implementation "androidx.preference:preference-ktx:1.1.1"
 
     // Add size
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
@@ -100,6 +110,17 @@ dependencies {
 
     //Rx permission
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+
+    // biometric
+    implementation "androidx.biometric:biometric:1.1.0"
+
+    // apollographql db
+    implementation "com.apollographql.apollo:apollo-runtime:2.4.6"
+    implementation "com.apollographql.apollo:apollo-coroutines-support:2.4.6"
+
+    // define any required OkHttp artifacts without version
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
 
 
 }

@@ -8,10 +8,11 @@ import kotlinex.context.showAlert
 import hphuc.project.visafe_version1.core.app.domain.excecutor.EventFireUtil
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionNotify
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
+import hphuc.project.visafe_version1.vi_safe.app.Utils
 
-fun MvpActivity.showErrorAlert(msgError: String) {
+fun MvpActivity.showErrorAlert(msgError: String, isCancelable :Boolean = true) {
     val activity = this
-    activity.showAlert(msgError, activity.getString(R.string.error_title), null)
+    Utils.showErrorTextDialog(activity, msgError, isCancelable = isCancelable)
 }
 
 fun MvpActivity.showErrorAlert(msgError: String, onActionNotify: OnActionNotify) {

@@ -12,7 +12,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="@dimen/spacing_40dp"
         android:layout_height="@dimen/spacing_40dp"
-        app:srcCompat="@drawable/ic_logo_loading"
+        app:srcCompat="@drawable/logo_app"
         android:layout_gravity="center"/>
 
     <hphuc.project.visafe_version1.core.app.view.ContentLoadingProgressBar
