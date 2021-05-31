@@ -1,3 +1,0 @@
-#query loginApp($user: String!, $password: String!){
-#    login(user: $user, password: $password)
-#}

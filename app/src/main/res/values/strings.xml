@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Vi Safe</string>
     <string name="text_error_required">Required</string>
     <string name="text_error_not_match_regex_default">Invalid data</string>
@@ -26,4 +26,12 @@
     <string name="text_phone_incorrect">Số điện thoại không hợp lệSố điện thoại không hợp lệ</string>
     <string name="text_error_empty_pass">Please enter password</string>
     <string name="text_notify">Thông báo</string>
+    <string name="text_name">Name</string>
+    <string name="text_sign_up">Create Account</string>
+    <string name="text_sign_in_with_another_account">Sing in with another account</string>
+    <string name="text_facebook">Facebook</string>
+    <string name="text_google">Google</string>
+    <string name="text_have_account">Already have account? Sign in</string>
+    <string name="text_welcome_back">Welcome Back</string>
+    <string name="text_let_get_started" tools:ignore="StringEscaping">Let's get started</string>
 </resources>

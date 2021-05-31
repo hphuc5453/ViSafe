@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.apollographql.apollo.ApolloClient
 import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.app.view.loading.Loadinger
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
@@ -30,7 +29,7 @@ class LoginView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
 
     private val loadingView = Loadinger.create(mvpActivity, mvpActivity.window)
     private val mResource = LoginResourceProvider(mvpActivity)
-    private val mPresenter = LoginPresenter(mResource, AndroidScreenNavigator(mvpActivity))
+    private val mPresenter = LoginPresenter(AndroidScreenNavigator(mvpActivity))
 
     private fun initView(){
         view.tvTitle.text = mResource.getTextTitle()
