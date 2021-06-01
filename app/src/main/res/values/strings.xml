@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Vi Safe</string>
     <string name="text_error_required">Required</string>
     <string name="text_error_not_match_regex_default">Invalid data</string>
@@ -23,7 +23,7 @@
     <string name="text_sign_in">Sign in</string>
     <string name="text_sign_in_with">Or  Sign In with</string>
     <string name="text_please_enter_phone_number">Please enter phone number</string>
-    <string name="text_phone_incorrect">Số điện thoại không hợp lệSố điện thoại không hợp lệ</string>
+    <string name="text_phone_incorrect">Số điện thoại không hợp lệ</string>
     <string name="text_error_empty_pass">Please enter password</string>
     <string name="text_notify">Thông báo</string>
     <string name="text_name">Name</string>
@@ -33,5 +33,13 @@
     <string name="text_google">Google</string>
     <string name="text_have_account">Already have account? Sign in</string>
     <string name="text_welcome_back">Welcome Back</string>
-    <string name="text_let_get_started" tools:ignore="StringEscaping">Let's get started</string>
+    <string name="text_let_get_started">Let\'s get started</string>
+    <string name="text_sign_up_for_login">Sign up</string>
+    <string name="text_welcome">Welcome!</string>
+    <string name="text_please_choose_role">Please choose your role</string>
+    <string name="text_role_policy">Police</string>
+    <string name="text_role_civil_defense">Civil defense</string>
+    <string name="text_role_street_bodyguard">Street  bodyguard</string>
+    <string name="text_role_hospital">Hospital</string>
+    <string name="text_role_fire_fight">Fire fight</string>
 </resources>

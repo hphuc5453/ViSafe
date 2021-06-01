@@ -21,6 +21,7 @@ interface LoginContact {
         abstract fun logInApp(request: LoginRequest)
         abstract fun login(request: PassportRequest)
         abstract fun logout()
+        abstract fun gotoSignUpActivity()
     }
 
 }

@@ -20,4 +20,8 @@ class LoginPresenter(
     override fun login(request: PassportRequest) {
         androidScreenNavigator.gotoMainActivity()
     }
+
+    override fun gotoSignUpActivity() {
+        androidScreenNavigator.gotoSignUpActivity()
+    }
 }

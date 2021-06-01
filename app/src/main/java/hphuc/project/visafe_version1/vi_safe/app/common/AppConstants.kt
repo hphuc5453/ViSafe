@@ -142,5 +142,12 @@ interface AppConstants {
         const val KEY_SIZE = 256
         const val CANCEL_FINGERPRINT = 13
         const val CANCEL_FINGERPRINT_WITH_TOUCH_OUTSIZE = 10
+
+        // role
+        const val POLICY = "POLICY"
+        const val CIVIL_DEFENSE = "CIVIL_DEFENSE"
+        const val STREET_BODYGUARD = "STREET_BODYGUARD"
+        const val HOSPITAL = "HOSPITAL"
+        const val FIRE_FIGHT = "FIRE_FIGHT"
     }
 }

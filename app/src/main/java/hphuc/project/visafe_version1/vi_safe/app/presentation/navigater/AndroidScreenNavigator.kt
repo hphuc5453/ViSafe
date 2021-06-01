@@ -5,6 +5,7 @@ import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActiv
 
 import hphuc.project.visafe_version1.vi_safe.app.presentation.navigation.ScreenNavigator
 import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity
+import hphuc.project.visafe_version1.vi_safe.screen.sign_up.SignUpActivity
 
 class AndroidScreenNavigator constructor(private val mvpActivity: MvpActivity) : ScreenNavigator {
     override fun gotoMainActivity() {
@@ -13,5 +14,8 @@ class AndroidScreenNavigator constructor(private val mvpActivity: MvpActivity) :
         mvpActivity.startActivity(intent)
     }
 
-
+    override fun gotoSignUpActivity() {
+        val intent = Intent(mvpActivity, SignUpActivity::class.java)
+        mvpActivity.startActivity(intent)
+    }
 }

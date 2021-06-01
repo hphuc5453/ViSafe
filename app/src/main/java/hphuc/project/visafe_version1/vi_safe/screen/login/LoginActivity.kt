@@ -4,6 +4,7 @@ import android.os.Bundle
 import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
+import hphuc.project.visafe_version1.vi_safe.app.config.ConfigUtil
 import hphuc.project.visafe_version1.vi_safe.screen.login.presentation.LoginView
 
 class LoginActivity : MvpActivity() {
@@ -22,6 +23,10 @@ class LoginActivity : MvpActivity() {
     }
 
     override fun getBackgroundScreen(): Int {
-        return R.drawable.background
+        return if (ConfigUtil.passport != null){
+            R.drawable.background_relogin
+        }else{
+            R.drawable.background
+        }
     }
 }
