@@ -1,5 +1,7 @@
 package hphuc.project.visafe_version1.vi_safe.app.domain
 
-interface UserNetworkRepository {
+import io.reactivex.Observable
 
+interface UserNetworkRepository {
+    fun getMapStyle(): Observable<String>
 }

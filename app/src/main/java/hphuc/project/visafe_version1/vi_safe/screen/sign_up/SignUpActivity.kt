@@ -10,8 +10,4 @@ class SignUpActivity : MvpActivity() {
     override fun createAndroidMvpView(savedInstanceState: Bundle?): AndroidMvpView {
         return SignUpView(this, SignUpView.ViewCreator(this, null))
     }
-
-    override fun getBackgroundScreen(): Int {
-        return R.drawable.background
-    }
 }

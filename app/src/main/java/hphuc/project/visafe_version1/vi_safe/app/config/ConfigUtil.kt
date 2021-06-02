@@ -42,6 +42,12 @@ class ConfigUtil {
                     .getValueOrDefault()
             }
 
+        val mapStyle: String?
+            get() {
+                val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
+                return configSaver.get(ConfigSaver.CONFIG_SETTING_KEY_MAP_STYLE)
+            }
+
         @JvmStatic
         fun savePushToken(token: String) {
             val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
@@ -71,6 +77,12 @@ class ConfigUtil {
         fun saveIsFirstTimeLogin(isFirstTimeLogin: Boolean?) {
             val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
             return configSaver.save(ConfigSaver.CONFIG_SETTING_FIRST_TIME_LOGIN, isFirstTimeLogin)
+        }
+
+        @JvmStatic
+        fun saveMapStyle(style: String) {
+            val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
+            return configSaver.save(ConfigSaver.CONFIG_SETTING_KEY_MAP_STYLE, style)
         }
     }
 

@@ -1,358 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fillViewport="true"
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:gravity="center"
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/semi_bold"
-        android:text="@string/text_sign_in"
-        android:textColor="@color/color_ffffff"
-        android:textSize="@dimen/text_18sp" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="@dimen/spacing_24dp"
-        android:layout_marginTop="@dimen/spacing_60dp"
-        android:layout_marginEnd="@dimen/spacing_24dp"
-        android:fontFamily="@font/semi_bold"
-        android:text="@string/text_welcome"
-        android:textColor="@color/color_ffffff"
-        android:textSize="@dimen/text_28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clAvatar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivLanguage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_10dp"
-            android:layout_marginEnd="@dimen/spacing_24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvWelcomeBack"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/semi_regular"
-            android:gravity="center"
-            android:text="@string/text_welcome_back"
-            android:textAllCaps="true"
-            android:textColor="@color/color_ffffff"
-            android:textSize="@dimen/text_15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivLanguage" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivAvatar"
-            android:layout_width="@dimen/spacing_80dp"
-            android:layout_height="@dimen/spacing_80dp"
-            android:layout_marginTop="@dimen/spacing_10dp"
-            android:src="@drawable/avatar_test"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvWelcomeBack" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_10dp"
-            android:fontFamily="@font/semi_regular"
-            android:gravity="center"
-            android:textAllCaps="true"
-            android:textColor="@color/color_ffffff"
-            android:textSize="@dimen/text_15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivAvatar"
-            tools:text="Tran minh nghia" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_4dp"
-            android:fontFamily="@font/semi_regular"
-            android:gravity="center"
-            android:textColor="@color/color_ffffff"
-            android:textSize="@dimen/text_15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
-            tools:text="093*****09" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/clUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_100dp"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_24dp"
             android:fontFamily="@font/semi_bold"
-            android:text="@string/text_number_phone"
+            android:gravity="center"
+            android:text="@string/text_sign_in"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_18sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/spacing_24dp"
+            android:layout_marginTop="@dimen/spacing_60dp"
+            android:layout_marginEnd="@dimen/spacing_24dp"
+            android:fontFamily="@font/semi_bold"
+            android:text="@string/text_welcome"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_10dp"
+                android:layout_marginEnd="@dimen/spacing_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvWelcomeBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/semi_regular"
+                android:gravity="center"
+                android:text="@string/text_welcome_back"
+                android:textAllCaps="true"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivLanguage" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="@dimen/spacing_80dp"
+                android:layout_height="@dimen/spacing_80dp"
+                android:layout_marginTop="@dimen/spacing_10dp"
+                android:src="@drawable/avatar_test"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvWelcomeBack" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_10dp"
+                android:fontFamily="@font/semi_regular"
+                android:gravity="center"
+                android:textAllCaps="true"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivAvatar"
+                tools:text="Tran minh nghia" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_4dp"
+                android:fontFamily="@font/semi_regular"
+                android:gravity="center"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvName"
+                tools:text="093*****09" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/clUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_100dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_24dp"
+                android:fontFamily="@font/semi_bold"
+                android:text="@string/text_number_phone"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_60dp"
+                android:layout_marginStart="@dimen/spacing_24dp"
+                android:layout_marginTop="@dimen/spacing_12dp"
+                android:layout_marginEnd="@dimen/spacing_24dp"
+                android:background="@drawable/iv_rounder_edittext">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:digits="0123456789"
+                    android:fontFamily="@font/semi_regular"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:padding="@dimen/spacing_14dp"
+                    android:textColor="@color/color_ffffff"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/text_15sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_24dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
+            android:fontFamily="@font/semi_bold"
+            android:text="@string/text_password"
             android:textColor="@color/color_ffffff"
             android:textSize="@dimen/text_15sp" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/spacing_60dp"
             android:layout_marginStart="@dimen/spacing_24dp"
             android:layout_marginTop="@dimen/spacing_12dp"
             android:layout_marginEnd="@dimen/spacing_24dp"
-            android:background="@drawable/iv_rounder_edittext">
+            android:background="@drawable/iv_rounder_edittext"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtPhoneNumber"
-                android:layout_width="match_parent"
+                android:id="@+id/edtPassword"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:digits="0123456789"
                 android:fontFamily="@font/semi_regular"
-                android:inputType="phone"
-                android:maxLength="10"
+                android:inputType="textPassword"
+                android:maxLength="30"
                 android:padding="@dimen/spacing_14dp"
                 android:textColor="@color/color_ffffff"
-                android:textSize="@dimen/text_15sp" />
-        </LinearLayout>
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/text_15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ivHidden"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivHidden"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_20dp"
+                android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+                app:layout_constraintBottom_toBottomOf="@id/edtPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/edtPassword"
+                app:srcCompat="@drawable/ic_orion_hidden_password" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_24dp"
-        android:layout_marginTop="@dimen/spacing_18dp"
-        android:fontFamily="@font/semi_bold"
-        android:text="@string/text_password"
-        android:textColor="@color/color_ffffff"
-        android:textSize="@dimen/text_15sp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/spacing_60dp"
-        android:layout_marginStart="@dimen/spacing_24dp"
-        android:layout_marginTop="@dimen/spacing_12dp"
-        android:layout_marginEnd="@dimen/spacing_24dp"
-        android:background="@drawable/iv_rounder_edittext"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edtPassword"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
+            android:layout_marginTop="@dimen/spacing_16dp"
+            android:layout_marginEnd="@dimen/spacing_24dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/semi_regular"
+                android:text="@string/text_forget_password"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_24dp"
+                android:layout_marginTop="@dimen/spacing_40dp"
+                android:layout_marginEnd="@dimen/spacing_24dp"
+                android:background="@drawable/bg_rectange_c4_0176d8"
+                android:fontFamily="@font/semi_regular"
+                android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+                android:text="@string/text_sign_in"
+                android:textAllCaps="false"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/loginWithFingerprint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/loginWithFingerprint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_24dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/btnLogin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btnLogin"
+                app:srcCompat="@drawable/ic_fingerprint" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_24dp"
+            android:layout_marginTop="@dimen/spacing_40dp"
+            android:layout_marginEnd="@dimen/spacing_24dp"
+            android:background="@drawable/bg_rectange_c4_ffffff"
             android:fontFamily="@font/semi_regular"
-            android:inputType="textPassword"
-            android:maxLength="30"
-            android:padding="@dimen/spacing_14dp"
-            android:textColor="@color/color_ffffff"
-            android:textSize="@dimen/text_15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ivHidden"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatImageView
             android:stateListAnimator="@animator/anim_click_scale_zoom_out"
-            android:id="@+id/ivHidden"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/spacing_20dp"
-            app:layout_constraintBottom_toBottomOf="@id/edtPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/edtPassword"
-            app:srcCompat="@drawable/ic_orion_hidden_password" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_16dp"
-        android:layout_marginEnd="@dimen/spacing_24dp">
+            android:text="@string/text_sign_up_for_login"
+            android:textAllCaps="false"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_15sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/spacing_60dp"
             android:fontFamily="@font/semi_regular"
-            android:text="@string/text_forget_password"
+            android:text="@string/text_sign_in_with"
             android:textColor="@color/color_ffffff"
             android:textSize="@dimen/text_14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:stateListAnimator="@animator/anim_click_scale_zoom_out"
-            android:id="@+id/btnLogin"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_24dp"
-            android:layout_marginTop="@dimen/spacing_40dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
             android:layout_marginEnd="@dimen/spacing_24dp"
-            android:background="@drawable/bg_rectange_c4_0176d8"
-            android:fontFamily="@font/semi_regular"
-            android:text="@string/text_sign_in"
-            android:textAllCaps="false"
-            android:textColor="@color/color_ffffff"
-            android:textSize="@dimen/text_15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/loginWithFingerprint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/loginWithFingerprint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/spacing_24dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/btnLogin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btnLogin"
-            app:srcCompat="@drawable/ic_fingerprint" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnSignUp"
-        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_24dp"
-        android:layout_marginTop="@dimen/spacing_40dp"
-        android:layout_marginEnd="@dimen/spacing_24dp"
-        android:background="@drawable/bg_rectange_c4_ffffff"
-        android:fontFamily="@font/semi_regular"
-        android:text="@string/text_sign_up_for_login"
-        android:textAllCaps="false"
-        android:textColor="@color/color_ffffff"
-        android:textSize="@dimen/text_15sp" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/spacing_60dp"
-        android:fontFamily="@font/semi_regular"
-        android:text="@string/text_sign_in_with"
-        android:textColor="@color/color_ffffff"
-        android:textSize="@dimen/text_14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_24dp"
-        android:layout_marginTop="@dimen/spacing_18dp"
-        android:layout_marginEnd="@dimen/spacing_24dp"
-        android:orientation="horizontal">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:stateListAnimator="@animator/anim_click_scale_zoom_out"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/spacing_12dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_rectange_c4_3a559f">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivFacebook"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_20dp"
-                app:layout_constraintBottom_toBottomOf="@id/tvFacebook"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvFacebook"
-                app:srcCompat="@drawable/ic_facebook" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvFacebook"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/semi_regular"
-                android:gravity="center"
-                android:paddingTop="@dimen/spacing_14dp"
-                android:paddingBottom="@dimen/spacing_14dp"
-                android:text="@string/text_facebook"
-                android:textColor="@color/color_ffffff"
-                android:textSize="@dimen/text_15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivFacebook"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginEnd="@dimen/spacing_12dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rectange_c4_3a559f"
+                android:stateListAnimator="@animator/anim_click_scale_zoom_out">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:stateListAnimator="@animator/anim_click_scale_zoom_out"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_12dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_rectange_c4_f14436">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivFacebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_20dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvFacebook"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvFacebook"
+                    app:srcCompat="@drawable/ic_facebook" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivGoogle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_20dp"
-                app:layout_constraintBottom_toBottomOf="@id/tvGoogle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvGoogle"
-                app:srcCompat="@drawable/ic_google" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvFacebook"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/semi_regular"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/spacing_14dp"
+                    android:paddingBottom="@dimen/spacing_14dp"
+                    android:text="@string/text_facebook"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="@dimen/text_15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ivFacebook"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvGoogle"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/semi_regular"
-                android:gravity="center"
-                android:paddingStart="@dimen/spacing_24dp"
-                android:paddingTop="@dimen/spacing_14dp"
-                android:paddingEnd="@dimen/spacing_24dp"
-                android:paddingBottom="@dimen/spacing_14dp"
-                android:text="@string/text_google"
-                android:textColor="@color/color_ffffff"
-                android:textSize="@dimen/text_15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivGoogle"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginStart="@dimen/spacing_12dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rectange_c4_f14436"
+                android:stateListAnimator="@animator/anim_click_scale_zoom_out">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivGoogle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_20dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvGoogle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvGoogle"
+                    app:srcCompat="@drawable/ic_google" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvGoogle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/semi_regular"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/spacing_24dp"
+                    android:paddingTop="@dimen/spacing_14dp"
+                    android:paddingEnd="@dimen/spacing_24dp"
+                    android:paddingBottom="@dimen/spacing_14dp"
+                    android:text="@string/text_google"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="@dimen/text_15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ivGoogle"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

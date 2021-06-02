@@ -10,10 +10,12 @@
         android:layout_height="match_parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        app:menu="@menu/bottom_menu"
         android:id="@+id/bottomNavigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />
+        android:background="@drawable/bg_rectange_001a25ab_131b7c_00000644"
+        app:itemIconTint="@color/bottom_menu_tab_color"
+        app:itemTextColor="@color/bottom_menu_tab_color"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:menu="@menu/bottom_menu" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

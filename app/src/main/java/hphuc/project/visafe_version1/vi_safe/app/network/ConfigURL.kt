@@ -10,6 +10,8 @@ class ConfigURL {
         //        private const val API_uniprime_UAT = "http://sgc.minerva.vn:$PORT_UAT/api/"
         private const val API_SMART_HOME_UAT = "http://uniprimeapidev.minerva.vn/api/"
         private const val API_SMART_HOME_DEV="http://uniprimeapidev.minerva.vn:7110/api/ "
+        const val MAP_STYLE="https://images.minerva.vn/"
+
         @JvmStatic
         fun getApiUrl(): String {
             return when {

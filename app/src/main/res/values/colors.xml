@@ -151,4 +151,6 @@
     <color name="viewfinder_border">#ffafed44</color>
     <color name="color_F2F2F2">#F2F2F2</color>
     <color name="color_435a82">#435a82</color>
+    <color name="color_status_bar_opacity">#0DFFFFFF</color>
+    <color name="color_57dfef">#57dfef</color>
 </resources>

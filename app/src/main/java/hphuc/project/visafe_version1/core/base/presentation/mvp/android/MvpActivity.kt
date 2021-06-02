@@ -4,11 +4,13 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
 import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.MotionEvent
+import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -16,6 +18,7 @@ import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.orhanobut.logger.Logger
 import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionNotify
@@ -34,9 +37,27 @@ abstract class MvpActivity : AppCompatActivity(),
     private val timeDelayWhenClickBack = 2000
     //    private val resultSyncOrderOfflineReceiver = ResultSyncOrderOfflineReceiver()
     private lateinit var screenReceiver: ScreenReceiver
+    private val resource = AndroidResourceManager()
 
     override fun addLifeCycle(lifeCycle: LifeCycleAndroidMvpView) {
         lifeCycleDispatcher.addLifeCycle(lifeCycle)
+    }
+
+    fun replaceFragment(f: Fragment, flChange: Int) {
+        this.supportFragmentManager
+            .beginTransaction()
+            .addToBackStack(null)
+            .replace(flChange, f)
+            .commit()
+    }
+
+    fun setActivityFullScreen(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = resource.getColor(R.color.color_status_bar_opacity)
+            window.navigationBarColor = Color.TRANSPARENT
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,17 +84,15 @@ abstract class MvpActivity : AppCompatActivity(),
     private fun setBackgroundData(@DrawableRes id: Int) {
         val resource = AndroidResourceManager()
         val background = resource.getDrawable(id)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = resource.getColor(android.R.color.transparent)
-            window.navigationBarColor = resource.getColor(android.R.color.transparent)
-        }
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = resource.getColor(android.R.color.transparent)
+        window.navigationBarColor = resource.getColor(android.R.color.transparent)
         window.setBackgroundDrawable(background)
     }
 
     @DrawableRes
     open fun getBackgroundScreen(): Int {
-        return 0
+        return R.drawable.background
     }
 
     override fun onDestroy() {

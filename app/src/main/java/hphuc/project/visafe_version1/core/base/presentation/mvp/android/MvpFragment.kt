@@ -35,7 +35,7 @@ abstract class MvpFragment : Fragment(), LifeCycleDispatcherSetter<LifeCycleAndr
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        androidMvpView = createAndroidMvpView()
+        androidMvpView = createAndroidMvpView(savedInstanceState)
         mRootView = (androidMvpView as AndroidMvpView).createView()
         initMvpView()
         initViewAfterCreateView(savedInstanceState)
@@ -82,6 +82,6 @@ abstract class MvpFragment : Fragment(), LifeCycleDispatcherSetter<LifeCycleAndr
         )
     }
 
-    abstract fun createAndroidMvpView(): AndroidMvpView
+    abstract fun createAndroidMvpView(savedInstanceState: Bundle?): AndroidMvpView
 
 }

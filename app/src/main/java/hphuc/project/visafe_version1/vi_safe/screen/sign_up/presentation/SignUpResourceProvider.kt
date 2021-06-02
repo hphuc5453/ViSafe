@@ -8,4 +8,21 @@ class SignUpResourceProvider(mvpActivity: MvpActivity): AndroidResourceProvider(
     fun getTextTitle(): String{
         return resourceManager.getString(R.string.text_sign_up_for_login)
     }
+
+    fun getTextPleaseEnterName(): String{
+        return resourceManager.getString(R.string.text_please_enter_name)
+    }
+
+    fun getTextPleaseEnterPhoneNumber(): String {
+        return resourceManager.getString(R.string.text_please_enter_phone_number)
+    }
+
+    fun getTextPhoneIncorrect(): String {
+        return resourceManager.getString(R.string.text_phone_incorrect)
+    }
+
+    fun getTextErrorEmptyPass(): String {
+        return resourceManager.getString(R.string.text_error_empty_pass)
+    }
+
 }

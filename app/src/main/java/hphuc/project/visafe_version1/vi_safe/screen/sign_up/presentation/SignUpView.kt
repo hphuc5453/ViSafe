@@ -16,6 +16,7 @@ import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActiv
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.LinearRenderConfigFactory
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.ListViewMvp
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.OnItemRvClickedListener
+import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.screen.sign_up.presentation.model.RoleItemViewModel
 import hphuc.project.visafe_version1.vi_safe.screen.sign_up.presentation.renderer.RoleItemViewRenderer
 import kotlinex.mvpactivity.showErrorAlert
@@ -85,16 +86,40 @@ class SignUpView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreat
             view.btnSignUp.id->{
                 checkData()
             }
+            view.tvSignIn.id->{
+                mvpActivity.onBackPressed()
+            }
         }
     }
 
     private fun checkData(){
+        if (view.edtName.text.isNullOrEmpty()){
+            showError(mResource.getTextPleaseEnterName())
+            return
+        }
+        if (view.edtPhoneNumber.text.isNullOrEmpty()){
+            showError(mResource.getTextPleaseEnterPhoneNumber())
+            return
+        }
+        if (view.edtPhoneNumber.text.toString().length <= 4){
+            showError(mResource.getTextPhoneIncorrect())
+            return
+        }
+        if (!Utils.checkValidPhoneNumber(view.edtPhoneNumber.text.toString())){
+            showError(mResource.getTextPhoneIncorrect())
+            return
+        }
+        if (view.edtPassword.text.isNullOrEmpty()){
+            showError(mResource.getTextErrorEmptyPass())
+            return
+        }
         mPresenter.signUp()
     }
 
     private fun initView(){
         view.ivHidden.setOnClickListener(onActionClick)
         view.btnSignUp.setOnClickListener(onActionClick)
+        view.tvSignIn.setOnClickListener(onActionClick)
     }
 
     private fun initRecycleView() {

@@ -23,7 +23,7 @@ class App : Application() {
         setupApplication()
 //        initLogger()
 //        initLogActivity()
-        Mapbox.getInstance(applicationContext, "pk.eyJ1Ijoibm9uMjM1IiwiYSI6ImNpbzI5YzRhbzFheGF1a20za2JzODNndDMifQ.ono5LA8H3OlJUo5jjDCi2Q")
+        Mapbox.getInstance(applicationContext, "pk.eyJ1IjoiaHBodWM1NDQzIiwiYSI6ImNrcGZsd2s2ZDIyeXcyd2xsdjA3b3BsM3kifQ.KoieAuM1rHDdCOt122aFeQ")
 //        Fresco.initialize(this)
 //        FirebaseMessaginxg.getInstance().isAutoInitEnabled = true
         HttpRequestUtil.setOkHttpClient(HttpClient.get())

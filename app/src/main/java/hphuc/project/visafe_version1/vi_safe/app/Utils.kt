@@ -1,7 +1,13 @@
 package hphuc.project.visafe_version1.vi_safe.app
 
+import android.Manifest
 import android.app.AlertDialog
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationManager
 import android.view.LayoutInflater
+import androidx.core.app.ActivityCompat
 import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionNotify
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
@@ -44,6 +50,29 @@ class Utils {
                 dialogError?.dismiss()
             }
             dialogError.show()
+        }
+
+        @JvmStatic
+        fun getMyLocation(context: Context): Location? {
+            val lm = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            try {
+                if (ActivityCompat.checkSelfPermission(
+                        context,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        context,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    return null
+                }
+                val gpsLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                return gpsLocation ?: if (lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                    lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+                } else null
+            } catch (e: java.lang.Exception) {
+                return null
+            }
         }
     }
 }
