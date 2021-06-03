@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.view.LayoutInflater
+import android.view.View
 import androidx.core.app.ActivityCompat
 import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionNotify
@@ -73,6 +74,22 @@ class Utils {
             } catch (e: java.lang.Exception) {
                 return null
             }
+        }
+
+        @JvmStatic
+        fun setPaddingStatusBar(view: View, context: Context) {
+            view.setPadding(0, getStatusBarHeight(context), 0, 0)
+        }
+
+        @JvmStatic
+        fun getStatusBarHeight(context: Context): Int {
+            var result = 0
+            val resourceId =
+                context.resources.getIdentifier("status_bar_height", "dimen", "android")
+            if (resourceId > 0) {
+                result = context.resources.getDimensionPixelSize(resourceId)
+            }
+            return result
         }
     }
 }

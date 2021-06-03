@@ -15,9 +15,14 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.app.view.loading.Loadinger
+import hphuc.project.visafe_version1.core.base.bus.EventBusData
+import hphuc.project.visafe_version1.core.base.domain.listener.OnActionData
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
+import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
 import hphuc.project.visafe_version1.vi_safe.screen.home.HomeFragment
+import hphuc.project.visafe_version1.vi_safe.screen.home_map.HomeMapFragment
+import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinx.android.synthetic.main.layout_main.view.*
 
@@ -32,12 +37,32 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
     private val mResource = MainResourceProvider(mvpActivity)
     private val mPresenter = MainPresenter(mvpActivity, mResource)
 
+    private val eventBusLifeCycle = EventBusLifeCycle(object : OnActionData<EventBusData> {
+        override fun onAction(data: EventBusData) {
+            when(data){
+                is HomeMapDataIntent->{
+                    mvpActivity.replaceFragment(HomeMapFragment(), view.flChange.id)
+                }
+            }
+        }
+    })
+
     companion object {
         const val REQUEST_GPS_MANAGER = 113
     }
 
     override fun initCreateView() {
+        addLifeCycle(eventBusLifeCycle)
         mvpActivity.setActivityFullScreen()
+        view.ivArrow.setOnClickListener {
+            if (view.eplSearch.isExpanded) {
+                view.eplSearch.isExpanded = false
+                view.ivArrow.setImageDrawable(mResource.getIconArrowUp())
+            } else {
+                view.eplSearch.isExpanded = true
+                view.ivArrow.setImageDrawable(mResource.getIconArrowDown())
+            }
+        }
     }
 
     override fun handleGetMap() {

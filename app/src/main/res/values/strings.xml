@@ -46,4 +46,6 @@
     <string name="msg_need_permission">Permissions are need for application.</string>
     <string name="mgs_open_location">"To continue, please turn on your device's location"</string>
     <string name="mapbox_access_token">MAPBOX_ACCESS_TOKEN</string>
+    <string name="text_new_user">New user?<font color="#1d5bfa"> Sign Up</font></string>
+    <string name="text_enter_your_location">Enter your location</string>
 </resources>

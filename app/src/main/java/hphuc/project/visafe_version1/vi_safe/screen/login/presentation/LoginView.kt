@@ -14,11 +14,16 @@ import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidM
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
 import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.config.ConfigUtil
+import hphuc.project.visafe_version1.vi_safe.app.data.network.request.LoginRequest
 import hphuc.project.visafe_version1.vi_safe.app.data.network.request.PassportRequest
 import hphuc.project.visafe_version1.vi_safe.app.data.network.response.PassportResponse
 import hphuc.project.visafe_version1.vi_safe.app.presentation.navigater.AndroidScreenNavigator
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.number.getValueOrDefaultIsZero
+import kotlinex.string.getValueOrDefaultIsEmpty
+import kotlinex.view.gone
+import kotlinex.view.underLineThrough
+import kotlinex.view.visible
 import kotlinx.android.synthetic.main.layout_login.view.*
 
 
@@ -38,6 +43,25 @@ class LoginView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
         view.btnLogin.setOnClickListener(onActionClick)
         view.btnSignUp.setOnClickListener(onActionClick)
         view.ivHidden.setOnClickListener(onActionClick)
+        view.tvForgetPassword.underLineThrough()
+
+        if (ConfigUtil.passport != null){
+            view.clAvatar.visible()
+            view.tvWelcome.gone()
+            view.loginWithFingerprint.visible()
+            view.tvName.text = ConfigUtil.passport?.fullName.getValueOrDefaultIsEmpty()
+            view.tvPhone.text = ConfigUtil.passport?.mobile.getValueOrDefaultIsEmpty()
+            view.clUser.gone()
+            view.tvSignIn.gone()
+            view.tvNewUser.visible()
+        }else{
+            view.clAvatar.gone()
+            view.loginWithFingerprint.gone()
+            view.tvWelcome.visible()
+            view.clUser.visible()
+            view.tvSignIn.visible()
+            view.tvNewUser.gone()
+        }
     }
 
     private fun changeShowHidePass(
@@ -83,7 +107,15 @@ class LoginView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
     private val onActionClick = View.OnClickListener {
         when(it.id){
             view.btnLogin.id->{
-                checkData()
+                if (ConfigUtil.passport != null){
+                    if (view.edtPassword.text.isNullOrEmpty()) {
+                        showError(mResource.getTextErrorEmptyPass())
+                    }else{
+                        mPresenter.logInApp(LoginRequest(ConfigUtil.passport?.token.getValueOrDefaultIsEmpty()))
+                    }
+                }else{
+                    checkData()
+                }
             }
             view.btnSignUp.id->{
                 mPresenter.gotoSignUpActivity()

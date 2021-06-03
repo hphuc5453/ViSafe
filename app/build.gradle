@@ -125,5 +125,8 @@ dependencies {
     // Circle image view
     implementation 'de.hdodenhof:circleimageview:3.0.1'
 
+    // expand layout
+    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
+
 
 }

@@ -1,7 +1,6 @@
 package hphuc.project.visafe_version1.vi_safe.screen.main.presentation
 
 import android.location.LocationManager
-import android.os.Handler
 import com.mapbox.mapboxsdk.Mapbox
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
 import hphuc.project.visafe_version1.vi_safe.app.common.AppConstants
@@ -32,5 +31,4 @@ class MainPresenter(
             view?.showAlertMessageNoGps()
         }
     }
-
 }
