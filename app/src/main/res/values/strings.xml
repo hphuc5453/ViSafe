@@ -48,4 +48,11 @@
     <string name="mapbox_access_token">MAPBOX_ACCESS_TOKEN</string>
     <string name="text_new_user">New user?<font color="#1d5bfa"> Sign Up</font></string>
     <string name="text_enter_your_location">Enter your location</string>
+    <string name="text_error_write_perm_required">Permission of writing files is required</string>
+    <string name="text_contacts_list">Contact List</string>
+    <string name="text_search_your_family">Search your family…</string>
+    <string name="text_title_name">Name:</string>
+    <string name="text_title_phone">Phone:</string>
+    <string name="text_warning_accept_contact">Bạn có muốn thêm liên hệ này thành người cứu trợ ?</string>
+    <string name="text_notify_has_been_send">Notification has been sent</string>
 </resources>

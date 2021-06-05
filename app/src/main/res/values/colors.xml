@@ -43,6 +43,7 @@
     <color name="color_fb9334">#fb9334</color>
     <color name="color_a8c200">#a8c200</color>
     <color name="color_FF6500">#FF6500</color>
+    <color name="color_092450">#092450</color>
     <color name="color_ffe3e3">#ffe3e3</color>
     <color name="black_text_454545">#454545</color>
     <color name="color_d8d8d8">#d8d8d8</color>
@@ -155,4 +156,5 @@
     <color name="color_435a82">#435a82</color>
     <color name="color_status_bar_opacity">#0DFFFFFF</color>
     <color name="color_57dfef">#57dfef</color>
+    <color name="color_a5a6ee">#a5a6ee</color>
 </resources>

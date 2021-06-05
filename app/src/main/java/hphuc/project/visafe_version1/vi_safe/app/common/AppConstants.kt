@@ -149,5 +149,13 @@ interface AppConstants {
         const val STREET_BODYGUARD = "STREET_BODYGUARD"
         const val HOSPITAL = "HOSPITAL"
         const val FIRE_FIGHT = "FIRE_FIGHT"
+
+        val REQUEST_CODE_PICK_CONTRACT: Int
+            get() = 9
+        val LIST_ALPHABET = mutableListOf(
+            "A", "B", "C", "D", "E", "F", "G", "H", "I",
+            "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+            "S", "T", "U", "V", "W", "X", "Y", "Z", "#"
+        )
     }
 }

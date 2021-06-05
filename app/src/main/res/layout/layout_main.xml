@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -7,124 +7,152 @@
     <FrameLayout
         android:id="@+id/flChange"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/bg_rectange_060f24">
+        android:background="@drawable/bg_rectange_060f24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/spacing_40dp"
-            android:layout_marginBottom="@dimen/spacing_20dp"
-            android:padding="@dimen/spacing_10dp"
-            android:stateListAnimator="@animator/anim_click_scale_zoom_out"
-            app:layout_constraintBottom_toTopOf="@id/eplSearch"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_arrow_down_white" />
-
-        <net.cachapa.expandablelayout.ExpandableLayout
-            android:layout_marginBottom="@dimen/spacing_89dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/eplSearch"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clContainerSearch"
             android:layout_width="match_parent"
-            app:el_expanded="true"
-            app:el_duration="300"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:layout_constraintBottom_toTopOf="@id/coordinatorLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_40dp"
+                android:layout_marginBottom="@dimen/spacing_20dp"
+                android:padding="@dimen/spacing_10dp"
+                android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+                app:layout_constraintBottom_toTopOf="@id/eplSearch"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_arrow_down_white" />
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/eplSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/spacing_16dp"
+                app:el_duration="300"
+                app:el_expanded="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_marginBottom="@dimen/spacing_10dp"
-                    android:layout_width="0dp"
-                    android:id="@+id/clSearch"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_24dp"
-                    android:layout_marginEnd="@dimen/spacing_20dp"
-                    android:background="@drawable/iv_rounder_edittext"
+                    android:layout_gravity="bottom"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ivLocation"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivSearch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_10dp"
-                        app:layout_constraintBottom_toBottomOf="@id/tvSearch"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvSearch"
-                        app:srcCompat="@drawable/ic_search_white" />
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:textCursorDrawable="@null"
-                        android:id="@+id/tvSearch"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clSearch"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/spacing_60dp"
-                        android:background="@color/transparent"
-                        android:fontFamily="@font/semi_regular"
-                        android:hint="@string/text_enter_your_location"
-                        android:paddingStart="@dimen/spacing_12dp"
-                        android:paddingEnd="@dimen/spacing_12dp"
-                        android:textColor="@color/color_cccccc"
-                        android:textColorHint="@color/color_cccccc"
-                        android:textSize="@dimen/text_15sp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_24dp"
+                        android:layout_marginEnd="@dimen/spacing_20dp"
+                        android:layout_marginBottom="@dimen/spacing_10dp"
+                        android:background="@drawable/iv_rounder_edittext"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/ivMicro"
-                        app:layout_constraintStart_toEndOf="@id/ivSearch"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintEnd_toStartOf="@id/ivLocation"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivSearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_10dp"
+                            app:layout_constraintBottom_toBottomOf="@id/tvSearch"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/tvSearch"
+                            app:srcCompat="@drawable/ic_search_white" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/tvSearch"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/spacing_60dp"
+                            android:background="@color/transparent"
+                            android:fontFamily="@font/semi_regular"
+                            android:hint="@string/text_enter_your_location"
+                            android:paddingStart="@dimen/spacing_12dp"
+                            android:paddingEnd="@dimen/spacing_12dp"
+                            android:textColor="@color/color_cccccc"
+                            android:textColorHint="@color/color_cccccc"
+                            android:textCursorDrawable="@null"
+                            android:textSize="@dimen/text_15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/ivMicro"
+                            app:layout_constraintStart_toEndOf="@id/ivSearch"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivMicro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/spacing_10dp"
+                            app:layout_constraintBottom_toBottomOf="@id/tvSearch"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/tvSearch"
+                            app:srcCompat="@drawable/ic_micro_white" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivMicro"
+                        android:id="@+id/ivLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/spacing_10dp"
-                        app:layout_constraintBottom_toBottomOf="@id/tvSearch"
+                        android:layout_marginEnd="@dimen/spacing_24dp"
+                        app:layout_constraintBottom_toBottomOf="@id/clSearch"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvSearch"
-                        app:srcCompat="@drawable/ic_micro_white" />
+                        app:layout_constraintTop_toTopOf="@id/clSearch"
+                        app:srcCompat="@drawable/ic_location_red" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/spacing_24dp"
-                    app:layout_constraintBottom_toBottomOf="@id/clSearch"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/clSearch"
-                    app:srcCompat="@drawable/ic_location_red" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </net.cachapa.expandablelayout.ExpandableLayout>
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinatorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rectange_001a25ab_131b7c_00000644"
+                app:itemIconTint="@color/bottom_menu_tab_color"
+                app:itemTextColor="@color/bottom_menu_tab_color"
+                app:labelVisibilityMode="unlabeled"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+                app:menu="@menu/bottom_menu" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_rectange_001a25ab_131b7c_00000644"
-        app:itemIconTint="@color/bottom_menu_tab_color"
-        app:itemTextColor="@color/bottom_menu_tab_color"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        app:menu="@menu/bottom_menu" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,16 +3,25 @@ package kotlinex.mvpactivity
 import android.annotation.SuppressLint
 import com.tbruyelle.rxpermissions2.RxPermissions
 import hphuc.project.visafe_version1.R
-
-import kotlinex.context.showAlert
 import hphuc.project.visafe_version1.core.app.domain.excecutor.EventFireUtil
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionNotify
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
 import hphuc.project.visafe_version1.vi_safe.app.Utils
+import kotlinex.context.showAlert
 
-fun MvpActivity.showErrorAlert(msgError: String, isCancelable :Boolean = true) {
+fun MvpActivity.showErrorAlert(msgError: String, isCancelable: Boolean = true) {
     val activity = this
     Utils.showErrorTextDialog(activity, msgError, isCancelable = isCancelable)
+}
+
+fun MvpActivity.showErrorAlert(
+    msgError: String,
+    isCancelable: Boolean = true,
+    isShowAccept: Boolean = false,
+    onActionAccept: OnActionNotify? = null
+) {
+    val activity = this
+    Utils.showErrorTextDialog(activity, msgError, isCancelable = isCancelable, onActionAccept = onActionAccept, isShowAccept = isShowAccept)
 }
 
 fun MvpActivity.showErrorAlert(msgError: String, onActionNotify: OnActionNotify) {
@@ -48,6 +57,7 @@ fun MvpActivity.shouldShowCheckPermission(
             }
         }
 }
+
 @SuppressLint("CheckResult")
 fun MvpActivity.shouldShowCheckPermission(
     permission: String,

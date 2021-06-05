@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/bg_rectange_c8_f2f2f2">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -11,9 +11,9 @@
         style="@style/StyleTextViewMedium.18sp.2e2e38"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_notify"
         android:layout_marginTop="@dimen/spacing_24dp"
         android:fontFamily="@font/roboto_medium"
+        android:text="@string/text_notify"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,11 +26,11 @@
         android:layout_marginStart="@dimen/spacing_22dp"
         android:layout_marginTop="@dimen/spacing_6dp"
         android:layout_marginEnd="@dimen/spacing_22dp"
-        tools:text="Vui lòng nhâp mật khẩu."
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="Vui lòng nhâp mật khẩu." />
 
     <FrameLayout
         android:id="@+id/vLineBottom"
@@ -42,25 +42,60 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvContent" />
 
-    <FrameLayout
-        android:id="@+id/flClose"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vLineBottom">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvClose"
-            android:background="?attr/selectableItemBackground"
-            style="@style/StyleTextViewMedium.16sp"
-            android:textColor="@color/color_3344d8"
-            android:layout_width="match_parent"
+        <FrameLayout
+            android:id="@+id/flClose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvClose"
+                style="@style/StyleTextViewMedium.16sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:paddingTop="@dimen/spacing_18dp"
+                android:paddingBottom="@dimen/spacing_18dp"
+                android:text="@string/ACTION_CLOSE"
+                android:textColor="@color/color_3344d8" />
+        </FrameLayout>
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/vCenter"
+            android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:paddingTop="@dimen/spacing_18dp"
-            android:paddingBottom="@dimen/spacing_18dp"
-            android:text="@string/ACTION_CLOSE" />
-    </FrameLayout>
+            android:background="@color/color_eeeeee" />
+
+        <FrameLayout
+            android:visibility="gone"
+            android:id="@+id/flAccept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAccept"
+                style="@style/StyleTextViewMedium.16sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:paddingTop="@dimen/spacing_18dp"
+                android:paddingBottom="@dimen/spacing_18dp"
+                android:text="@string/ACTION_OK"
+                android:textColor="@color/color_3344d8" />
+        </FrameLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

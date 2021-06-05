@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/layoutToolbar"
+        layout="@layout/layout_toolbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvContactDetail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_6dp"
+        android:minHeight="@dimen/spacing_20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivHaftCircleBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_haft_circle_092450" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/vBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/ivHaftCircleBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_haft_circle_white" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/vBottom"
+        app:layout_constraintEnd_toEndOf="@id/ivHaftCircleBackground"
+        app:layout_constraintStart_toStartOf="@id/ivHaftCircleBackground"
+        app:layout_constraintTop_toTopOf="@id/ivHaftCircleBackground"
+        app:srcCompat="@drawable/ic_action_call" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivLive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/vBottom"
+        app:layout_constraintEnd_toStartOf="@id/vBottom"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="@id/ivHaftCircleBackground"
+        app:layout_constraintTop_toTopOf="@id/ivHaftCircleBackground"
+        app:layout_constraintVertical_bias="1"
+        app:srcCompat="@drawable/ic_live" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/vBottom"
+        app:layout_constraintEnd_toEndOf="@id/ivHaftCircleBackground"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toEndOf="@id/vBottom"
+        app:layout_constraintTop_toTopOf="@id/ivHaftCircleBackground"
+        app:layout_constraintVertical_bias="1"
+        app:srcCompat="@drawable/ic_message_white" />
+</androidx.constraintlayout.widget.ConstraintLayout>

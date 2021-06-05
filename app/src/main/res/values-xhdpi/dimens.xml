@@ -48,6 +48,7 @@
     <dimen name="spacing_82dp">@dimen/_49sdp</dimen>
     <dimen name="spacing_89dp">@dimen/_53sdp</dimen>
     <dimen name="spacing_92dp">@dimen/_55sdp</dimen>
+    <dimen name="spacing_95dp">@dimen/_56sdp</dimen>
     <dimen name="spacing_97dp">@dimen/_58sdp</dimen>
     <dimen name="spacing_100dp">@dimen/_60sdp</dimen>
     <dimen name="spacing_106dp">@dimen/_64sdp</dimen>

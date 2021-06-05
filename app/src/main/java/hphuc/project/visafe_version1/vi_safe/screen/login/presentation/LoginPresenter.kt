@@ -12,6 +12,9 @@ class LoginPresenter(
     LoginContact.Presenter() {
 
     override fun logInApp(request: LoginRequest) {
+        if (ConfigUtil.listSupport.isNullOrEmpty()){
+            ConfigUtil.saveListSupport(mutableListOf())
+        }
         androidScreenNavigator.gotoMainActivity()
     }
 

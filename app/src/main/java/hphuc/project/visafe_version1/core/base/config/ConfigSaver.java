@@ -8,6 +8,8 @@ public interface ConfigSaver {
     String CONFIG_SETTING_PUSH_TOKEN= "config_setting_saved_push_token";
     String CONFIG_SETTING_FIRST_TIME_LOGIN= "config_setting_first_time_login";
     String CONFIG_SETTING_KEY_MAP_STYLE = "config_setting_saved_key_map_style";
+    String CONFIG_SETTING_LIST_CONTACTS = "config_setting_saved_key_list_contacts";
+    String CONFIG_SETTING_LIST_SUPPORT = "config_setting_saved_key_list_support";
 
     void save(String key, Object data);
 

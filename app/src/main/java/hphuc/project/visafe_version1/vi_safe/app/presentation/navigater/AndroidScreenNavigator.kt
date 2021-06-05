@@ -1,9 +1,13 @@
 package hphuc.project.visafe_version1.vi_safe.app.presentation.navigater
 
 import android.content.Intent
+import android.provider.ContactsContract
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
+import hphuc.project.visafe_version1.vi_safe.app.common.AppConstants
 
 import hphuc.project.visafe_version1.vi_safe.app.presentation.navigation.ScreenNavigator
+import hphuc.project.visafe_version1.vi_safe.screen.contacts_detail.ContactsDetailActivity
+import hphuc.project.visafe_version1.vi_safe.screen.contacts_detail.data.ContractsDetailDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity
 import hphuc.project.visafe_version1.vi_safe.screen.sign_up.SignUpActivity
 
@@ -16,6 +20,17 @@ class AndroidScreenNavigator constructor(private val mvpActivity: MvpActivity) :
 
     override fun gotoSignUpActivity() {
         val intent = Intent(mvpActivity, SignUpActivity::class.java)
+        mvpActivity.startActivity(intent)
+    }
+
+    override fun gotoContactIntent() {
+        val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+        mvpActivity.startActivityForResult(intent, AppConstants.REQUEST_CODE_PICK_CONTRACT)
+    }
+
+    override fun gotoContactsDetailActivity(extra: ContractsDetailDataIntent) {
+        val intent = Intent(mvpActivity, ContactsDetailActivity::class.java)
+        intent.putExtra(ContractsDetailDataIntent::class.java.simpleName, extra)
         mvpActivity.startActivity(intent)
     }
 }

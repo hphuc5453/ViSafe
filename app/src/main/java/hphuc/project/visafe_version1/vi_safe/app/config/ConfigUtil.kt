@@ -1,5 +1,6 @@
 package hphuc.project.visafe_version1.vi_safe.app.config
 
+import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import hphuc.project.visafe_version1.core.base.config.ConfigSaver
 import hphuc.project.visafe_version1.core.base.config.PaperConfigSaverImpl
 import kotlinex.boolean.getValueOrDefault
@@ -42,6 +43,18 @@ class ConfigUtil {
                     .getValueOrDefault()
             }
 
+        val listContacts: MutableList<ViewModel>
+            get() {
+                val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
+                return configSaver.get(ConfigSaver.CONFIG_SETTING_LIST_CONTACTS)
+            }
+
+        val listSupport: MutableList<ViewModel>?
+            get() {
+                val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
+                return configSaver.get(ConfigSaver.CONFIG_SETTING_LIST_SUPPORT)
+            }
+
         val mapStyle: String?
             get() {
                 val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
@@ -53,6 +66,25 @@ class ConfigUtil {
             val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
             return configSaver.save(ConfigSaver.CONFIG_SETTING_PUSH_TOKEN, token)
         }
+
+        @JvmStatic
+        fun saveListContacts(mutableList: MutableList<ViewModel>) {
+            val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
+            return configSaver.save(ConfigSaver.CONFIG_SETTING_LIST_CONTACTS, mutableList)
+        }
+
+        @JvmStatic
+        fun saveListSupport(mutableList: MutableList<ViewModel>) {
+            val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
+            return configSaver.save(ConfigSaver.CONFIG_SETTING_LIST_SUPPORT, mutableList)
+        }
+
+        @JvmStatic
+        fun saveSupport(model: ViewModel) {
+            val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
+            return configSaver.save(ConfigSaver.CONFIG_SETTING_LIST_SUPPORT, model)
+        }
+
 
 
         @JvmStatic

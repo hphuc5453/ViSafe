@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/spacing_24dp"
+    android:paddingEnd="@dimen/spacing_24dp">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/v3"
+        android:layout_width="@dimen/spacing_127dp"
+        android:layout_height="@dimen/spacing_127dp"
+        android:src="#1A0176D8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/v2"
+        android:layout_width="@dimen/spacing_110dp"
+        android:layout_height="@dimen/spacing_110dp"
+        android:src="#4D0176D8"
+        app:layout_constraintBottom_toBottomOf="@id/v3"
+        app:layout_constraintEnd_toEndOf="@id/v3"
+        app:layout_constraintStart_toStartOf="@id/v3"
+        app:layout_constraintTop_toTopOf="@id/v3" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/v1"
+        android:layout_width="@dimen/spacing_95dp"
+        android:layout_height="@dimen/spacing_95dp"
+        android:src="#B30176D8"
+        app:layout_constraintBottom_toBottomOf="@id/v3"
+        app:layout_constraintEnd_toEndOf="@id/v3"
+        app:layout_constraintStart_toStartOf="@id/v3"
+        app:layout_constraintTop_toTopOf="@id/v3" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="@dimen/spacing_80dp"
+        android:layout_height="@dimen/spacing_80dp"
+        app:layout_constraintBottom_toBottomOf="@id/v3"
+        app:layout_constraintEnd_toEndOf="@id/v3"
+        app:layout_constraintStart_toStartOf="@id/v3"
+        app:layout_constraintTop_toTopOf="@id/v3"
+        app:srcCompat="@drawable/avatar_test" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivAdd"
+        android:layout_width="@dimen/spacing_100dp"
+        android:layout_height="@dimen/spacing_50dp"
+        android:scaleType="fitXY"
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v3"
+        app:srcCompat="@drawable/iv_add" />
+
+    <LinearLayout
+        android:id="@+id/llName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivAdd">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/semi_regular"
+            android:text="@string/text_title_name"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_16sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginStart="@dimen/spacing_30dp"
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/semi_regular"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llName">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/semi_regular"
+            android:text="@string/text_title_phone"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_16sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginStart="@dimen/spacing_28dp"
+            android:id="@+id/tvPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/semi_regular"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_16sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

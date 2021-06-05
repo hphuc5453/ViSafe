@@ -1,6 +1,5 @@
 package hphuc.project.visafe_version1.vi_safe.screen.home.presentation
 
-import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import hphuc.project.visafe_version1.core.base.presentation.mvp.base.MvpPresenter
 import hphuc.project.visafe_version1.core.base.presentation.mvp.base.MvpView
 
