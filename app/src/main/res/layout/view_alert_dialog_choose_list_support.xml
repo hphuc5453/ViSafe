@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_rectange_c4_068dff">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_24dp"
+        android:layout_marginTop="@dimen/spacing_14dp"
+        android:layout_marginEnd="@dimen/spacing_24dp"
+        android:gravity="center"
+        android:text="@string/text_the_system_will_send_emergency_alarm_to"
+        android:textAllCaps="true"
+        android:textColor="@color/color_f5922c"
+        android:textSize="@dimen/text_16sp"
+        app:fontFamily="@font/semi_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/llYourFamily"
+        android:layout_width="@dimen/spacing_20dp"
+        android:layout_height="@dimen/spacing_20dp"
+        android:background="@drawable/bg_circle_ffffff"
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+        app:layout_constraintBottom_toBottomOf="@id/tvYourFamily"
+        app:layout_constraintStart_toStartOf="@id/tvContent"
+        app:layout_constraintTop_toBottomOf="@id/tvContent"
+        app:layout_constraintTop_toTopOf="@id/tvYourFamily">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCheckYourFamily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_check_blue" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvYourFamily"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_10dp"
+        android:layout_marginTop="@dimen/spacing_20dp"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_14sp"
+        app:fontFamily="@font/semi_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/llYourFamily"
+        app:layout_constraintTop_toBottomOf="@id/tvContent"
+        tools:text="Your family (10)" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListSupport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/spacing_20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvYourFamily" />
+
+    <LinearLayout
+        android:id="@+id/llPolicy"
+        android:layout_width="@dimen/spacing_20dp"
+        android:layout_height="@dimen/spacing_20dp"
+        android:background="@drawable/bg_circle_ffffff"
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+        app:layout_constraintBottom_toBottomOf="@id/tvPolicy"
+        app:layout_constraintStart_toStartOf="@id/tvContent"
+        app:layout_constraintTop_toTopOf="@id/tvPolicy">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCheckPolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_check_blue" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPolicy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_10dp"
+        android:layout_marginTop="@dimen/spacing_20dp"
+        android:text="@string/text_role_policy"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_14sp"
+        app:fontFamily="@font/semi_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/llPolicy"
+        app:layout_constraintTop_toBottomOf="@id/rvListSupport" />
+
+    <LinearLayout
+        android:id="@+id/llCivilDefense"
+        android:layout_width="@dimen/spacing_20dp"
+        android:layout_height="@dimen/spacing_20dp"
+        android:background="@drawable/bg_circle_ffffff"
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+        app:layout_constraintBottom_toBottomOf="@id/tvCivilDefense"
+        app:layout_constraintStart_toStartOf="@id/tvContent"
+        app:layout_constraintTop_toTopOf="@id/tvCivilDefense">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCheckCivilDefense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_check_blue" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCivilDefense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_10dp"
+        android:layout_marginTop="@dimen/spacing_20dp"
+        android:text="@string/text_role_civil_defense"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_14sp"
+        app:fontFamily="@font/semi_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/llCivilDefense"
+        app:layout_constraintTop_toBottomOf="@id/tvPolicy" />
+
+    <LinearLayout
+        android:id="@+id/llStreetBodyGuard"
+        android:layout_width="@dimen/spacing_20dp"
+        android:layout_height="@dimen/spacing_20dp"
+        android:background="@drawable/bg_circle_ffffff"
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+        app:layout_constraintBottom_toBottomOf="@id/tvStreetBodyGuard"
+        app:layout_constraintStart_toStartOf="@id/tvContent"
+        app:layout_constraintTop_toTopOf="@id/tvStreetBodyGuard">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCheckStreetBodyGuard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_check_blue" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvStreetBodyGuard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_10dp"
+        android:layout_marginTop="@dimen/spacing_20dp"
+        android:text="@string/text_role_street_bodyguard"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_14sp"
+        app:fontFamily="@font/semi_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/llStreetBodyGuard"
+        app:layout_constraintTop_toBottomOf="@id/tvCivilDefense" />
+
+    <LinearLayout
+        android:id="@+id/llHospital"
+        android:layout_width="@dimen/spacing_20dp"
+        android:layout_height="@dimen/spacing_20dp"
+        android:background="@drawable/bg_circle_ffffff"
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+        app:layout_constraintBottom_toBottomOf="@id/tvHospital"
+        app:layout_constraintStart_toStartOf="@id/tvContent"
+        app:layout_constraintTop_toTopOf="@id/tvHospital">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCheckHospital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_check_blue" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvHospital"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_10dp"
+        android:layout_marginTop="@dimen/spacing_20dp"
+        android:text="@string/text_role_hospital"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_14sp"
+        app:fontFamily="@font/semi_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/llHospital"
+        app:layout_constraintTop_toBottomOf="@id/tvStreetBodyGuard" />
+
+    <LinearLayout
+        android:id="@+id/llFireFight"
+        android:layout_width="@dimen/spacing_20dp"
+        android:layout_height="@dimen/spacing_20dp"
+        android:background="@drawable/bg_circle_ffffff"
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+        app:layout_constraintBottom_toBottomOf="@id/tvFireFight"
+        app:layout_constraintStart_toStartOf="@id/tvContent"
+        app:layout_constraintTop_toTopOf="@id/tvFireFight">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFireFight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_check_blue" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFireFight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_10dp"
+        android:layout_marginTop="@dimen/spacing_20dp"
+        android:text="@string/text_role_fire_fight"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_14sp"
+        app:fontFamily="@font/semi_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/llFireFight"
+        app:layout_constraintTop_toBottomOf="@id/tvHospital" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_40dp"
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+        android:text="@string/ACTION_CANCEL"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_14sp"
+        app:fontFamily="@font/semi_regular"
+        app:layout_constraintBottom_toBottomOf="@id/btnAlarm"
+        app:layout_constraintEnd_toStartOf="@id/btnAlarm"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnAlarm" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_14dp"
+        android:layout_marginBottom="@dimen/spacing_30dp"
+        android:background="@drawable/bg_rectange_c4_f14436"
+        android:fontFamily="@font/semi_regular"
+        android:paddingStart="@dimen/spacing_14dp"
+        android:paddingEnd="@dimen/spacing_14dp"
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+        android:text="@string/text_immediate_alarm"
+        android:textAllCaps="false"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFireFight" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

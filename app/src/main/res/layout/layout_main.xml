@@ -128,8 +128,6 @@
                         app:srcCompat="@drawable/ic_location_red" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </net.cachapa.expandablelayout.ExpandableLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.app.util.SwipeControllerActions
@@ -33,6 +34,7 @@ import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.m
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.renderer.ListContactsAlphabetItemViewRenderer
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.renderer.ListContactsItemViewRenderer
 import kotlinex.boolean.getValueOrDefault
+import kotlinex.collection.getValueOrDefault
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.string.getValueOrDefaultIsEmpty
 import kotlinex.view.gone
@@ -66,6 +68,11 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
         override fun onAction(data: EventBusData) {
         }
     })
+
+    private val onRefreshListener = SwipeRefreshLayout.OnRefreshListener {
+        showData()
+    }
+
 
 
     // swipe right
@@ -121,7 +128,6 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
                 }
             }
         }
-
     }
 
     override fun initCreateView() {
@@ -149,6 +155,7 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
         } else {
             mPresenter.checkPermission()
         }
+        view.swRefresh.setOnRefreshListener(onRefreshListener)
     }
 
     private var idChoose : String? = null
@@ -198,6 +205,8 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
     }
 
     private fun showData() {
+        this.listData.clear()
+        listData.addAll(ConfigUtil.listContacts.getValueOrDefault())
         if (ConfigUtil.listSupport != null){
             ConfigUtil.listSupport?.forEach {
                 if (it is ListContactsItemViewModel){
@@ -210,60 +219,66 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
         }
         listViewMvp?.setItems(listData)
         listViewMvp?.notifyDataChanged()
+
+        hideLoading()
     }
 
     private fun getContactList() {
-        val cr: ContentResolver = mvpActivity.contentResolver
-        val cur: Cursor? = cr.query(
-            ContactsContract.Contacts.CONTENT_URI,
-            null, null, null, null
-        )
-        if ((cur?.count ?: 0) > 0) {
-            while (cur != null && cur.moveToNext()) {
-                val photo = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.PHOTO_URI))
-                val id: String = cur.getString(
-                    cur.getColumnIndex(ContactsContract.Contacts._ID)
-                )
-                val name: String = cur.getString(
-                    cur.getColumnIndex(
-                        ContactsContract.Contacts.DISPLAY_NAME
+        if(ConfigUtil.listContacts.getValueOrDefault().isEmpty()){
+            val cr: ContentResolver = mvpActivity.contentResolver
+            val cur: Cursor? = cr.query(
+                ContactsContract.Contacts.CONTENT_URI,
+                null, null, null, null
+            )
+            if ((cur?.count ?: 0) > 0) {
+                while (cur != null && cur.moveToNext()) {
+                    val photo = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.PHOTO_URI))
+                    val id: String = cur.getString(
+                        cur.getColumnIndex(ContactsContract.Contacts._ID)
                     )
-                )
-                if (cur.getInt(
+                    val name: String = cur.getString(
                         cur.getColumnIndex(
-                            ContactsContract.Contacts.HAS_PHONE_NUMBER
+                            ContactsContract.Contacts.DISPLAY_NAME
                         )
-                    ) > 0
-                ) {
-                    val pCur: Cursor? = cr.query(
-                        ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                        null,
-                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
-                        arrayOf(id),
-                        null
                     )
-                    while (pCur?.moveToNext().getValueOrDefault()) {
-                        val phoneNo = pCur?.getString(
-                            pCur.getColumnIndex(
-                                ContactsContract.CommonDataKinds.Phone.NUMBER
+                    if (cur.getInt(
+                            cur.getColumnIndex(
+                                ContactsContract.Contacts.HAS_PHONE_NUMBER
                             )
+                        ) > 0
+                    ) {
+                        val pCur: Cursor? = cr.query(
+                            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                            null,
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                            arrayOf(id),
+                            null
                         )
-                        listData.add(
-                            ListContactsItemViewModel(
-                                id = id,
-                                name = name,
-                                phone = phoneNo.getValueOrDefaultIsEmpty(),
-                                avatar = photo
+                        while (pCur?.moveToNext().getValueOrDefault()) {
+                            val phoneNo = pCur?.getString(
+                                pCur.getColumnIndex(
+                                    ContactsContract.CommonDataKinds.Phone.NUMBER
+                                )
                             )
-                        )
+                            listData.add(
+                                ListContactsItemViewModel(
+                                    id = id,
+                                    name = name,
+                                    phone = phoneNo.getValueOrDefaultIsEmpty(),
+                                    avatar = photo
+                                )
+                            )
+                        }
+                        pCur?.close()
                     }
-                    pCur?.close()
                 }
             }
+            cur?.close()
+            ConfigUtil.saveListContacts(listData)
         }
-        cur?.close()
-        ConfigUtil.saveListContacts(listData)
-        showData()
+        else{
+            showData()
+        }
     }
 
     override fun startMvpView() {
@@ -282,6 +297,7 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
 
     override fun hideLoading() {
         loadingView.hide()
+        view.swRefresh.isRefreshing = false
     }
 
     override fun showToast(message: String) {

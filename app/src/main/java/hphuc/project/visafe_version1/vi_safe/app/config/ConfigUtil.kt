@@ -43,7 +43,7 @@ class ConfigUtil {
                     .getValueOrDefault()
             }
 
-        val listContacts: MutableList<ViewModel>
+        val listContacts: MutableList<ViewModel>?
             get() {
                 val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
                 return configSaver.get(ConfigSaver.CONFIG_SETTING_LIST_CONTACTS)

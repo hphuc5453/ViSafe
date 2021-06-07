@@ -4,13 +4,29 @@ import android.os.Bundle
 import com.mapbox.mapboxsdk.maps.MapView
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpFragment
+import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.presentation.HomeMapView
+import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.ListContactsFragment
 
-class HomeMapFragment : MvpFragment(){
-    lateinit var view : HomeMapView
+class HomeMapFragment : MvpFragment() {
+    lateinit var view: HomeMapView
     lateinit var mapView: MapView
+
+    companion object {
+        fun newInstance(data: HomeMapDataIntent): HomeMapFragment {
+            val f = HomeMapFragment()
+            val bundle = Bundle()
+            bundle.putParcelable(HomeMapDataIntent::class.java.simpleName, data)
+            f.arguments = bundle
+            return f
+        }
+    }
+
     override fun createAndroidMvpView(savedInstanceState: Bundle?): AndroidMvpView {
-        view=  HomeMapView(getMvpActivity(), HomeMapView.ViewCreator(getMvpActivity(), null))
+        val extra =
+            this.arguments?.getParcelable<HomeMapDataIntent>(HomeMapDataIntent::class.java.simpleName)
+        view = HomeMapView(getMvpActivity(), HomeMapView.ViewCreator(getMvpActivity(), null),
+            extra)
         mapView = view.getMapView()
         mapView.onCreate(savedInstanceState)
         return view

@@ -1,13 +1,17 @@
 package hphuc.project.visafe_version1.vi_safe.screen.home_map.presentation
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.app.ActivityCompat
+import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.geojson.FeatureCollection
 import com.mapbox.mapboxsdk.camera.CameraPosition
@@ -27,14 +31,26 @@ import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.app.view.loading.Loadinger
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
+import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.LinearRenderConfigFactory
+import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.ListViewMvp
 import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.config.ConfigUtil
+import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
+import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
+import hphuc.project.visafe_version1.vi_safe.screen.sign_up.presentation.SignUpResourceProvider
+import hphuc.project.visafe_version1.vi_safe.screen.sign_up.presentation.renderer.RoleItemViewRenderer
+import kotlinex.collection.getValueOrDefault
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.string.getValueOrDefaultIsEmpty
 import kotlinx.android.synthetic.main.layout_home_map.view.*
+import kotlinx.android.synthetic.main.view_alert_dialog_choose_list_support.view.*
 
 
-class HomeMapView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator) :
+class HomeMapView(
+    mvpActivity: MvpActivity,
+    viewCreator: AndroidMvpView.ViewCreator,
+    private val extra: HomeMapDataIntent?,
+) :
     AndroidMvpView(mvpActivity, viewCreator), HomeMapContract.View, MapboxMap.OnMapClickListener {
 
     //Create view layout
@@ -62,9 +78,41 @@ class HomeMapView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCrea
     private val LINE_WIDTH = 1f
     private var featureCollection: FeatureCollection? = null
 
+    @SuppressLint("InflateParams")
+    private val alertView = LayoutInflater.from(mvpActivity)
+        .inflate(R.layout.view_alert_dialog_choose_list_support, null, false)
+    private val alertDialog = AlertDialog.Builder(mvpActivity, R.style.DialogNotify)
+
+    private var listViewMvp: ListViewMvp? = null
+    private val listData: MutableList<ViewModel> = mutableListOf()
+    private val renderInput = LinearRenderConfigFactory.Input(
+        context = mvpActivity,
+        orientation = LinearRenderConfigFactory.Orientation.HORIZONTAL
+    )
+    private val renderConfig = LinearRenderConfigFactory(renderInput).create()
+
+    private fun initAlertDialog() {
+        alertDialog.setView(alertView)
+        alertDialog.create()
+
+        listData.clear()
+        listData.addAll(ConfigUtil.listSupport.getValueOrDefault())
+        listViewMvp = ListViewMvp(mvpActivity, alertView.rvListSupport, renderConfig)
+        listViewMvp?.addViewRenderer(RoleItemViewRenderer(mvpActivity, SignUpResourceProvider(mvpActivity)))
+        listViewMvp?.createView()
+    }
+
+    private fun initView() {
+        when (extra?.accidentType) {
+            AccidentType.QUICKLY.value -> {
+                alertDialog.show()
+            }
+        }
+    }
 
     override fun initCreateView() {
-
+        initAlertDialog()
+        initView()
     }
 
     override fun getOnMapReadyCallback(): OnMapReadyCallback = OnMapReadyCallback { mapBox ->

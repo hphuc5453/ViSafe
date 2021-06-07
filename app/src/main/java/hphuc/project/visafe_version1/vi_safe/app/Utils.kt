@@ -61,10 +61,8 @@ class Utils {
             dialogError.setCancelable(isCancelable)
             if (isShowAccept) {
                 layout.flAccept.visible()
-                layout.vCenter.visible()
             } else {
                 layout.flAccept.gone()
-                layout.vCenter.gone()
             }
             layout.flClose.setOnClickListener {
                 onActionNotify?.onActionNotify()

@@ -29,6 +29,7 @@ import hphuc.project.visafe_version1.vi_safe.screen.home.HomeFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.HomeMapFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.ListContactsFragment
+import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.data.ListContactsDataIntent
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.view.gone
 import kotlinex.view.visible
@@ -52,7 +53,10 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
         override fun onAction(data: EventBusData) {
             when (data) {
                 is HomeMapDataIntent -> {
-                    mvpActivity.replaceFragment(HomeMapFragment(), view.flChange.id)
+                    mvpActivity.replaceFragment(HomeMapFragment.newInstance(data), view.flChange.id)
+                }
+                is ListContactsDataIntent -> {
+                    showFragmentForMenuItem(NAVIGATION.LIST_CONTACT.value)
                 }
             }
         }

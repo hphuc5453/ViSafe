@@ -55,4 +55,7 @@
     <string name="text_title_phone">Phone:</string>
     <string name="text_warning_accept_contact">Bạn có muốn thêm liên hệ này thành người cứu trợ ?</string>
     <string name="text_notify_has_been_send">Notification has been sent</string>
+    <string name="text_please_choose_person_support">Vui lòng lựa chọn người hỗ trợ</string>
+    <string name="text_the_system_will_send_emergency_alarm_to">The system will send emergency alarm to</string>
+    <string name="text_immediate_alarm">Immediate alarm</string>
 </resources>

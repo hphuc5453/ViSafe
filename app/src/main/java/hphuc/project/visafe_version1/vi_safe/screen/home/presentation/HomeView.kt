@@ -8,11 +8,15 @@ import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.app.view.loading.Loadinger
 import hphuc.project.visafe_version1.core.base.bus.EventBusData
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionData
+import hphuc.project.visafe_version1.core.base.domain.listener.OnActionNotify
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
 import hphuc.project.visafe_version1.vi_safe.app.Utils
+import hphuc.project.visafe_version1.vi_safe.app.config.ConfigUtil
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
+import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
+import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.data.ListContactsDataIntent
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.view.gone
 import kotlinex.view.visible
@@ -28,6 +32,7 @@ class HomeView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
 
     private val loadingView = Loadinger.create(mvpActivity, mvpActivity.window)
     private val mPresenter = HomePresenter()
+    private val mResource = HomeResourceProvider(mvpActivity)
 
     private val eventBusLifeCycle = EventBusLifeCycle(object : OnActionData<EventBusData> {
         override fun onAction(data: EventBusData) {
@@ -35,10 +40,22 @@ class HomeView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
         }
     })
 
+    private val onAccept = object : OnActionNotify{
+        override fun onActionNotify() {
+            eventBusLifeCycle.sendData(ListContactsDataIntent())
+        }
+
+    }
+
     private val onActionClick = View.OnClickListener {
         when(it.id){
             view.ivSos.id->{
-                eventBusLifeCycle.sendData(HomeMapDataIntent())
+//                if (ConfigUtil.listSupport.isNullOrEmpty()){
+//                    showError(mResource.getTextPleaseChoosePersonSupport(), onAccept)
+//                }
+                eventBusLifeCycle.sendData(HomeMapDataIntent(
+                    AccidentType.QUICKLY.value
+                ))
             }
         }
     }
@@ -78,7 +95,15 @@ class HomeView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
         Toast.makeText(mvpActivity, message, Toast.LENGTH_LONG).show()
     }
 
-    override fun showError(content: String) {
-        mvpActivity.showErrorAlert(content)
+    override fun showError(content: String, onActionAccept: OnActionNotify?) {
+        if (onActionAccept != null) {
+            mvpActivity.showErrorAlert(
+                content,
+                isShowAccept = true,
+                onActionAccept = onActionAccept
+            )
+        } else {
+            mvpActivity.showErrorAlert(content)
+        }
     }
 }

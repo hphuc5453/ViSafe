@@ -8,66 +8,95 @@
 
     <include layout="@layout/layout_toolbar" />
 
-    <LinearLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swRefresh"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/spacing_60dp"
-        android:layout_marginStart="@dimen/spacing_24dp"
-        android:layout_marginTop="@dimen/spacing_12dp"
-        android:layout_marginEnd="@dimen/spacing_24dp"
-        android:background="@drawable/iv_rounder_edittext">
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivSearch"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_10dp"
-            app:layout_constraintBottom_toBottomOf="@id/tvSearch"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvSearch"
-            app:srcCompat="@drawable/ic_search_white" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edtSearch"
-            android:hint="@string/text_search_your_family"
-            android:textColorHint="@color/color_cccccc"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:fontFamily="@font/semi_regular"
-            android:padding="@dimen/spacing_14dp"
-            android:textColor="@color/color_cccccc"
-            android:textCursorDrawable="@null"
-            android:textSize="@dimen/text_15sp" />
-    </LinearLayout>
+            android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginEnd="@dimen/spacing_24dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvAlphabet"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:minWidth="@dimen/spacing_20dp"
-            android:minHeight="@dimen/spacing_20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_24dp"
+                    android:layout_marginEnd="@dimen/spacing_24dp"
+                    android:background="@drawable/iv_rounder_edittext"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvContact"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/spacing_6dp"
-            android:minHeight="@dimen/spacing_20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/rvAlphabet"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSearch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_10dp"
+                        app:layout_constraintBottom_toBottomOf="@id/tvSearch"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvSearch"
+                        app:srcCompat="@drawable/ic_search_white" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/tvSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/spacing_60dp"
+                        android:background="@color/transparent"
+                        android:fontFamily="@font/semi_regular"
+                        android:hint="@string/text_enter_your_location"
+                        android:paddingStart="@dimen/spacing_12dp"
+                        android:paddingEnd="@dimen/spacing_12dp"
+                        android:textColor="@color/color_cccccc"
+                        android:textColorHint="@color/color_cccccc"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/text_15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivSearch"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginEnd="@dimen/spacing_24dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAlphabet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:minWidth="@dimen/spacing_20dp"
+                    android:minHeight="@dimen/spacing_20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvContact"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacing_6dp"
+                    android:minHeight="@dimen/spacing_20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/rvAlphabet"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>
