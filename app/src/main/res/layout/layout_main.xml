@@ -8,9 +8,9 @@
         android:id="@+id/flChange"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -153,4 +153,82 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="gone"
+        android:id="@+id/clMenuAccident"
+        android:background="#B30C0C0C"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMenuAccidentAccident"
+                android:layout_width="@dimen/spacing_100dp"
+                android:layout_height="@dimen/spacing_100dp"
+                android:layout_marginEnd="@dimen/spacing_30dp"
+                android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+                app:layout_constraintEnd_toStartOf="@id/ivMenuAccidentDisaster"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_menu_acident_acident_choose" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMenuAccidentCrime"
+                android:layout_width="@dimen/spacing_100dp"
+                android:layout_height="@dimen/spacing_100dp"
+                android:layout_marginTop="@dimen/spacing_20dp"
+                android:layout_marginEnd="@dimen/spacing_30dp"
+                android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+                app:layout_constraintEnd_toStartOf="@id/ivMenuAccidentVehicle"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivMenuAccidentAccident"
+                app:srcCompat="@drawable/ic_menu_accident_crime_default" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMenuAccidentDisaster"
+                android:layout_width="@dimen/spacing_100dp"
+                android:layout_height="@dimen/spacing_100dp"
+                android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+                app:layout_constraintBottom_toBottomOf="@id/ivMenuAccidentAccident"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivMenuAccidentAccident"
+                app:srcCompat="@drawable/ic_menu_accident_disaster_default" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMenuAccidentVehicle"
+                android:layout_width="@dimen/spacing_100dp"
+                android:layout_height="@dimen/spacing_100dp"
+                android:layout_marginEnd="@dimen/spacing_50dp"
+                android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+                app:layout_constraintBottom_toBottomOf="@id/ivMenuAccidentCrime"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivMenuAccidentCrime"
+                app:srcCompat="@drawable/ic_menu_accident_vehicle_default" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:visibility="gone"
+        android:id="@+id/ivMenuAccident"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_24dp"
+        android:layout_marginBottom="@dimen/spacing_24dp"
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+        app:layout_constraintBottom_toTopOf="@id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_menu_accident" />
 </androidx.constraintlayout.widget.ConstraintLayout>

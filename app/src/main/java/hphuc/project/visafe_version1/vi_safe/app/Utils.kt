@@ -6,12 +6,14 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.location.Location
 import android.location.LocationManager
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
@@ -51,7 +53,7 @@ class Utils {
             onActionNotify: OnActionNotify? = null,
             isCancelable: Boolean = true,
             isShowAccept: Boolean = false,
-            onActionAccept: OnActionNotify? = null
+            onActionAccept: OnActionNotify? = null,
         ) {
             val layout =
                 LayoutInflater.from(mvpActivity).inflate(R.layout.view_dialog_error, null, false)
@@ -121,7 +123,11 @@ class Utils {
 
 
         @SuppressLint("InflateParams")
-        fun makeText(context: Context, message: String? = null, duration: Int = Toast.LENGTH_LONG): Toast {
+        fun makeText(
+            context: Context,
+            message: String? = null,
+            duration: Int = Toast.LENGTH_LONG,
+        ): Toast {
             val toast = Toast(context)
             val layout =
                 LayoutInflater.from(context).inflate(R.layout.layout_custom_toast, null, false)
@@ -136,6 +142,25 @@ class Utils {
             }
             toast.view = layout
             toast.setGravity(Gravity.TOP or Gravity.FILL_HORIZONTAL, 0, 0)
+            toast.duration = duration
+            return toast
+        }
+
+        @SuppressLint("InflateParams")
+        fun makeText(context: Context, image: Drawable?, duration: Int = Toast.LENGTH_LONG): Toast {
+            val toast = Toast(context)
+            val layout =
+                LayoutInflater.from(context)
+                    .inflate(R.layout.layout_custom_toast_with_image, null, false)
+
+            val ivView = layout.findViewById<AppCompatImageView>(R.id.ivNotify)
+            ivView.setImageDrawable(image)
+            layout.layoutParams = ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+            )
+            toast.view = layout
+            toast.setGravity(Gravity.CENTER, 0, 0)
             toast.duration = duration
             return toast
         }

@@ -11,10 +11,12 @@ import android.location.LocationManager
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import hphuc.project.visafe_version1.R
@@ -54,6 +56,7 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
             when (data) {
                 is HomeMapDataIntent -> {
                     mvpActivity.replaceFragment(HomeMapFragment.newInstance(data), view.flChange.id)
+                    view.ivMenuAccident.visible()
                 }
                 is ListContactsDataIntent -> {
                     showFragmentForMenuItem(NAVIGATION.LIST_CONTACT.value)
@@ -62,6 +65,26 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
         }
     })
 
+    private val onActionClick = View.OnClickListener {
+        when(it.id){
+            view.ivMenuAccident.id->{
+               if (view.clMenuAccident.isVisible){
+                   view.clMenuAccident.gone()
+               }else{
+                   view.clMenuAccident.visible()
+               }
+            }
+            view.ivArrow.id->{
+                if (view.eplSearch.isExpanded) {
+                    view.eplSearch.isExpanded = false
+                    view.ivArrow.setImageDrawable(mResource.getIconArrowUp())
+                } else {
+                    view.eplSearch.isExpanded = true
+                    view.ivArrow.setImageDrawable(mResource.getIconArrowDown())
+                }
+            }
+        }
+    }
     companion object {
         const val REQUEST_GPS_MANAGER = 113
     }
@@ -83,11 +106,9 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                 checkFragmentExist()
                 when (itemId) {
                     NAVIGATION.HOME.value -> if (homeFragment != null && homeFragment?.isAdded!!) {
-                        view.clContainerSearch.visible()
                         ft.show(homeFragment!!)
                     } else {
                         homeFragment = HomeFragment()
-                        view.clContainerSearch.visible()
                         ft.replace(R.id.flChange, homeFragment!!, itemId.toString())
                     }
                     NAVIGATION.LIST_CONTACT.value -> if (contactsFragment != null && contactsFragment?.isAdded!!) {
@@ -100,6 +121,11 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                 hideOtherFragment(ft, itemId)
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 ft.commit()
+                if (itemId == NAVIGATION.HOME.value){
+                    view.clContainerSearch.visible()
+                }else{
+                    view.clContainerSearch.gone()
+                }
 
             } catch (ex: Exception) {
                 ex.printStackTrace()
@@ -130,22 +156,23 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
             ft.hide(contactsFragment!!)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private fun initView(){
+        view.clMenuAccident.setOnTouchListener { _, _ ->
+            true
+        }
+    }
+
     override fun initCreateView() {
         addLifeCycle(eventBusLifeCycle)
         mvpActivity.setActivityFullScreen()
-        view.ivArrow.setOnClickListener {
-            if (view.eplSearch.isExpanded) {
-                view.eplSearch.isExpanded = false
-                view.ivArrow.setImageDrawable(mResource.getIconArrowUp())
-            } else {
-                view.eplSearch.isExpanded = true
-                view.ivArrow.setImageDrawable(mResource.getIconArrowDown())
-            }
-        }
+        initView()
         view.bottomNavigationBar.setOnNavigationItemSelectedListener {
             showFragmentForMenuItem(it.itemId)
             true
         }
+        view.ivMenuAccident.setOnClickListener(onActionClick)
+        view.ivArrow.setOnClickListener(onActionClick)
     }
 
     override fun handleGetMap() {

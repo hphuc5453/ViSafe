@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.NonNull
@@ -37,8 +38,7 @@ import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.config.ConfigUtil
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
-import hphuc.project.visafe_version1.vi_safe.screen.sign_up.presentation.SignUpResourceProvider
-import hphuc.project.visafe_version1.vi_safe.screen.sign_up.presentation.renderer.RoleItemViewRenderer
+import hphuc.project.visafe_version1.vi_safe.screen.home_map.presentation.renderer.HomeMapSupportItemViewRenderer
 import kotlinex.collection.getValueOrDefault
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.string.getValueOrDefaultIsEmpty
@@ -81,7 +81,7 @@ class HomeMapView(
     @SuppressLint("InflateParams")
     private val alertView = LayoutInflater.from(mvpActivity)
         .inflate(R.layout.view_alert_dialog_choose_list_support, null, false)
-    private val alertDialog = AlertDialog.Builder(mvpActivity, R.style.DialogNotify)
+    private val alertDialog = AlertDialog.Builder(mvpActivity, R.style.DialogNotify).setView(alertView).create()
 
     private var listViewMvp: ListViewMvp? = null
     private val listData: MutableList<ViewModel> = mutableListOf()
@@ -92,14 +92,78 @@ class HomeMapView(
     private val renderConfig = LinearRenderConfigFactory(renderInput).create()
 
     private fun initAlertDialog() {
-        alertDialog.setView(alertView)
-        alertDialog.create()
+        alertView.tvYourFamily.text = mResource.getTextTotalSupport(ConfigUtil.listSupport.getValueOrDefault().size)
+        alertView.tvCancel.setOnClickListener(onActionClick)
+        alertView.btnAlarm.setOnClickListener(onActionClick)
+        alertView.llYourFamily.setOnClickListener(onActionClick)
+        alertView.llPolicy.setOnClickListener(onActionClick)
+        alertView.llCivilDefense.setOnClickListener(onActionClick)
+        alertView.llStreetBodyGuard.setOnClickListener(onActionClick)
+        alertView.llHospital.setOnClickListener(onActionClick)
+        alertView.llFireFight.setOnClickListener(onActionClick)
+
+        listViewMvp = ListViewMvp(mvpActivity, alertView.rvListSupport, renderConfig)
+        listViewMvp?.addViewRenderer(HomeMapSupportItemViewRenderer(mvpActivity))
+        listViewMvp?.createView()
 
         listData.clear()
         listData.addAll(ConfigUtil.listSupport.getValueOrDefault())
-        listViewMvp = ListViewMvp(mvpActivity, alertView.rvListSupport, renderConfig)
-        listViewMvp?.addViewRenderer(RoleItemViewRenderer(mvpActivity, SignUpResourceProvider(mvpActivity)))
-        listViewMvp?.createView()
+        listViewMvp?.setItems(listData)
+        listViewMvp?.notifyDataChanged()
+    }
+
+    private val onActionClick = View.OnClickListener {
+        when(it.id){
+            alertView.tvCancel.id->{
+                alertDialog.dismiss()
+            }
+            alertView.btnAlarm.id->{
+                Utils.makeText(mvpActivity, mResource.getImageNotifyUrgent()).show()
+                alertDialog.dismiss()
+            }
+            alertView.llYourFamily.id->{
+                if (alertView.ivCheckYourFamily.drawable == null){
+                    alertView.ivCheckYourFamily.setImageDrawable(mResource.getIconChecked())
+                }else{
+                    alertView.ivCheckYourFamily.setImageDrawable(null)
+                }
+            }
+            alertView.llPolicy.id->{
+                if (alertView.ivCheckPolicy.drawable == null){
+                    alertView.ivCheckPolicy.setImageDrawable(mResource.getIconChecked())
+                }else{
+                    alertView.ivCheckPolicy.setImageDrawable(null)
+                }
+            }
+            alertView.llCivilDefense.id->{
+                if (alertView.ivCheckCivilDefense.drawable == null){
+                    alertView.ivCheckCivilDefense.setImageDrawable(mResource.getIconChecked())
+                }else{
+                    alertView.ivCheckCivilDefense.setImageDrawable(null)
+                }
+            }
+            alertView.llStreetBodyGuard.id->{
+                if (alertView.ivCheckStreetBodyGuard.drawable == null){
+                    alertView.ivCheckStreetBodyGuard.setImageDrawable(mResource.getIconChecked())
+                }else{
+                    alertView.ivCheckStreetBodyGuard.setImageDrawable(null)
+                }
+            }
+            alertView.llHospital.id->{
+                if (alertView.ivCheckHospital.drawable == null){
+                    alertView.ivCheckHospital.setImageDrawable(mResource.getIconChecked())
+                }else{
+                    alertView.ivCheckHospital.setImageDrawable(null)
+                }
+            }
+            alertView.llFireFight.id->{
+                if (alertView.ivFireFight.drawable == null){
+                    alertView.ivFireFight.setImageDrawable(mResource.getIconChecked())
+                }else{
+                    alertView.ivFireFight.setImageDrawable(null)
+                }
+            }
+        }
     }
 
     private fun initView() {

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/spacing_80dp"
+    android:layout_marginStart="@dimen/spacing_20dp"
+    android:layout_height="wrap_content"
+    android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivRole"
+        app:srcCompat="@drawable/ic_role_policy"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="@dimen/spacing_40dp"
+        android:layout_height="@dimen/spacing_40dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:visibility="gone"
+        android:id="@+id/ivRoleChecked"
+        app:srcCompat="@drawable/ic_role_checked"
+        app:layout_constraintHorizontal_bias="1"
+        android:layout_marginEnd="@dimen/spacing_4dp"
+        android:layout_marginBottom="@dimen/spacing_4dp"
+        app:layout_constraintEnd_toEndOf="@id/ivRole"
+        app:layout_constraintBottom_toBottomOf="@id/ivRole"
+        app:layout_constraintStart_toStartOf="@id/ivRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:singleLine="true"
+        android:id="@+id/tvRole"
+        android:fontFamily="@font/semi_regular"
+        android:textSize="@dimen/text_15sp"
+        android:gravity="center"
+        android:textColor="@color/color_ffffff"
+        android:layout_marginTop="@dimen/spacing_4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivRole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
