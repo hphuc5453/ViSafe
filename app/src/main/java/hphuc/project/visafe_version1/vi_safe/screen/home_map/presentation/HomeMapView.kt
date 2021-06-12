@@ -230,6 +230,7 @@ class HomeMapView(
             // Get an instance of the component
             val locationComponent = mapBoxMap?.locationComponent
             val customLocationComponentOptions = LocationComponentOptions.builder(mvpActivity)
+                .foregroundDrawable(mResource.getIconYourLocation())
                 .build()
 
             val locationComponentActivationOptions =

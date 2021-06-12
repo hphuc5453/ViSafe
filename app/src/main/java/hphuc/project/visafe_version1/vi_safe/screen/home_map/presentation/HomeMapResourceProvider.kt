@@ -25,4 +25,8 @@ class HomeMapResourceProvider(mvpActivity: MvpActivity) : AndroidResourceProvide
     fun getIconSosActive(): Drawable?{
         return resourceManager.getDrawable(R.drawable.ic_sos_default)
     }
+
+    fun getIconYourLocation(): Int{
+        return R.drawable.ic_your_location
+    }
 }
