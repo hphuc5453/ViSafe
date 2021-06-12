@@ -30,19 +30,26 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.app.view.loading.Loadinger
+import hphuc.project.visafe_version1.core.base.bus.EventBusData
+import hphuc.project.visafe_version1.core.base.domain.listener.OnActionData
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.LinearRenderConfigFactory
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.ListViewMvp
 import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.config.ConfigUtil
+import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
+import hphuc.project.visafe_version1.vi_safe.screen.home.data.HomeDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.presentation.renderer.HomeMapSupportItemViewRenderer
 import kotlinex.collection.getValueOrDefault
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.string.getValueOrDefaultIsEmpty
+import kotlinex.view.gone
+import kotlinex.view.visible
 import kotlinx.android.synthetic.main.layout_home_map.view.*
+import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import kotlinx.android.synthetic.main.view_alert_dialog_choose_list_support.view.*
 
 
@@ -61,6 +68,12 @@ class HomeMapView(
     private val mPresenter = HomeMapPresenter()
     private val mResource = HomeMapResourceProvider(mvpActivity)
 
+    private val eventBusLifeCycle = EventBusLifeCycle(object : OnActionData<EventBusData> {
+        override fun onAction(data: EventBusData) {
+
+        }
+    })
+
     private var mapBoxMap: MapboxMap? = null
     private var lat: Double = 0.0
     private var lng: Double = 0.0
@@ -77,6 +90,7 @@ class HomeMapView(
     private val FILL_OPACITY = .9f
     private val LINE_WIDTH = 1f
     private var featureCollection: FeatureCollection? = null
+    private var isSos = false
 
     @SuppressLint("InflateParams")
     private val alertView = LayoutInflater.from(mvpActivity)
@@ -102,20 +116,30 @@ class HomeMapView(
         alertView.llHospital.setOnClickListener(onActionClick)
         alertView.llFireFight.setOnClickListener(onActionClick)
 
-        listViewMvp = ListViewMvp(mvpActivity, alertView.rvListSupport, renderConfig)
-        listViewMvp?.addViewRenderer(HomeMapSupportItemViewRenderer(mvpActivity))
-        listViewMvp?.createView()
+        if (ConfigUtil.listSupport.getValueOrDefault().isNotEmpty()){
+            alertView.llYourFamily.visible()
+            alertView.tvYourFamily.visible()
+            listViewMvp = ListViewMvp(mvpActivity, alertView.rvListSupport, renderConfig)
+            listViewMvp?.addViewRenderer(HomeMapSupportItemViewRenderer(mvpActivity))
+            listViewMvp?.createView()
 
-        listData.clear()
-        listData.addAll(ConfigUtil.listSupport.getValueOrDefault())
-        listViewMvp?.setItems(listData)
-        listViewMvp?.notifyDataChanged()
+            listData.clear()
+            listData.addAll(ConfigUtil.listSupport.getValueOrDefault())
+            listViewMvp?.setItems(listData)
+            listViewMvp?.notifyDataChanged()
+        }else{
+            alertView.llYourFamily.gone()
+            alertView.tvYourFamily.gone()
+        }
     }
 
     private val onActionClick = View.OnClickListener {
         when(it.id){
             alertView.tvCancel.id->{
                 alertDialog.dismiss()
+            }
+            view.ivBack.id->{
+                eventBusLifeCycle.sendData(HomeDataIntent())
             }
             alertView.btnAlarm.id->{
                 Utils.makeText(mvpActivity, mResource.getImageNotifyUrgent()).show()
@@ -172,9 +196,12 @@ class HomeMapView(
                 alertDialog.show()
             }
         }
+        view.ivBack.setOnClickListener(onActionClick)
     }
 
     override fun initCreateView() {
+        addLifeCycle(eventBusLifeCycle)
+        Utils.setPaddingStatusBar(view.clContainer, mvpActivity)
         initAlertDialog()
         initView()
     }

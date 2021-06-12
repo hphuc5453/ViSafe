@@ -12,11 +12,9 @@ import hphuc.project.visafe_version1.core.base.domain.listener.OnActionNotify
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
 import hphuc.project.visafe_version1.vi_safe.app.Utils
-import hphuc.project.visafe_version1.vi_safe.app.config.ConfigUtil
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
-import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.data.ListContactsDataIntent
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.view.gone
 import kotlinex.view.visible
@@ -32,7 +30,6 @@ class HomeView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
 
     private val loadingView = Loadinger.create(mvpActivity, mvpActivity.window)
     private val mPresenter = HomePresenter()
-    private val mResource = HomeResourceProvider(mvpActivity)
 
     private val eventBusLifeCycle = EventBusLifeCycle(object : OnActionData<EventBusData> {
         override fun onAction(data: EventBusData) {
@@ -40,28 +37,42 @@ class HomeView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
         }
     })
 
-    private val onAccept = object : OnActionNotify{
-        override fun onActionNotify() {
-            eventBusLifeCycle.sendData(ListContactsDataIntent())
-        }
-
-    }
-
     private val onActionClick = View.OnClickListener {
-        when(it.id){
-            view.ivSos.id->{
-//                if (ConfigUtil.listSupport.isNullOrEmpty()){
-//                    showError(mResource.getTextPleaseChoosePersonSupport(), onAccept)
-//                }
+        when (it.id) {
+            view.ivSos.id -> {
                 eventBusLifeCycle.sendData(HomeMapDataIntent(
                     AccidentType.QUICKLY.value
+                ))
+            }
+            view.ivDisaster.id -> {
+                eventBusLifeCycle.sendData(HomeMapDataIntent(
+                    AccidentType.DISASTER.value
+                ))
+            }
+            view.ivCrime.id -> {
+                eventBusLifeCycle.sendData(HomeMapDataIntent(
+                    AccidentType.CRIME.value
+                ))
+            }
+            view.ivAccident.id -> {
+                eventBusLifeCycle.sendData(HomeMapDataIntent(
+                    AccidentType.ACCIDENT.value
+                ))
+            }
+            view.ivVehicle.id -> {
+                eventBusLifeCycle.sendData(HomeMapDataIntent(
+                    AccidentType.VEHICLE.value
                 ))
             }
         }
     }
 
-    private fun initView(){
+    private fun initView() {
         view.ivSos.setOnClickListener(onActionClick)
+        view.ivDisaster.setOnClickListener(onActionClick)
+        view.ivCrime.setOnClickListener(onActionClick)
+        view.ivAccident.setOnClickListener(onActionClick)
+        view.ivVehicle.setOnClickListener(onActionClick)
     }
 
     override fun initCreateView() {

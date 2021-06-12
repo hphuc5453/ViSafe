@@ -26,8 +26,11 @@ import hphuc.project.visafe_version1.core.base.domain.listener.OnActionData
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.lifecycle.ViewResult
+import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
 import hphuc.project.visafe_version1.vi_safe.screen.home.HomeFragment
+import hphuc.project.visafe_version1.vi_safe.screen.home.data.HomeDataIntent
+import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.HomeMapFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.ListContactsFragment
@@ -57,13 +60,78 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                 is HomeMapDataIntent -> {
                     mvpActivity.replaceFragment(HomeMapFragment.newInstance(data), view.flChange.id)
                     view.ivMenuAccident.visible()
+                    setViewMenuAccident(data.accidentType)
                 }
                 is ListContactsDataIntent -> {
                     showFragmentForMenuItem(NAVIGATION.LIST_CONTACT.value)
                 }
+                is HomeDataIntent -> {
+                    showFragmentForMenuItem(NAVIGATION.HOME.value)
+                }
             }
         }
     })
+
+    private var typeChoose : Int = AccidentType.QUICKLY.value
+    private fun setViewMenuAccident(type: Int){
+        var tyleSentDrawble = mResource.getIconNotifyQuickly()
+        when(type){
+            AccidentType.ACCIDENT.value->{
+                view.ivMenuAccident.setImageDrawable(mResource.getIconMenuAccidentMini())
+
+                view.ivMenuAccidentAccident.setImageDrawable(mResource.getIconMenuAccidentActive())
+                view.ivMenuAccidentCrime.setImageDrawable(mResource.getIconMenuCrimeDefault())
+                view.ivMenuAccidentDisaster.setImageDrawable(mResource.getIconMenuDisasterDefault())
+                view.ivMenuAccidentVehicle.setImageDrawable(mResource.getIconMenuVehicleDefault())
+
+                tyleSentDrawble = mResource.getIconNotifyAccident()
+            }
+            AccidentType.DISASTER.value->{
+                view.ivMenuAccident.setImageDrawable(mResource.getIconMenuDisasterMini())
+
+                view.ivMenuAccidentAccident.setImageDrawable(mResource.getIconMenuAccidentDefault())
+                view.ivMenuAccidentCrime.setImageDrawable(mResource.getIconMenuCrimeDefault())
+                view.ivMenuAccidentDisaster.setImageDrawable(mResource.getIconMenuDisasterActive())
+                view.ivMenuAccidentVehicle.setImageDrawable(mResource.getIconMenuVehicleDefault())
+
+                tyleSentDrawble = mResource.getIconNotifyDisaster()
+            }
+            AccidentType.CRIME.value->{
+                view.ivMenuAccident.setImageDrawable(mResource.getIconMenuCrimeMini())
+
+                view.ivMenuAccidentAccident.setImageDrawable(mResource.getIconMenuAccidentDefault())
+                view.ivMenuAccidentCrime.setImageDrawable(mResource.getIconMenuCrimeActive())
+                view.ivMenuAccidentDisaster.setImageDrawable(mResource.getIconMenuDisasterDefault())
+                view.ivMenuAccidentVehicle.setImageDrawable(mResource.getIconMenuVehicleDefault())
+
+                tyleSentDrawble = mResource.getIconNotifyCrime()
+            }
+            AccidentType.VEHICLE.value->{
+                view.ivMenuAccident.setImageDrawable(mResource.getIconMenuVehicleMini())
+
+                view.ivMenuAccidentAccident.setImageDrawable(mResource.getIconMenuAccidentDefault())
+                view.ivMenuAccidentCrime.setImageDrawable(mResource.getIconMenuCrimeDefault())
+                view.ivMenuAccidentDisaster.setImageDrawable(mResource.getIconMenuDisasterDefault())
+                view.ivMenuAccidentVehicle.setImageDrawable(mResource.getIconMenuVehicleActive())
+
+                tyleSentDrawble = mResource.getIconNotifyVehicle()
+            }
+            else->{
+                view.ivMenuAccident.setImageDrawable(mResource.getIconMenuAccident())
+
+                view.ivMenuAccidentAccident.setImageDrawable(mResource.getIconMenuAccidentDefault())
+                view.ivMenuAccidentCrime.setImageDrawable(mResource.getIconMenuCrimeDefault())
+                view.ivMenuAccidentDisaster.setImageDrawable(mResource.getIconMenuDisasterDefault())
+                view.ivMenuAccidentVehicle.setImageDrawable(mResource.getIconMenuVehicleDefault())
+            }
+        }
+
+        if (typeChoose != type){
+            Utils.makeText(mvpActivity, tyleSentDrawble).show()
+        }
+        typeChoose = type
+        view.clMenuAccident.gone()
+    }
 
     private val onActionClick = View.OnClickListener {
         when(it.id){
@@ -83,6 +151,18 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                     view.ivArrow.setImageDrawable(mResource.getIconArrowDown())
                 }
             }
+            view.ivMenuAccidentAccident.id->{
+                setViewMenuAccident(AccidentType.ACCIDENT.value)
+            }
+            view.ivMenuAccidentCrime.id->{
+                setViewMenuAccident(AccidentType.CRIME.value)
+            }
+            view.ivMenuAccidentDisaster.id->{
+                setViewMenuAccident(AccidentType.DISASTER.value)
+            }
+            view.ivMenuAccidentVehicle.id->{
+                setViewMenuAccident(AccidentType.VEHICLE.value)
+            }
         }
     }
     companion object {
@@ -100,6 +180,8 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
 
     private fun showFragmentForMenuItem(itemId: Int) {
         view.clContainerSearch.gone()
+        view.ivMenuAccident.gone()
+        typeChoose = AccidentType.QUICKLY.value
         Handler(Looper.getMainLooper()).post {
             try {
                 val ft = mvpActivity.supportFragmentManager.beginTransaction()
@@ -172,6 +254,10 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
             true
         }
         view.ivMenuAccident.setOnClickListener(onActionClick)
+        view.ivMenuAccidentAccident.setOnClickListener(onActionClick)
+        view.ivMenuAccidentDisaster.setOnClickListener(onActionClick)
+        view.ivMenuAccidentCrime.setOnClickListener(onActionClick)
+        view.ivMenuAccidentVehicle.setOnClickListener(onActionClick)
         view.ivArrow.setOnClickListener(onActionClick)
     }
 

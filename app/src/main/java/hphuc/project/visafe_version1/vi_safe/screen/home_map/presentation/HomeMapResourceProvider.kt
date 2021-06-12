@@ -17,4 +17,12 @@ class HomeMapResourceProvider(mvpActivity: MvpActivity) : AndroidResourceProvide
     fun getImageNotifyUrgent(): Drawable?{
         return resourceManager.getDrawable(R.drawable.ic_notify_sent_urgent)
     }
+
+    fun getIconSosDefault(): Drawable?{
+        return resourceManager.getDrawable(R.drawable.ic_sos_default)
+    }
+
+    fun getIconSosActive(): Drawable?{
+        return resourceManager.getDrawable(R.drawable.ic_sos_default)
+    }
 }

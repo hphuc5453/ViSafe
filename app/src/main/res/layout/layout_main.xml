@@ -179,7 +179,7 @@
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_menu_acident_acident_choose" />
+                app:srcCompat="@drawable/ic_menu_accident_default" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivMenuAccidentCrime"
