@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.ssseasonnn.RxDownload:rxdownload4-notification:1.0.9@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b9b001a9214c29c61fe285685799329b/jetified-rxdownload4-notification-1.0.9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b9b001a9214c29c61fe285685799329b/jetified-rxdownload4-notification-1.0.9/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b9b001a9214c29c61fe285685799329b/jetified-rxdownload4-notification-1.0.9/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ssseasonnn.RxDownload/rxdownload4-notification/1.0.9/5bf0300f7c115e3db051f3b591c738072f542562/rxdownload4-notification-1.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

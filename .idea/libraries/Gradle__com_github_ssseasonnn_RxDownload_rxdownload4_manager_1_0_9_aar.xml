@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.ssseasonnn.RxDownload:rxdownload4-manager:1.0.9@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8bf11633e040b5bb3baaf169b5dc0c80/jetified-rxdownload4-manager-1.0.9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8bf11633e040b5bb3baaf169b5dc0c80/jetified-rxdownload4-manager-1.0.9/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8bf11633e040b5bb3baaf169b5dc0c80/jetified-rxdownload4-manager-1.0.9/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ssseasonnn.RxDownload/rxdownload4-manager/1.0.9/3f815ee66d113921cacd6462bee94ddc774fd79f/rxdownload4-manager-1.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
