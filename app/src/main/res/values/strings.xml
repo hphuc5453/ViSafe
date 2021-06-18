@@ -59,4 +59,5 @@
     <string name="text_the_system_will_send_emergency_alarm_to">The system will send emergency alarm to</string>
     <string name="text_immediate_alarm">Immediate alarm</string>
     <string name="text_total_person_supprort">Your family (%d)</string>
+    <string name="text_today">Today</string>
 </resources>

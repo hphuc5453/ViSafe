@@ -33,6 +33,7 @@
         app:srcCompat="@drawable/ic_back" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
         android:visibility="gone"
         android:id="@+id/ivHistory"
         android:layout_width="@dimen/spacing_26dp"

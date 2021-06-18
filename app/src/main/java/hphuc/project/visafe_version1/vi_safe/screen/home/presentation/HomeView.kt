@@ -15,6 +15,7 @@ import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
+import hphuc.project.visafe_version1.vi_safe.screen.notify.data.NotifyDataBusIntent
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.view.gone
 import kotlinex.view.visible
@@ -64,6 +65,9 @@ class HomeView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
                     AccidentType.VEHICLE.value
                 ))
             }
+            view.ivHistory.id->{
+                eventBusLifeCycle.sendData(NotifyDataBusIntent())
+            }
         }
     }
 
@@ -73,6 +77,7 @@ class HomeView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
         view.ivCrime.setOnClickListener(onActionClick)
         view.ivAccident.setOnClickListener(onActionClick)
         view.ivVehicle.setOnClickListener(onActionClick)
+        view.ivHistory.setOnClickListener(onActionClick)
     }
 
     override fun initCreateView() {

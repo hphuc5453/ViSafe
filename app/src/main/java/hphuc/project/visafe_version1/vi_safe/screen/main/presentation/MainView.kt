@@ -35,6 +35,8 @@ import hphuc.project.visafe_version1.vi_safe.screen.home_map.HomeMapFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.ListContactsFragment
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.data.ListContactsDataIntent
+import hphuc.project.visafe_version1.vi_safe.screen.notify.NotifyFragment
+import hphuc.project.visafe_version1.vi_safe.screen.notify.data.NotifyDataBusIntent
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.view.gone
 import kotlinex.view.visible
@@ -67,6 +69,10 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                 }
                 is HomeDataIntent -> {
                     showFragmentForMenuItem(NAVIGATION.HOME.value)
+                }
+                is NotifyDataBusIntent-> {
+                    view.clContainerSearch.gone()
+                    mvpActivity.replaceFragment(NotifyFragment(), view.flChange.id)
                 }
             }
         }
