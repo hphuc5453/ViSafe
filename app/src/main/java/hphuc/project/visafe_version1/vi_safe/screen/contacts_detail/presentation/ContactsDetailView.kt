@@ -21,6 +21,7 @@ import hphuc.project.visafe_version1.vi_safe.screen.contacts_detail.data.Contrac
 import hphuc.project.visafe_version1.vi_safe.screen.contacts_detail.presentation.model.ContactsDetailHeaderItemViewModel
 import hphuc.project.visafe_version1.vi_safe.screen.contacts_detail.presentation.renderer.ContactsDetailHeaderItemViewRenderer
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.model.ListContactsItemViewModel
+import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.string.getValueOrDefaultIsEmpty
 import kotlinx.android.synthetic.main.layout_contacts_detail.view.*
@@ -37,7 +38,6 @@ class ContactsDetailView(
     class ViewCreator(context: Context, viewGroup: ViewGroup?) :
         AndroidMvpView.LayoutViewCreator(R.layout.layout_contacts_detail, context, viewGroup)
 
-    private val loadingView = Loadinger.create(mvpActivity, mvpActivity.window)
     private val mPresenter = ContactsDetailPresenter()
     private val mResource = ContactsDetailResourceProvider(mvpActivity)
 
@@ -128,11 +128,11 @@ class ContactsDetailView(
     }
 
     override fun showLoading() {
-        loadingView.show()
+        MainActivity.showLoading()
     }
 
     override fun hideLoading() {
-        loadingView.hide()
+        MainActivity.hideLoading()
     }
 
     override fun showToast(message: String) {

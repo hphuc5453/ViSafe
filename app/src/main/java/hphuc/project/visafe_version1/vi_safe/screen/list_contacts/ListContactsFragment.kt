@@ -8,9 +8,7 @@ import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.L
 class ListContactsFragment : MvpFragment() {
 
     companion object {
-        fun newInstance(): ListContactsFragment {
-            return ListContactsFragment()
-        }
+        val TAG = ListContactsFragment::class.java.simpleName
     }
 
     override fun createAndroidMvpView(savedInstanceState: Bundle?): AndroidMvpView {

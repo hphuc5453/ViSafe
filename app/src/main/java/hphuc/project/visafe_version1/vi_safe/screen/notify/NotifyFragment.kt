@@ -6,6 +6,11 @@ import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpFragm
 import hphuc.project.visafe_version1.vi_safe.screen.notify.presentation.NotifyView
 
 class NotifyFragment: MvpFragment() {
+
+    companion object{
+        val TAG = NotifyFragment::class.java.simpleName
+    }
+
     override fun createAndroidMvpView(savedInstanceState: Bundle?): AndroidMvpView {
         return NotifyView(getMvpActivity(), NotifyView.ViewCreator(getMvpActivity(), null))
     }

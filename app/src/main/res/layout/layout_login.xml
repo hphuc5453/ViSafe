@@ -45,8 +45,8 @@
             <androidx.appcompat.widget.AppCompatImageView
                 app:srcCompat="@drawable/ic_language"
                 android:id="@+id/ivLanguage"
-                android:layout_width="@dimen/spacing_20dp"
-                android:layout_height="@dimen/spacing_20dp"
+                android:layout_width="@dimen/spacing_30dp"
+                android:layout_height="@dimen/spacing_30dp"
                 android:layout_marginTop="@dimen/spacing_10dp"
                 android:layout_marginEnd="@dimen/spacing_24dp"
                 app:layout_constraintEnd_toEndOf="parent"

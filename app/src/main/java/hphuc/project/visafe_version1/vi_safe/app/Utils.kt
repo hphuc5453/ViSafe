@@ -106,10 +106,26 @@ class Utils {
         }
 
         @JvmStatic
+        fun setPaddingNavigationBar(view: View, context: Context) {
+            view.setPadding(0, 0, 0, getNavigationBarHeight(context))
+        }
+
+        @JvmStatic
         fun getStatusBarHeight(context: Context): Int {
             var result = 0
             val resourceId =
                 context.resources.getIdentifier("status_bar_height", "dimen", "android")
+            if (resourceId > 0) {
+                result = context.resources.getDimensionPixelSize(resourceId)
+            }
+            return result
+        }
+
+        @JvmStatic
+        fun getNavigationBarHeight(context: Context): Int {
+            var result = 0
+            val resourceId =
+                context.resources.getIdentifier("navigation_bar_height", "dimen", "android")
             if (resourceId > 0) {
                 result = context.resources.getDimensionPixelSize(resourceId)
             }

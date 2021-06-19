@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import hphuc.project.visafe_version1.R
-import hphuc.project.visafe_version1.core.app.view.loading.Loadinger
 import hphuc.project.visafe_version1.core.base.bus.EventBusData
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionData
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
@@ -15,6 +14,7 @@ import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.Lin
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.ListViewMvp
 import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
+import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity
 import hphuc.project.visafe_version1.vi_safe.screen.notify.presentation.renderer.NotifyItemViewRenderer
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinx.android.synthetic.main.layout_notify.view.*
@@ -27,7 +27,6 @@ class NotifyView(mvpActivity: MvpActivity, viewCreator: LayoutViewCreator) :
     class ViewCreator(context: Context, viewGroup: ViewGroup?) :
         LayoutViewCreator(R.layout.layout_notify, context, viewGroup)
 
-    private val loadingView = Loadinger.create(mvpActivity, mvpActivity.window)
     private val mResource = NotifyResourceProvider(mvpActivity)
     private val mPresenter = NotifyPresenter()
 
@@ -59,8 +58,8 @@ class NotifyView(mvpActivity: MvpActivity, viewCreator: LayoutViewCreator) :
     }
 
     private fun initView(){
-        view.tvTitle.text = mResource.getTextTitle()
         Utils.setPaddingStatusBar(view.clContainer, mvpActivity)
+        view.tvTitle.text = mResource.getTextTitle()
         view.ivBack.setOnClickListener(onActionClick)
     }
 
@@ -97,11 +96,11 @@ class NotifyView(mvpActivity: MvpActivity, viewCreator: LayoutViewCreator) :
     }
 
     override fun showLoading() {
-        loadingView.show()
+        MainActivity.showLoading()
     }
 
     override fun hideLoading() {
-        loadingView.hide()
+        MainActivity.hideLoading()
     }
 
     override fun showToast(message: String) {

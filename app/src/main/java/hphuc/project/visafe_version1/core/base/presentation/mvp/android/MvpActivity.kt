@@ -5,20 +5,16 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
-import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.orhanobut.logger.Logger
 import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionNotify
@@ -43,17 +39,10 @@ abstract class MvpActivity : AppCompatActivity(),
         lifeCycleDispatcher.addLifeCycle(lifeCycle)
     }
 
-    fun replaceFragment(f: Fragment, flChange: Int) {
-        this.supportFragmentManager
-            .beginTransaction()
-            .addToBackStack(null)
-            .replace(flChange, f)
-            .commit()
-    }
-
     fun setActivityFullScreen(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.navigationBarColor = resource.getColor(R.color.color_status_bar_opacity)
             window.statusBarColor = resource.getColor(R.color.color_status_bar_opacity)
             window.navigationBarColor = Color.TRANSPARENT
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -74,7 +63,7 @@ abstract class MvpActivity : AppCompatActivity(),
     }
 
     private fun initWindow() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+//        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         val drawableId = getBackgroundScreen()
         if(drawableId!=0) {
             setBackgroundData(drawableId)
@@ -92,7 +81,7 @@ abstract class MvpActivity : AppCompatActivity(),
 
     @DrawableRes
     open fun getBackgroundScreen(): Int {
-        return R.drawable.background
+        return 0
     }
 
     override fun onDestroy() {
@@ -170,19 +159,6 @@ abstract class MvpActivity : AppCompatActivity(),
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         lifeCycleDispatcher.dispatchTouchEvent(ev)
-        if (ev.action == MotionEvent.ACTION_DOWN) {
-            val v = currentFocus
-            if (v is EditText) {
-                val outRect = Rect()
-                v.getGlobalVisibleRect(outRect)
-                if (!outRect.contains(ev.rawX.toInt(), ev.rawY.toInt())) {
-                    v.clearFocus()
-                    val imm =
-                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
-                }
-            }
-        }
         return super.dispatchTouchEvent(ev)
     }
 
@@ -220,9 +196,8 @@ abstract class MvpActivity : AppCompatActivity(),
 
     override fun onBackPressed() {
         if (!handleBackPressed()) {
-            super.onBackPressed()
+            this.finish()
         }
-
     }
 
     private fun handleBackPressed(): Boolean {

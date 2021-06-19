@@ -10,6 +10,12 @@ apply plugin: 'kotlin-kapt'
 def versionRetrofitValue = rootProject.ext.versionRetrofit as String
 
 android {
+    signingConfigs {
+        ConfigTest {
+        keyAlias 'key0'
+            keyPassword 'hoangphuc98'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -27,6 +33,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {

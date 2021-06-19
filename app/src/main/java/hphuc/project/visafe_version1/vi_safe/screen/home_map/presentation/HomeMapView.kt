@@ -29,7 +29,6 @@ import com.mapbox.mapboxsdk.style.layers.*
 import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import hphuc.project.visafe_version1.R
-import hphuc.project.visafe_version1.core.app.view.loading.Loadinger
 import hphuc.project.visafe_version1.core.base.bus.EventBusData
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionData
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
@@ -39,10 +38,10 @@ import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.Lis
 import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.config.ConfigUtil
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
-import hphuc.project.visafe_version1.vi_safe.screen.home.data.HomeDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.presentation.renderer.HomeMapSupportItemViewRenderer
+import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity
 import kotlinex.collection.getValueOrDefault
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.string.getValueOrDefaultIsEmpty
@@ -64,7 +63,6 @@ class HomeMapView(
     class ViewCreator(context: Context, viewGroup: ViewGroup?) :
         AndroidMvpView.LayoutViewCreator(R.layout.layout_home_map, context, viewGroup)
 
-    private val loadingView = Loadinger.create(mvpActivity, mvpActivity.window)
     private val mPresenter = HomeMapPresenter()
     private val mResource = HomeMapResourceProvider(mvpActivity)
 
@@ -139,7 +137,7 @@ class HomeMapView(
                 alertDialog.dismiss()
             }
             view.ivBack.id->{
-                eventBusLifeCycle.sendData(HomeDataIntent())
+                mvpActivity.onBackPressed()
             }
             alertView.btnAlarm.id->{
                 Utils.makeText(mvpActivity, mResource.getImageNotifyUrgent()).show()
@@ -191,6 +189,7 @@ class HomeMapView(
     }
 
     private fun initView() {
+        Utils.setPaddingStatusBar(view.clContainer, mvpActivity)
         when (extra?.accidentType) {
             AccidentType.QUICKLY.value -> {
                 alertDialog.show()
@@ -201,7 +200,6 @@ class HomeMapView(
 
     override fun initCreateView() {
         addLifeCycle(eventBusLifeCycle)
-        Utils.setPaddingStatusBar(view.clContainer, mvpActivity)
         initAlertDialog()
         initView()
     }
@@ -366,11 +364,11 @@ class HomeMapView(
     }
 
     override fun showLoading() {
-        loadingView.show()
+        MainActivity.showLoading()
     }
 
     override fun hideLoading() {
-        loadingView.hide()
+        MainActivity.hideLoading()
     }
 
     override fun showToast(message: String) {

@@ -33,6 +33,7 @@ import hphuc.project.visafe_version1.vi_safe.screen.contacts_detail.data.Contrac
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.model.ListContactsItemViewModel
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.renderer.ListContactsAlphabetItemViewRenderer
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.renderer.ListContactsItemViewRenderer
+import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity
 import kotlinex.boolean.getValueOrDefault
 import kotlinex.collection.getValueOrDefault
 import kotlinex.mvpactivity.showErrorAlert
@@ -49,7 +50,6 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
     class ViewCreator(context: Context, viewGroup: ViewGroup?) :
         AndroidMvpView.LayoutViewCreator(R.layout.layout_contacts, context, viewGroup)
 
-    private val loadingView = Loadinger.create(mvpActivity, mvpActivity.window)
     private val mPresenter = ListContactsPresenter(mvpActivity, AndroidScreenNavigator(mvpActivity))
     private var listViewMvp: ListViewMvp? = null
     private val listData: MutableList<ViewModel> = mutableListOf()
@@ -132,12 +132,12 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
 
     override fun initCreateView() {
         addLifeCycle(eventBusLifeCycle)
-        Utils.setPaddingStatusBar(view.clContainer, mvpActivity)
         initRecycleView()
         initView()
     }
 
     private fun initView() {
+        Utils.setPaddingStatusBar(view.clContainer, mvpActivity)
         view.tvTitle.text = mResource.getTextTitle()
         view.ivBack.gone()
         if (ActivityCompat.checkSelfPermission(
@@ -292,11 +292,11 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
     }
 
     override fun showLoading() {
-        loadingView.show()
+        MainActivity.showLoading()
     }
 
     override fun hideLoading() {
-        loadingView.hide()
+        MainActivity.hideLoading()
         view.swRefresh.isRefreshing = false
     }
 

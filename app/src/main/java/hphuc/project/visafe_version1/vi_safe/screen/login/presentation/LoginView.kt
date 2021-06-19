@@ -18,6 +18,7 @@ import hphuc.project.visafe_version1.vi_safe.app.data.network.request.LoginReque
 import hphuc.project.visafe_version1.vi_safe.app.data.network.request.PassportRequest
 import hphuc.project.visafe_version1.vi_safe.app.data.network.response.PassportResponse
 import hphuc.project.visafe_version1.vi_safe.app.presentation.navigater.AndroidScreenNavigator
+import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.number.getValueOrDefaultIsZero
 import kotlinex.string.getValueOrDefaultIsEmpty
@@ -35,7 +36,6 @@ class LoginView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
     class ViewCreator(context: Context, viewGroup: ViewGroup?) :
         AndroidMvpView.LayoutViewCreator(R.layout.layout_login, context, viewGroup)
 
-    private val loadingView = Loadinger.create(mvpActivity, mvpActivity.window)
     private val mResource = LoginResourceProvider(mvpActivity)
     private val mPresenter = LoginPresenter(AndroidScreenNavigator(mvpActivity))
 
@@ -150,11 +150,11 @@ class LoginView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
     }
 
     override fun showLoading() {
-        loadingView.show()
+        MainActivity.showLoading()
     }
 
     override fun hideLoading() {
-        loadingView.hide()
+        MainActivity.hideLoading()
     }
 
     override fun showToast(message: String) {

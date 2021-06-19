@@ -13,6 +13,9 @@ class HomeMapFragment : MvpFragment() {
     lateinit var mapView: MapView
 
     companion object {
+
+        val TAG = HomeMapFragment::class.java.simpleName
+
         fun newInstance(data: HomeMapDataIntent): HomeMapFragment {
             val f = HomeMapFragment()
             val bundle = Bundle()

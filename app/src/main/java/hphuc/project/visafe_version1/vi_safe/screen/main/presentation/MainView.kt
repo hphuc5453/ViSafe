@@ -17,6 +17,8 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import hphuc.project.visafe_version1.R
@@ -28,6 +30,7 @@ import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActiv
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.lifecycle.ViewResult
 import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
+import hphuc.project.visafe_version1.vi_safe.screen.camera.CameraFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home.HomeFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home.data.HomeDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
@@ -35,6 +38,8 @@ import hphuc.project.visafe_version1.vi_safe.screen.home_map.HomeMapFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.ListContactsFragment
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.data.ListContactsDataIntent
+import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity
+import hphuc.project.visafe_version1.vi_safe.screen.main.data.EventMenu
 import hphuc.project.visafe_version1.vi_safe.screen.notify.NotifyFragment
 import hphuc.project.visafe_version1.vi_safe.screen.notify.data.NotifyDataBusIntent
 import kotlinex.mvpactivity.showErrorAlert
@@ -55,12 +60,16 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
 
     private var homeFragment: HomeFragment? = null
     private var contactsFragment: ListContactsFragment? = null
+    private var cameraFragment: CameraFragment? = null
 
     private val eventBusLifeCycle = EventBusLifeCycle(object : OnActionData<EventBusData> {
         override fun onAction(data: EventBusData) {
             when (data) {
+                is EventMenu -> {
+                    mPresenter.handleEventMenu(data)
+                }
                 is HomeMapDataIntent -> {
-                    mvpActivity.replaceFragment(HomeMapFragment.newInstance(data), view.flChange.id)
+                    showHomeMapFragment(data)
                     view.ivMenuAccident.visible()
                     setViewMenuAccident(data.accidentType)
                 }
@@ -70,19 +79,117 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                 is HomeDataIntent -> {
                     showFragmentForMenuItem(NAVIGATION.HOME.value)
                 }
-                is NotifyDataBusIntent-> {
+                is NotifyDataBusIntent -> {
                     view.clContainerSearch.gone()
-                    mvpActivity.replaceFragment(NotifyFragment(), view.flChange.id)
+                    addFragment(NotifyFragment(), NotifyFragment.TAG)
                 }
             }
         }
     })
 
-    private var typeChoose : Int = AccidentType.QUICKLY.value
-    private fun setViewMenuAccident(type: Int){
-        var tyleSentDrawble = mResource.getIconNotifyQuickly()
-        when(type){
-            AccidentType.ACCIDENT.value->{
+    override fun showContactListFragment() {
+        val fm: FragmentManager = mvpActivity.supportFragmentManager
+        for (i in 1 until fm.backStackEntryCount) {
+            fm.popBackStack()
+        }
+        replaceFragment(ListContactsFragment(), ListContactsFragment.TAG)
+    }
+
+    override fun showLiveFragment() {
+        val fm: FragmentManager = mvpActivity.supportFragmentManager
+        for (i in 1 until fm.backStackEntryCount) {
+            fm.popBackStack()
+        }
+        replaceFragment(CameraFragment(), CameraFragment.TAG)
+    }
+
+    override fun showCallFragment() {
+//        val fm: FragmentManager = mvpActivity.supportFragmentManager
+//        for (i in 1 until fm.backStackEntryCount) {
+//            fm.popBackStack()
+//        }
+//        replaceFragment(ListContactsFragment(), ListContactsFragment.TAG)
+    }
+
+    override fun showSettingFragment() {
+//        val fm: FragmentManager = mvpActivity.supportFragmentManager
+//        for (i in 1 until fm.backStackEntryCount) {
+//            fm.popBackStack()
+//        }
+//        replaceFragment(ListContactsFragment(), ListContactsFragment.TAG)
+    }
+
+    override fun showNotifyFragment() {
+        addFragment(NotifyFragment(), NotifyFragment.TAG)
+    }
+
+    override fun showHomeMapFragment(extra: HomeMapDataIntent) {
+        addFragment(HomeMapFragment.newInstance(extra), HomeMapFragment.TAG)
+    }
+
+    override fun showHomeFragment() {
+        val fm: FragmentManager = mvpActivity.supportFragmentManager
+        for (i in 0 until fm.backStackEntryCount) {
+            fm.popBackStack()
+        }
+        replaceFragment(HomeFragment(), HomeFragment.TAG)
+    }
+
+    private fun replaceFragment(fragment: Fragment, tag: String) {
+        val ft = mvpActivity.supportFragmentManager.beginTransaction()
+        ft.setCustomAnimations(
+            R.anim.enter_right_to_left,
+            R.anim.exit_right_to_left,
+            R.anim.enter_left_to_right,
+            R.anim.exit_left_to_right
+        )
+        ft.replace(view.flChange.id, fragment, tag)
+        ft.addToBackStack(tag)
+        ft.commit()
+        com.orhanobut.logger.Logger.d("onReplaceFragment $tag")
+
+    }
+
+    override fun isHandleBackPressed(): Boolean {
+        if (MainActivity.isLoading) {
+            return true
+        }
+        val fm: FragmentManager = mvpActivity.supportFragmentManager
+        return if (fm.backStackEntryCount > 1) {
+            val homeMapFragment = fm.findFragmentByTag(HomeMapFragment.TAG)
+            when {
+                homeMapFragment != null -> {
+                    showHomeFragment()
+                }
+            }
+            true
+        } else {
+            false
+        }
+    }
+
+    private fun addFragment(fragment: Fragment, tag: String) {
+        com.orhanobut.logger.Logger.d("onAddFragment $tag")
+        Handler(Looper.getMainLooper()).postDelayed({
+            val ft = mvpActivity.supportFragmentManager.beginTransaction()
+            ft.setCustomAnimations(
+                R.anim.enter_right_to_left,
+                R.anim.exit_right_to_left,
+                R.anim.enter_left_to_right,
+                R.anim.exit_left_to_right
+            )
+            ft.add(view.flChange.id, fragment, tag)
+            ft.addToBackStack(tag)
+            ft.commit()
+        }, 600)
+
+    }
+
+    private var typeChoose: Int = AccidentType.QUICKLY.value
+    private fun setViewMenuAccident(type: Int) {
+        var typeSentDrawable = mResource.getIconNotifyQuickly()
+        when (type) {
+            AccidentType.ACCIDENT.value -> {
                 view.ivMenuAccident.setImageDrawable(mResource.getIconMenuAccidentMini())
 
                 view.ivMenuAccidentAccident.setImageDrawable(mResource.getIconMenuAccidentActive())
@@ -90,9 +197,9 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                 view.ivMenuAccidentDisaster.setImageDrawable(mResource.getIconMenuDisasterDefault())
                 view.ivMenuAccidentVehicle.setImageDrawable(mResource.getIconMenuVehicleDefault())
 
-                tyleSentDrawble = mResource.getIconNotifyAccident()
+                typeSentDrawable = mResource.getIconNotifyAccident()
             }
-            AccidentType.DISASTER.value->{
+            AccidentType.DISASTER.value -> {
                 view.ivMenuAccident.setImageDrawable(mResource.getIconMenuDisasterMini())
 
                 view.ivMenuAccidentAccident.setImageDrawable(mResource.getIconMenuAccidentDefault())
@@ -100,9 +207,9 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                 view.ivMenuAccidentDisaster.setImageDrawable(mResource.getIconMenuDisasterActive())
                 view.ivMenuAccidentVehicle.setImageDrawable(mResource.getIconMenuVehicleDefault())
 
-                tyleSentDrawble = mResource.getIconNotifyDisaster()
+                typeSentDrawable = mResource.getIconNotifyDisaster()
             }
-            AccidentType.CRIME.value->{
+            AccidentType.CRIME.value -> {
                 view.ivMenuAccident.setImageDrawable(mResource.getIconMenuCrimeMini())
 
                 view.ivMenuAccidentAccident.setImageDrawable(mResource.getIconMenuAccidentDefault())
@@ -110,9 +217,9 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                 view.ivMenuAccidentDisaster.setImageDrawable(mResource.getIconMenuDisasterDefault())
                 view.ivMenuAccidentVehicle.setImageDrawable(mResource.getIconMenuVehicleDefault())
 
-                tyleSentDrawble = mResource.getIconNotifyCrime()
+                typeSentDrawable = mResource.getIconNotifyCrime()
             }
-            AccidentType.VEHICLE.value->{
+            AccidentType.VEHICLE.value -> {
                 view.ivMenuAccident.setImageDrawable(mResource.getIconMenuVehicleMini())
 
                 view.ivMenuAccidentAccident.setImageDrawable(mResource.getIconMenuAccidentDefault())
@@ -120,9 +227,9 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                 view.ivMenuAccidentDisaster.setImageDrawable(mResource.getIconMenuDisasterDefault())
                 view.ivMenuAccidentVehicle.setImageDrawable(mResource.getIconMenuVehicleActive())
 
-                tyleSentDrawble = mResource.getIconNotifyVehicle()
+                typeSentDrawable = mResource.getIconNotifyVehicle()
             }
-            else->{
+            else -> {
                 view.ivMenuAccident.setImageDrawable(mResource.getIconMenuAccident())
 
                 view.ivMenuAccidentAccident.setImageDrawable(mResource.getIconMenuAccidentDefault())
@@ -132,23 +239,23 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
             }
         }
 
-        if (typeChoose != type){
-            Utils.makeText(mvpActivity, tyleSentDrawble).show()
+        if (typeChoose != type) {
+            Utils.makeText(mvpActivity, typeSentDrawable).show()
         }
         typeChoose = type
         view.clMenuAccident.gone()
     }
 
     private val onActionClick = View.OnClickListener {
-        when(it.id){
-            view.ivMenuAccident.id->{
-               if (view.clMenuAccident.isVisible){
-                   view.clMenuAccident.gone()
-               }else{
-                   view.clMenuAccident.visible()
-               }
+        when (it.id) {
+            view.ivMenuAccident.id -> {
+                if (view.clMenuAccident.isVisible) {
+                    view.clMenuAccident.gone()
+                } else {
+                    view.clMenuAccident.visible()
+                }
             }
-            view.ivArrow.id->{
+            view.ivArrow.id -> {
                 if (view.eplSearch.isExpanded) {
                     view.eplSearch.isExpanded = false
                     view.ivArrow.setImageDrawable(mResource.getIconArrowUp())
@@ -157,20 +264,21 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                     view.ivArrow.setImageDrawable(mResource.getIconArrowDown())
                 }
             }
-            view.ivMenuAccidentAccident.id->{
+            view.ivMenuAccidentAccident.id -> {
                 setViewMenuAccident(AccidentType.ACCIDENT.value)
             }
-            view.ivMenuAccidentCrime.id->{
+            view.ivMenuAccidentCrime.id -> {
                 setViewMenuAccident(AccidentType.CRIME.value)
             }
-            view.ivMenuAccidentDisaster.id->{
+            view.ivMenuAccidentDisaster.id -> {
                 setViewMenuAccident(AccidentType.DISASTER.value)
             }
-            view.ivMenuAccidentVehicle.id->{
+            view.ivMenuAccidentVehicle.id -> {
                 setViewMenuAccident(AccidentType.VEHICLE.value)
             }
         }
     }
+
     companion object {
         const val REQUEST_GPS_MANAGER = 113
     }
@@ -202,16 +310,22 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                     NAVIGATION.LIST_CONTACT.value -> if (contactsFragment != null && contactsFragment?.isAdded!!) {
                         ft.show(contactsFragment!!)
                     } else {
-                        contactsFragment = ListContactsFragment.newInstance()
+                        contactsFragment = ListContactsFragment()
                         ft.replace(R.id.flChange, contactsFragment!!, itemId.toString())
+                    }
+                    NAVIGATION.CAMERA.value -> if (cameraFragment != null && cameraFragment?.isAdded!!) {
+                        ft.show(cameraFragment!!)
+                    } else {
+                        cameraFragment = CameraFragment()
+                        ft.replace(R.id.flChange, cameraFragment!!, itemId.toString())
                     }
                 }
                 hideOtherFragment(ft, itemId)
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 ft.commit()
-                if (itemId == NAVIGATION.HOME.value){
+                if (itemId == NAVIGATION.HOME.value) {
                     view.clContainerSearch.visible()
-                }else{
+                } else {
                     view.clContainerSearch.gone()
                 }
 
@@ -230,11 +344,14 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
             if (contactsFragment == null && f is ListContactsFragment) {
                 contactsFragment = f
             }
+            if (cameraFragment == null && f is CameraFragment) {
+                cameraFragment = f
+            }
         }
     }
 
     enum class NAVIGATION(val value: Int) {
-        HOME(R.id.actionHome), LIST_CONTACT(R.id.actionFriend)
+        HOME(R.id.actionHome), LIST_CONTACT(R.id.actionFriend), CAMERA(R.id.actionLive)
     }
 
     private fun hideOtherFragment(ft: FragmentTransaction, itemId: Int) {
@@ -242,10 +359,12 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
             ft.hide(homeFragment!!)
         if (contactsFragment != null && contactsFragment!!.isAdded && itemId != NAVIGATION.LIST_CONTACT.value)
             ft.hide(contactsFragment!!)
+        if (cameraFragment != null && cameraFragment!!.isAdded && itemId != NAVIGATION.CAMERA.value)
+            ft.hide(cameraFragment!!)
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private fun initView(){
+    private fun initView() {
         view.clMenuAccident.setOnTouchListener { _, _ ->
             true
         }
@@ -254,6 +373,7 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
     override fun initCreateView() {
         addLifeCycle(eventBusLifeCycle)
         mvpActivity.setActivityFullScreen()
+//        Utils.setPaddingNavigationBar(view.constraintLayout, mvpActivity)
         initView()
         view.bottomNavigationBar.setOnNavigationItemSelectedListener {
             showFragmentForMenuItem(it.itemId)
@@ -268,7 +388,7 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
     }
 
     override fun handleGetMap() {
-        mvpActivity.replaceFragment(HomeFragment(), view.flChange.id)
+        replaceFragment(HomeFragment(), HomeMapFragment.TAG)
     }
 
     override fun startMvpView() {
@@ -291,10 +411,12 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
     }
 
     override fun showLoading() {
+        MainActivity.isLoading = true
         loadingView.show()
     }
 
     override fun hideLoading() {
+        MainActivity.isLoading = false
         loadingView.hide()
     }
 
