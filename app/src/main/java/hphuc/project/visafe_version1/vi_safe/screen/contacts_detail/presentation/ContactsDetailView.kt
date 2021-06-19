@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import hphuc.project.visafe_version1.R
-import hphuc.project.visafe_version1.core.app.view.loading.Loadinger
 import hphuc.project.visafe_version1.core.base.bus.EventBusData
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionData
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionNotify
@@ -62,14 +61,14 @@ class ContactsDetailView(
                 data.isAdded = true
             }
             listViewMvp?.notifyItemChanged(listData.indexOf(data))
-            ConfigUtil.listSupport?.add(
-                ListContactsItemViewModel(
-                    id = extra?.id.getValueOrDefaultIsEmpty(),
-                    phone = extra?.phoneNumber.getValueOrDefaultIsEmpty(),
-                    name = extra?.name.getValueOrDefaultIsEmpty(),
-                    avatar = extra?.avatar.getValueOrDefaultIsEmpty()
-                )
-            )
+            val newList = ConfigUtil.listSupport
+            newList?.add(ListContactsItemViewModel(
+                id = extra?.id.getValueOrDefaultIsEmpty(),
+                phone = extra?.phoneNumber.getValueOrDefaultIsEmpty(),
+                name = extra?.name.getValueOrDefaultIsEmpty(),
+                avatar = extra?.avatar.getValueOrDefaultIsEmpty()
+            ))
+            newList?.let { ConfigUtil.saveListSupport(it) }
             Utils.makeText(mvpActivity).show()
         }
     }

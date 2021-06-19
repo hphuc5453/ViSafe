@@ -152,6 +152,8 @@ interface AppConstants {
 
         val REQUEST_CODE_PICK_CONTRACT: Int
             get() = 9
+        val REQUEST_CODE_PICK_IMAGE: Int
+            get() = 10
         val LIST_ALPHABET = mutableListOf(
             "A", "B", "C", "D", "E", "F", "G", "H", "I",
             "J", "K", "L", "M", "N", "O", "P", "Q", "R",

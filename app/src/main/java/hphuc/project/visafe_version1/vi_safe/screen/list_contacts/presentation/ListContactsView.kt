@@ -2,20 +2,17 @@ package hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation
 
 import android.content.ContentResolver
 import android.content.Context
-import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Canvas
 import android.provider.ContactsContract
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.app.util.SwipeControllerActions
-import hphuc.project.visafe_version1.core.app.view.loading.Loadinger
 import hphuc.project.visafe_version1.core.base.bus.EventBusData
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionData
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionNotify
@@ -140,21 +137,7 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
         Utils.setPaddingStatusBar(view.clContainer, mvpActivity)
         view.tvTitle.text = mResource.getTextTitle()
         view.ivBack.gone()
-        if (ActivityCompat.checkSelfPermission(
-                mvpActivity,
-                android.Manifest.permission.READ_CONTACTS
-            )
-            == PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(
-                mvpActivity,
-                android.Manifest.permission.WRITE_CONTACTS
-            )
-            == PackageManager.PERMISSION_GRANTED
-        ) {
-            getContactList()
-        } else {
-            mPresenter.checkPermission()
-        }
+        getContactList()
         view.swRefresh.setOnRefreshListener(onRefreshListener)
     }
 
@@ -185,10 +168,6 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
         listDataAlphabet.addAll(list)
         listViewMvpAlphabet?.setItems(listDataAlphabet)
         listViewMvpAlphabet?.notifyDataChanged()
-    }
-
-    override fun handleCheckPermission() {
-        getContactList()
     }
 
     private fun initRecycleView() {
@@ -276,9 +255,7 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
             cur?.close()
             ConfigUtil.saveListContacts(listData)
         }
-        else{
-            showData()
-        }
+        showData()
     }
 
     override fun startMvpView() {

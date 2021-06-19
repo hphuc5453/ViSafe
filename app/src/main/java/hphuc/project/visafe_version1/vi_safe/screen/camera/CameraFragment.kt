@@ -6,10 +6,14 @@ import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpFragm
 import hphuc.project.visafe_version1.vi_safe.screen.camera.presentation.CameraView
 
 class CameraFragment : MvpFragment() {
+
+    lateinit var view : CameraView
+
     companion object{
         val TAG = CameraFragment::class.java.simpleName
     }
     override fun createAndroidMvpView(savedInstanceState: Bundle?): AndroidMvpView {
-        return CameraView(getMvpActivity(), CameraView.ViewCreator(getMvpActivity(), null))
+        view =  CameraView(getMvpActivity(), CameraView.ViewCreator(getMvpActivity(), null))
+        return view
     }
 }

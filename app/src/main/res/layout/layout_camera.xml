@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/clContainer"
-    android:background="@drawable/background"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:scaleType="fitXY"
+        android:id="@+id/ivResultCamera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <include layout="@layout/layout_toolbar" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_50dp"
+        android:layout_marginEnd="@dimen/spacing_50dp"
+        android:layout_marginBottom="@dimen/spacing_40dp"
+        android:background="@drawable/bg_rectange_c4_068dff"
+        android:fontFamily="@font/semi_regular"
+        android:text="@string/text_send_now"
+        android:textAllCaps="false"
+        android:textColor="@color/color_57dfef"
+        android:textSize="@dimen/text_18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

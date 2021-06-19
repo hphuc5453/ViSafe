@@ -60,4 +60,13 @@
     <string name="text_immediate_alarm">Immediate alarm</string>
     <string name="text_total_person_supprort">Your family (%d)</string>
     <string name="text_today">Today</string>
+    <string name="text_send_now">Send now</string>
+    <string name="text_which_one_you_want_to_choose">Which one you want to choose?</string>
+    <string name="text_settings">Setting</string>
+    <string name="text_role_settings">Role settings</string>
+    <string name="text_alarm">Alarm</string>
+    <string name="text_register_personal_profile_settings">Register to create a personal profile</string>
+    <string name="text_rate_us">Rate us</string>
+    <string name="text_help">Help</string>
+    <string name="text_logout">Log out</string>
 </resources>

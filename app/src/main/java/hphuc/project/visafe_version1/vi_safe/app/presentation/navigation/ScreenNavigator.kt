@@ -5,6 +5,8 @@ import hphuc.project.visafe_version1.vi_safe.screen.contacts_detail.data.Contrac
 interface ScreenNavigator {
     fun gotoMainActivity()
     fun gotoSignUpActivity()
+    fun gotoLoginActivity()
     fun gotoContactsDetailActivity(extra: ContractsDetailDataIntent)
     fun gotoContactIntent()
+    fun gotoCameraActivity()
 }

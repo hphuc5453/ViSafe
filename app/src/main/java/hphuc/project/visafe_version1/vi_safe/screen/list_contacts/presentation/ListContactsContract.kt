@@ -12,12 +12,10 @@ interface ListContactsContract {
         fun hideLoading()
         fun showToast(message: String)
         fun showError(content: String, onActionAccept: OnActionNotify? = null)
-        fun handleCheckPermission()
         fun handleInitData(list: MutableList<ViewModel>)
     }
 
     abstract class Presenter : MvpPresenter<View>(){
-        abstract fun checkPermission()
         abstract fun getData()
         abstract fun gotoContactsDetailActivity(extra: ContractsDetailDataIntent)
     }

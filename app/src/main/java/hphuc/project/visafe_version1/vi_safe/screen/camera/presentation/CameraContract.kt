@@ -11,5 +11,7 @@ interface CameraContract {
         fun showError(content: String)
     }
 
-    abstract class Presenter : MvpPresenter<View>()
+    abstract class Presenter : MvpPresenter<View>(){
+        abstract fun gotoCameraActivity()
+    }
 }

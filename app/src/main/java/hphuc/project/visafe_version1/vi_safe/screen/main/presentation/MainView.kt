@@ -19,12 +19,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import hphuc.project.visafe_version1.R
 import hphuc.project.visafe_version1.core.app.view.loading.Loadinger
 import hphuc.project.visafe_version1.core.base.bus.EventBusData
 import hphuc.project.visafe_version1.core.base.domain.listener.OnActionData
+import hphuc.project.visafe_version1.core.base.domain.listener.OnActionNotify
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.AndroidMvpView
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
 import hphuc.project.visafe_version1.core.base.presentation.mvp.android.lifecycle.ViewResult
@@ -32,16 +32,16 @@ import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
 import hphuc.project.visafe_version1.vi_safe.screen.camera.CameraFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home.HomeFragment
-import hphuc.project.visafe_version1.vi_safe.screen.home.data.HomeDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.HomeMapFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.ListContactsFragment
-import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.data.ListContactsDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity
 import hphuc.project.visafe_version1.vi_safe.screen.main.data.EventMenu
 import hphuc.project.visafe_version1.vi_safe.screen.notify.NotifyFragment
 import hphuc.project.visafe_version1.vi_safe.screen.notify.data.NotifyDataBusIntent
+import hphuc.project.visafe_version1.vi_safe.screen.settings.SettingsFragment
+import kotlinex.mvpactivity.shouldShowCheckPermission
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.view.gone
 import kotlinex.view.visible
@@ -58,30 +58,11 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
     private val mResource = MainResourceProvider(mvpActivity)
     private val mPresenter = MainPresenter(mvpActivity, mResource)
 
-    private var homeFragment: HomeFragment? = null
-    private var contactsFragment: ListContactsFragment? = null
-    private var cameraFragment: CameraFragment? = null
-
     private val eventBusLifeCycle = EventBusLifeCycle(object : OnActionData<EventBusData> {
         override fun onAction(data: EventBusData) {
             when (data) {
                 is EventMenu -> {
                     mPresenter.handleEventMenu(data)
-                }
-                is HomeMapDataIntent -> {
-                    showHomeMapFragment(data)
-                    view.ivMenuAccident.visible()
-                    setViewMenuAccident(data.accidentType)
-                }
-                is ListContactsDataIntent -> {
-                    showFragmentForMenuItem(NAVIGATION.LIST_CONTACT.value)
-                }
-                is HomeDataIntent -> {
-                    showFragmentForMenuItem(NAVIGATION.HOME.value)
-                }
-                is NotifyDataBusIntent -> {
-                    view.clContainerSearch.gone()
-                    addFragment(NotifyFragment(), NotifyFragment.TAG)
                 }
             }
         }
@@ -112,18 +93,21 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
     }
 
     override fun showSettingFragment() {
-//        val fm: FragmentManager = mvpActivity.supportFragmentManager
-//        for (i in 1 until fm.backStackEntryCount) {
-//            fm.popBackStack()
-//        }
-//        replaceFragment(ListContactsFragment(), ListContactsFragment.TAG)
+        val fm: FragmentManager = mvpActivity.supportFragmentManager
+        for (i in 1 until fm.backStackEntryCount) {
+            fm.popBackStack()
+        }
+        replaceFragment(SettingsFragment(), SettingsFragment.TAG)
     }
 
     override fun showNotifyFragment() {
+        view.clContainerSearch.gone()
         addFragment(NotifyFragment(), NotifyFragment.TAG)
     }
 
     override fun showHomeMapFragment(extra: HomeMapDataIntent) {
+        view.ivMenuAccident.visible()
+        setViewMenuAccident(extra.accidentType)
         addFragment(HomeMapFragment.newInstance(extra), HomeMapFragment.TAG)
     }
 
@@ -137,12 +121,12 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
 
     private fun replaceFragment(fragment: Fragment, tag: String) {
         val ft = mvpActivity.supportFragmentManager.beginTransaction()
-        ft.setCustomAnimations(
-            R.anim.enter_right_to_left,
-            R.anim.exit_right_to_left,
-            R.anim.enter_left_to_right,
-            R.anim.exit_left_to_right
-        )
+//        ft.setCustomAnimations(
+//            R.anim.enter_right_to_left,
+//            R.anim.exit_right_to_left,
+//            R.anim.enter_left_to_right,
+//            R.anim.exit_left_to_right
+//        )
         ft.replace(view.flChange.id, fragment, tag)
         ft.addToBackStack(tag)
         ft.commit()
@@ -172,12 +156,12 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
         com.orhanobut.logger.Logger.d("onAddFragment $tag")
         Handler(Looper.getMainLooper()).postDelayed({
             val ft = mvpActivity.supportFragmentManager.beginTransaction()
-            ft.setCustomAnimations(
-                R.anim.enter_right_to_left,
-                R.anim.exit_right_to_left,
-                R.anim.enter_left_to_right,
-                R.anim.exit_left_to_right
-            )
+//            ft.setCustomAnimations(
+//                R.anim.enter_right_to_left,
+//                R.anim.exit_right_to_left,
+//                R.anim.enter_left_to_right,
+//                R.anim.exit_left_to_right
+//            )
             ft.add(view.flChange.id, fragment, tag)
             ft.addToBackStack(tag)
             ft.commit()
@@ -295,72 +279,58 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
     private fun showFragmentForMenuItem(itemId: Int) {
         view.clContainerSearch.gone()
         view.ivMenuAccident.gone()
+        if (itemId == NAVIGATION.HOME.value) {
+            view.clContainerSearch.visible()
+        } else {
+            view.clContainerSearch.gone()
+        }
         typeChoose = AccidentType.QUICKLY.value
         Handler(Looper.getMainLooper()).post {
             try {
-                val ft = mvpActivity.supportFragmentManager.beginTransaction()
-                checkFragmentExist()
                 when (itemId) {
-                    NAVIGATION.HOME.value -> if (homeFragment != null && homeFragment?.isAdded!!) {
-                        ft.show(homeFragment!!)
-                    } else {
-                        homeFragment = HomeFragment()
-                        ft.replace(R.id.flChange, homeFragment!!, itemId.toString())
+                    NAVIGATION.HOME.value -> {
+                        showHomeFragment()
                     }
-                    NAVIGATION.LIST_CONTACT.value -> if (contactsFragment != null && contactsFragment?.isAdded!!) {
-                        ft.show(contactsFragment!!)
-                    } else {
-                        contactsFragment = ListContactsFragment()
-                        ft.replace(R.id.flChange, contactsFragment!!, itemId.toString())
-                    }
-                    NAVIGATION.CAMERA.value -> if (cameraFragment != null && cameraFragment?.isAdded!!) {
-                        ft.show(cameraFragment!!)
-                    } else {
-                        cameraFragment = CameraFragment()
-                        ft.replace(R.id.flChange, cameraFragment!!, itemId.toString())
+                    NAVIGATION.LIST_CONTACT.value ->
+                        mvpActivity.shouldShowCheckPermission(
+                            Manifest.permission.READ_CONTACTS,
+                            object : OnActionNotify {
+                                override fun onActionNotify() {
+                                    showContactListFragment()
+                                }
+                            },
+                            onActionNotPermission,
+                            onActionNotPermission
+                        )
+                    NAVIGATION.CAMERA.value ->
+                        mvpActivity.shouldShowCheckPermission(
+                            Manifest.permission.CAMERA,
+                            object : OnActionNotify {
+                                override fun onActionNotify() {
+                                   showLiveFragment()
+                                }
+                            },
+                            onActionNotPermission,
+                            onActionNotPermission
+                        )
+                    NAVIGATION.SETTINGS.value->{
+                        showSettingFragment()
                     }
                 }
-                hideOtherFragment(ft, itemId)
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                ft.commit()
-                if (itemId == NAVIGATION.HOME.value) {
-                    view.clContainerSearch.visible()
-                } else {
-                    view.clContainerSearch.gone()
-                }
-
             } catch (ex: Exception) {
                 ex.printStackTrace()
             }
         }
     }
 
-    private fun checkFragmentExist() {
-        val fragments = mvpActivity.supportFragmentManager.fragments
-        for (f in fragments) {
-            if (homeFragment == null && f is HomeFragment) {
-                homeFragment = f
-            }
-            if (contactsFragment == null && f is ListContactsFragment) {
-                contactsFragment = f
-            }
-            if (cameraFragment == null && f is CameraFragment) {
-                cameraFragment = f
-            }
+    private val onActionNotPermission = object : OnActionNotify {
+        override fun onActionNotify() {
+            showToast(mvpActivity.resources.getString(R.string.text_error_write_perm_required))
         }
     }
 
     enum class NAVIGATION(val value: Int) {
-        HOME(R.id.actionHome), LIST_CONTACT(R.id.actionFriend), CAMERA(R.id.actionLive)
-    }
-
-    private fun hideOtherFragment(ft: FragmentTransaction, itemId: Int) {
-        if (homeFragment != null && homeFragment!!.isAdded && itemId != NAVIGATION.HOME.value)
-            ft.hide(homeFragment!!)
-        if (contactsFragment != null && contactsFragment!!.isAdded && itemId != NAVIGATION.LIST_CONTACT.value)
-            ft.hide(contactsFragment!!)
-        if (cameraFragment != null && cameraFragment!!.isAdded && itemId != NAVIGATION.CAMERA.value)
-            ft.hide(cameraFragment!!)
+        HOME(R.id.actionHome), LIST_CONTACT(R.id.actionFriend), CAMERA(R.id.actionLive), SETTINGS(R.id.actionSettings)
     }
 
     @SuppressLint("ClickableViewAccessibility")
