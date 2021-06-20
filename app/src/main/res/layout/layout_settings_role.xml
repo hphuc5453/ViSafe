@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <include
+        android:id="@+id/layoutToolbar"
+        layout="@layout/layout_toolbar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_20dp"
+        android:fontFamily="@font/semi_regular"
+        android:gravity="center"
+        android:text="@string/text_alerts_will_be_sent_to_the_following_group_of_people_at_the_nearest_location"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/text_16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clRole"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_14dp"
+        android:layout_marginBottom="@dimen/spacing_30dp"
+        android:background="@drawable/bg_rectange_068dff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvContent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivDisaster"
+            android:layout_width="@dimen/spacing_100dp"
+            android:layout_height="@dimen/spacing_100dp"
+            android:layout_marginStart="@dimen/spacing_24dp"
+            android:layout_marginTop="@dimen/spacing_30dp"
+            android:layout_marginEnd="@dimen/spacing_60dp"
+            android:scaleType="fitXY"
+            android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_disaster" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCrime"
+            android:layout_width="@dimen/spacing_100dp"
+            android:layout_height="@dimen/spacing_100dp"
+            android:layout_marginStart="@dimen/spacing_24dp"
+            android:layout_marginTop="@dimen/spacing_30dp"
+            android:layout_marginEnd="@dimen/spacing_60dp"
+            android:scaleType="fitXY"
+            android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivAccident"
+            app:srcCompat="@drawable/ic_crime" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivAccident"
+            android:layout_width="@dimen/spacing_100dp"
+            android:layout_height="@dimen/spacing_100dp"
+            android:layout_marginStart="@dimen/spacing_24dp"
+            android:layout_marginTop="@dimen/spacing_30dp"
+            android:layout_marginEnd="@dimen/spacing_60dp"
+            android:scaleType="fitXY"
+            android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivDisaster"
+            app:srcCompat="@drawable/ic_accident" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivVehicle"
+            android:layout_width="@dimen/spacing_100dp"
+            android:layout_height="@dimen/spacing_100dp"
+            android:layout_marginStart="@dimen/spacing_24dp"
+            android:layout_marginTop="@dimen/spacing_30dp"
+            android:layout_marginEnd="@dimen/spacing_60dp"
+            android:scaleType="fitXY"
+            android:stateListAnimator="@animator/anim_click_scale_zoom_out"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivCrime"
+            app:srcCompat="@drawable/ic_vehicle" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/ivDisaster"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivDisaster"
+            app:srcCompat="@drawable/ic_arrow_right" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_30dp"
+        android:layout_marginBottom="@dimen/spacing_30dp"
+        android:minWidth="@dimen/spacing_20dp"
+        android:minHeight="@dimen/spacing_20dp"
+        app:layout_constraintBottom_toBottomOf="@id/clRole"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@id/clRole"
+        app:layout_constraintTop_toTopOf="@id/clRole" />
+</androidx.constraintlayout.widget.ConstraintLayout>

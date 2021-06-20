@@ -69,4 +69,6 @@
     <string name="text_rate_us">Rate us</string>
     <string name="text_help">Help</string>
     <string name="text_logout">Log out</string>
+    <string name="text_settings_role">Role settings</string>
+    <string name="text_alerts_will_be_sent_to_the_following_group_of_people_at_the_nearest_location">Alerts will be sent to the following group of people at the nearest location</string>
 </resources>
