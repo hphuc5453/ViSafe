@@ -58,6 +58,9 @@ class MainPresenter(
                     EventMenu.ChildFragment.NOTIFY -> {
                         view?.showNotifyFragment()
                     }
+                    EventMenu.ChildFragment.SETTINGS_ROLE -> {
+                        view?.showSettingsRoleFragment()
+                    }
                 }
             }
         }

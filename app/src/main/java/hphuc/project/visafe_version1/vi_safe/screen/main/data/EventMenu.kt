@@ -17,6 +17,6 @@ class EventMenu(
     }
 
     enum class ChildFragment {
-       HOME_MAP, NOTIFY
+       HOME_MAP, NOTIFY, SETTINGS_ROLE
     }
 }

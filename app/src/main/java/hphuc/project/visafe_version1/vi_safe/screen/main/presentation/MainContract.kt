@@ -23,6 +23,7 @@ interface MainContract {
         fun showCallFragment()
         fun showSettingFragment()
         fun showNotifyFragment()
+        fun showSettingsRoleFragment()
         fun showHomeMapFragment(extra: HomeMapDataIntent)
 
     }

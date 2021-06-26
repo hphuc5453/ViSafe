@@ -1,4 +1,4 @@
-package hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation
+package hphuc.project.visafe_version1.vi_safe.screen.call_now.presentation
 
 import android.content.ContentResolver
 import android.content.Context
@@ -24,9 +24,9 @@ import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.OnI
 import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.config.ConfigUtil
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
-import hphuc.project.visafe_version1.vi_safe.app.presentation.navigater.AndroidScreenNavigator
 import hphuc.project.visafe_version1.vi_safe.app.util.view.bubble_layout.custom_swipe.CustomSwipeCallRight
 import hphuc.project.visafe_version1.vi_safe.screen.contacts_detail.data.ContractsDetailDataIntent
+import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.ListContactsResourceProvider
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.model.ListContactsItemViewModel
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.renderer.ListContactsAlphabetItemViewRenderer
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.presentation.renderer.ListContactsItemViewRenderer
@@ -39,15 +39,14 @@ import kotlinex.view.gone
 import kotlinx.android.synthetic.main.layout_contacts.view.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 
-
-class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
-    AndroidMvpView(mvpActivity, viewCreator), ListContactsContract.View {
+class CallNowView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator) :
+    AndroidMvpView(mvpActivity, viewCreator), CallNowContract.View {
 
     //Create view layout
     class ViewCreator(context: Context, viewGroup: ViewGroup?) :
         AndroidMvpView.LayoutViewCreator(R.layout.layout_contacts, context, viewGroup)
 
-    private val mPresenter = ListContactsPresenter(AndroidScreenNavigator(mvpActivity))
+    private val mPresenter = CallNowPresenter()
     private var listViewMvp: ListViewMvp? = null
     private val listData: MutableList<ViewModel> = mutableListOf()
     private val mResource = ListContactsResourceProvider(mvpActivity)
@@ -70,8 +69,6 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
         showData()
     }
 
-
-
     // swipe right
     private val buttonAction = object : SwipeControllerActions() {
 
@@ -91,7 +88,7 @@ class ListContactsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
             mvpActivity
         )
 
-//    private val itemTouchHelper = ItemTouchHelper(swipeController)
+    //    private val itemTouchHelper = ItemTouchHelper(swipeController)
     private val onItemDecoration = object : RecyclerView.ItemDecoration() {
         override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
             swipeController.onDraw(c, mResource.getIconCall(), mResource.getIconMessage())

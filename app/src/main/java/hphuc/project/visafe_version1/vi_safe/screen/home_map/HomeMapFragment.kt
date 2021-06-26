@@ -31,7 +31,7 @@ class HomeMapFragment : MvpFragment() {
         view = HomeMapView(getMvpActivity(), HomeMapView.ViewCreator(getMvpActivity(), null),
             extra)
         mapView = view.getMapView()
-        mapView.onCreate(savedInstanceState)
+//        mapView.onCreate(savedInstanceState)
         return view
     }
 

@@ -18,6 +18,7 @@ import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
 import hphuc.project.visafe_version1.vi_safe.app.presentation.navigater.AndroidScreenNavigator
 import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity
+import hphuc.project.visafe_version1.vi_safe.screen.main.data.EventMenu
 import hphuc.project.visafe_version1.vi_safe.screen.settings.presentation.model.SettingsMethodItemViewModel
 import hphuc.project.visafe_version1.vi_safe.screen.settings.presentation.renderer.SettingsHeaderItemViewRenderer
 import hphuc.project.visafe_version1.vi_safe.screen.settings.presentation.renderer.SettingsLineItemViewRenderer
@@ -73,11 +74,17 @@ class SettingsView(mvpActivity: MvpActivity, viewCreator: ViewCreator) :
                         SettingsMethodItemViewModel.Type.LOGOUT.value->{
                             mPresenter.logout()
                         }
+                        SettingsMethodItemViewModel.Type.ROLES.value->{
+                            eventBusLifeCycle.sendData(
+                                EventMenu(
+                                    eventChildFragment = EventMenu.ChildFragment.SETTINGS_ROLE
+                                )
+                            )
+                        }
                     }
                 }
             }
         }
-
     }
 
     private fun initRecycleView(){

@@ -12,32 +12,32 @@ class SignUpMapper(private val mResource: SignUpResourceProvider) :
         val list = mutableListOf<ViewModel>()
         list.add(
             RoleItemViewModel(
-                type = AppConstants.POLICY,
+                type = AppConstants.ROLE_POLICY,
                 name = mResource.getTextRolePolicy(),
                 isChoose = true
             )
         )
         list.add(
             RoleItemViewModel(
-                type = AppConstants.CIVIL_DEFENSE,
+                type = AppConstants.ROLE_CIVIL_DEFENSE,
                 name = mResource.getTextRoleCivilDefense()
             )
         )
         list.add(
             RoleItemViewModel(
-                type = AppConstants.STREET_BODYGUARD,
+                type = AppConstants.ROLE_STREET_BODYGUARD,
                 name = mResource.getTextRoleStreetBodyguard()
             )
         )
         list.add(
             RoleItemViewModel(
-                type = AppConstants.HOSPITAL,
+                type = AppConstants.ROLE_HOSPITAL,
                 name = mResource.getTextRoleHospital()
             )
         )
         list.add(
             RoleItemViewModel(
-                type = AppConstants.FIRE_FIGHT,
+                type = AppConstants.ROLE_FIRE_FIGHT,
                 name = mResource.getTextRoleFirefight()
             )
         )

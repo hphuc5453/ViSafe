@@ -10,6 +10,7 @@ public interface ConfigSaver {
     String CONFIG_SETTING_KEY_MAP_STYLE = "config_setting_saved_key_map_style";
     String CONFIG_SETTING_LIST_CONTACTS = "config_setting_saved_key_list_contacts";
     String CONFIG_SETTING_LIST_SUPPORT = "config_setting_saved_key_list_support";
+    String CONFIG_SETTING_LIST_ROLE_SETTINGS = "config_setting_saved_key_list_role_settings";
 
     void save(String key, Object data);
 

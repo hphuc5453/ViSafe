@@ -3,6 +3,7 @@ package hphuc.project.visafe_version1.vi_safe.app.config
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import hphuc.project.visafe_version1.core.base.config.ConfigSaver
 import hphuc.project.visafe_version1.core.base.config.PaperConfigSaverImpl
+import hphuc.project.visafe_version1.vi_safe.app.common.SettingsRoleData
 import kotlinex.boolean.getValueOrDefault
 import hphuc.project.visafe_version1.vi_safe.app.data.network.request.PassportRequest
 import hphuc.project.visafe_version1.vi_safe.app.data.network.response.PassportResponse
@@ -55,6 +56,12 @@ class ConfigUtil {
                 return configSaver.get(ConfigSaver.CONFIG_SETTING_LIST_SUPPORT)
             }
 
+        val listRoleSettings: MutableList<SettingsRoleData>
+            get() {
+                val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
+                return configSaver.get(ConfigSaver.CONFIG_SETTING_LIST_ROLE_SETTINGS)
+            }
+
         val mapStyle: String?
             get() {
                 val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
@@ -77,6 +84,12 @@ class ConfigUtil {
         fun saveListSupport(mutableList: MutableList<ViewModel>) {
             val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
             return configSaver.save(ConfigSaver.CONFIG_SETTING_LIST_SUPPORT, mutableList)
+        }
+
+        @JvmStatic
+        fun saveListRoleSettings(mutableList: MutableList<SettingsRoleData>) {
+            val configSaver = PaperConfigSaverImpl(ConfigSaver.CONFIG_PAGER)
+            return configSaver.save(ConfigSaver.CONFIG_SETTING_LIST_ROLE_SETTINGS, mutableList)
         }
 
         @JvmStatic

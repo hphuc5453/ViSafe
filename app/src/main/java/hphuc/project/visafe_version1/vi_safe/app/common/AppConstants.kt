@@ -144,11 +144,14 @@ interface AppConstants {
         const val CANCEL_FINGERPRINT_WITH_TOUCH_OUTSIZE = 10
 
         // role
-        const val POLICY = "POLICY"
-        const val CIVIL_DEFENSE = "CIVIL_DEFENSE"
-        const val STREET_BODYGUARD = "STREET_BODYGUARD"
-        const val HOSPITAL = "HOSPITAL"
-        const val FIRE_FIGHT = "FIRE_FIGHT"
+        const val ROLE_POLICY = "POLICY"
+        const val ROLE_CIVIL_DEFENSE = "CIVIL_DEFENSE"
+        const val ROLE_STREET_BODYGUARD = "STREET_BODYGUARD"
+        const val ROLE_HOSPITAL = "HOSPITAL"
+        const val ROLE_FIRE_FIGHT = "FIRE_FIGHT"
+
+        // accident tye
+
 
         val REQUEST_CODE_PICK_CONTRACT: Int
             get() = 9

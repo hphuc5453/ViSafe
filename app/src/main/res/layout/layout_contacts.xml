@@ -54,7 +54,7 @@
                         android:layout_height="@dimen/spacing_60dp"
                         android:background="@color/transparent"
                         android:fontFamily="@font/semi_regular"
-                        android:hint="@string/text_enter_your_location"
+                        android:hint="@string/text_search_your_family"
                         android:paddingStart="@dimen/spacing_12dp"
                         android:paddingEnd="@dimen/spacing_12dp"
                         android:textColor="@color/color_cccccc"

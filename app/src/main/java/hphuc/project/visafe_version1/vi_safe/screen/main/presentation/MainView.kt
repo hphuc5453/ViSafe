@@ -32,15 +32,16 @@ import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
 import hphuc.project.visafe_version1.vi_safe.screen.camera.CameraFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home.HomeFragment
-import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
+import hphuc.project.visafe_version1.vi_safe.app.common.AccidentType
+import hphuc.project.visafe_version1.vi_safe.screen.call_now.CallNowFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.HomeMapFragment
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.list_contacts.ListContactsFragment
 import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity
 import hphuc.project.visafe_version1.vi_safe.screen.main.data.EventMenu
 import hphuc.project.visafe_version1.vi_safe.screen.notify.NotifyFragment
-import hphuc.project.visafe_version1.vi_safe.screen.notify.data.NotifyDataBusIntent
 import hphuc.project.visafe_version1.vi_safe.screen.settings.SettingsFragment
+import hphuc.project.visafe_version1.vi_safe.screen.settings_role.SettingsRoleFragment
 import kotlinex.mvpactivity.shouldShowCheckPermission
 import kotlinex.mvpactivity.showErrorAlert
 import kotlinex.view.gone
@@ -85,11 +86,11 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
     }
 
     override fun showCallFragment() {
-//        val fm: FragmentManager = mvpActivity.supportFragmentManager
-//        for (i in 1 until fm.backStackEntryCount) {
-//            fm.popBackStack()
-//        }
-//        replaceFragment(ListContactsFragment(), ListContactsFragment.TAG)
+        val fm: FragmentManager = mvpActivity.supportFragmentManager
+        for (i in 1 until fm.backStackEntryCount) {
+            fm.popBackStack()
+        }
+        replaceFragment(CallNowFragment(), CallNowFragment.TAG)
     }
 
     override fun showSettingFragment() {
@@ -105,13 +106,18 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
         addFragment(NotifyFragment(), NotifyFragment.TAG)
     }
 
+    override fun showSettingsRoleFragment() {
+        addFragment(SettingsRoleFragment(), SettingsRoleFragment.TAG)
+    }
+
     override fun showHomeMapFragment(extra: HomeMapDataIntent) {
         view.ivMenuAccident.visible()
         setViewMenuAccident(extra.accidentType)
-        addFragment(HomeMapFragment.newInstance(extra), HomeMapFragment.TAG)
+        replaceFragment(HomeMapFragment.newInstance(extra), HomeMapFragment.TAG)
     }
 
     override fun showHomeFragment() {
+        view.ivMenuAccident.gone()
         val fm: FragmentManager = mvpActivity.supportFragmentManager
         for (i in 0 until fm.backStackEntryCount) {
             fm.popBackStack()
@@ -121,12 +127,12 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
 
     private fun replaceFragment(fragment: Fragment, tag: String) {
         val ft = mvpActivity.supportFragmentManager.beginTransaction()
-//        ft.setCustomAnimations(
-//            R.anim.enter_right_to_left,
-//            R.anim.exit_right_to_left,
-//            R.anim.enter_left_to_right,
-//            R.anim.exit_left_to_right
-//        )
+        ft.setCustomAnimations(
+            R.anim.enter_right_to_left,
+            R.anim.exit_right_to_left,
+            R.anim.enter_left_to_right,
+            R.anim.exit_left_to_right
+        )
         ft.replace(view.flChange.id, fragment, tag)
         ft.addToBackStack(tag)
         ft.commit()
@@ -313,6 +319,18 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
                             onActionNotPermission,
                             onActionNotPermission
                         )
+                    NAVIGATION.CALL_NOW.value->{
+                        mvpActivity.shouldShowCheckPermission(
+                            Manifest.permission.READ_CONTACTS,
+                            object : OnActionNotify {
+                                override fun onActionNotify() {
+                                    showCallFragment()
+                                }
+                            },
+                            onActionNotPermission,
+                            onActionNotPermission
+                        )
+                    }
                     NAVIGATION.SETTINGS.value->{
                         showSettingFragment()
                     }
@@ -330,7 +348,7 @@ class MainView(mvpActivity: MvpActivity, viewCreator: AndroidMvpView.ViewCreator
     }
 
     enum class NAVIGATION(val value: Int) {
-        HOME(R.id.actionHome), LIST_CONTACT(R.id.actionFriend), CAMERA(R.id.actionLive), SETTINGS(R.id.actionSettings)
+        HOME(R.id.actionHome), LIST_CONTACT(R.id.actionFriend), CAMERA(R.id.actionLive), SETTINGS(R.id.actionSettings), CALL_NOW(R.id.actionCall)
     }
 
     @SuppressLint("ClickableViewAccessibility")

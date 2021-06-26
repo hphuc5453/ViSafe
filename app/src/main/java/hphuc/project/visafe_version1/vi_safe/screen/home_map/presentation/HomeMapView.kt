@@ -38,7 +38,7 @@ import hphuc.project.visafe_version1.core.base.presentation.mvp.android.list.Lis
 import hphuc.project.visafe_version1.vi_safe.app.Utils
 import hphuc.project.visafe_version1.vi_safe.app.config.ConfigUtil
 import hphuc.project.visafe_version1.vi_safe.app.lifecycle.EventBusLifeCycle
-import hphuc.project.visafe_version1.vi_safe.screen.home_map.AccidentType
+import hphuc.project.visafe_version1.vi_safe.app.common.AccidentType
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.data.HomeMapDataIntent
 import hphuc.project.visafe_version1.vi_safe.screen.home_map.presentation.renderer.HomeMapSupportItemViewRenderer
 import hphuc.project.visafe_version1.vi_safe.screen.main.MainActivity

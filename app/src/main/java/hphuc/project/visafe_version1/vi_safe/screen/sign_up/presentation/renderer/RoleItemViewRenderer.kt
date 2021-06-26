@@ -21,10 +21,10 @@ class RoleItemViewRenderer(context: Context, private val mResource: SignUpResour
 
     override fun bindView(model: RoleItemViewModel, viewRoot: View) {
         when (model.type) {
-            AppConstants.POLICY -> {
+            AppConstants.ROLE_POLICY -> {
                 viewRoot.ivRole.setImageDrawable(mResource.getIconRolePolicy())
             }
-            AppConstants.CIVIL_DEFENSE -> {
+            AppConstants.ROLE_CIVIL_DEFENSE -> {
                 viewRoot.ivRole.setImageDrawable(mResource.getIconRoleCivilDefense())
             }
             else -> {

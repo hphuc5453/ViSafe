@@ -9,85 +9,181 @@ import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.module.http.HttpRequestUtil
 import hphuc.project.visafe_version1.core.app.common.AppConfigs
 import hphuc.project.visafe_version1.core.base.manager.LocaleManager
-import io.paperdb.Paper
-import hphuc.project.visafe_version1.core.base.presentation.mvp.android.MvpActivity
+import hphuc.project.visafe_version1.vi_safe.app.common.AccidentType
+import hphuc.project.visafe_version1.vi_safe.app.common.AppConstants
+import hphuc.project.visafe_version1.vi_safe.app.common.SettingsRoleData
+import hphuc.project.visafe_version1.vi_safe.app.config.ConfigUtil
 import hphuc.project.visafe_version1.vi_safe.app.network.HttpClient
+import io.paperdb.Paper
 
 class App : Application() {
-    var currentActivity: MvpActivity?=null
     override fun onCreate() {
         super.onCreate()
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         app = this
         Paper.init(this)
         setupApplication()
-//        initLogger()
-//        initLogActivity()
-        Mapbox.getInstance(applicationContext, "pk.eyJ1IjoiaHBodWM1NDQzIiwiYSI6ImNrcGZsd2s2ZDIyeXcyd2xsdjA3b3BsM3kifQ.KoieAuM1rHDdCOt122aFeQ")
-//        Fresco.initialize(this)
+        initRoleSettingsDefault()
+        Mapbox.getInstance(
+            applicationContext,
+            "pk.eyJ1IjoiaHBodWM1NDQzIiwiYSI6ImNrcGZsd2s2ZDIyeXcyd2xsdjA3b3BsM3kifQ.KoieAuM1rHDdCOt122aFeQ"
+        )
 //        FirebaseMessaginxg.getInstance().isAutoInitEnabled = true
         HttpRequestUtil.setOkHttpClient(HttpClient.get())
     }
 
-//    private fun initLogger() {
-//        Logger.addLogAdapter(object : AndroidLogAdapter() {
-//            override fun isLoggable(priority: Int, tag: String?): Boolean {
-//                return BuildConfig.DEBUG
-//            }
-//        })
-//    }
+    private fun initRoleSettingsDefault() {
+        val list = mutableListOf<SettingsRoleData>()
 
-//    private fun initLogActivity() {
-//        if (BuildConfig.DEBUG) {
-//            this.registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
-//                override fun onActivityPaused(activity: Activity?) {
-//                    activity?.let {
-//                        Logger.d("onActivityPaused ${activity.javaClass.simpleName}")
-//                    }
-//                }
-//
-//                override fun onActivityResumed(activity: Activity?) {
-//                    if (activity is MvpActivity) {
-//                        currentActivity = activity
-//                    }
-//                    activity?.let {
-//                        Logger.d("onActivityResumed ${activity.javaClass.simpleName}")
-//                    }
-//                }
-//
-//                override fun onActivityStarted(activity: Activity?) {
-//                    activity?.let {
-//                        Logger.d("onActivityStarted ${activity.javaClass.simpleName}")
-//                    }
-//                }
-//
-//                override fun onActivityDestroyed(activity: Activity?) {
-//                    activity?.let {
-//                        Logger.d("onActivityDestroyed ${activity.javaClass.simpleName}")
-//                    }
-//                }
-//
-//                override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
-//                    activity?.let {
-//                        Logger.d("onActivitySaveInstanceState ${activity.javaClass.simpleName}")
-//                    }
-//                }
-//
-//                override fun onActivityStopped(activity: Activity?) {
-//                    activity?.let {
-//                        Logger.d("onActivityStopped ${activity.javaClass.simpleName}")
-//                    }
-//                }
-//
-//                override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
-//                    activity?.let {
-//                        Logger.d("onActivityCreated ${activity.javaClass.simpleName}")
-//                    }
-//                }
-//
-//            })
-//        }
-//    }
+        // disaster
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.DISASTER.value,
+                type = AppConstants.ROLE_POLICY,
+                isChoose = true
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.DISASTER.value,
+                type = AppConstants.ROLE_CIVIL_DEFENSE,
+                isChoose = false
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.DISASTER.value,
+                type = AppConstants.ROLE_STREET_BODYGUARD,
+                isChoose = true
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.DISASTER.value,
+                type = AppConstants.ROLE_HOSPITAL,
+                isChoose = false
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.DISASTER.value,
+                type = AppConstants.ROLE_FIRE_FIGHT,
+                isChoose = false
+            )
+        )
+
+        // crime
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.CRIME.value,
+                type = AppConstants.ROLE_POLICY,
+                isChoose = true
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.CRIME.value,
+                type = AppConstants.ROLE_CIVIL_DEFENSE,
+                isChoose = false
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.CRIME.value,
+                type = AppConstants.ROLE_STREET_BODYGUARD,
+                isChoose = true
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.CRIME.value,
+                type = AppConstants.ROLE_FIRE_FIGHT,
+                isChoose = false
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.CRIME.value,
+                type = AppConstants.ROLE_HOSPITAL,
+                isChoose = false
+            )
+        )
+
+        // vehicle
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.VEHICLE.value,
+                type = AppConstants.ROLE_POLICY,
+                isChoose = true
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.VEHICLE.value,
+                type = AppConstants.ROLE_CIVIL_DEFENSE,
+                isChoose = false
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.VEHICLE.value,
+                type = AppConstants.ROLE_STREET_BODYGUARD,
+                isChoose = true
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.VEHICLE.value,
+                type = AppConstants.ROLE_FIRE_FIGHT,
+                isChoose = false
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.VEHICLE.value,
+                type = AppConstants.ROLE_HOSPITAL,
+                isChoose = false
+            )
+        )
+
+        // accident
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.ACCIDENT.value,
+                type = AppConstants.ROLE_POLICY,
+                isChoose = true
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.ACCIDENT.value,
+                type = AppConstants.ROLE_CIVIL_DEFENSE,
+                isChoose = false
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.ACCIDENT.value,
+                type = AppConstants.ROLE_STREET_BODYGUARD,
+                isChoose = true
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.ACCIDENT.value,
+                type = AppConstants.ROLE_FIRE_FIGHT,
+                isChoose = false
+            )
+        )
+        list.add(
+            SettingsRoleData(
+                accidentType = AccidentType.ACCIDENT.value,
+                type = AppConstants.ROLE_HOSPITAL,
+                isChoose = false
+            )
+        )
+        ConfigUtil.saveListRoleSettings(list)
+    }
 
     private fun setupApplication() {
         AppConfigs.getInstanceApp().setBaseApplication(this)
